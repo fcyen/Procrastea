@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProcrastinaTea — Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --board:#e6e7ea;
+    --board-line:#d5d7dc;
+    --bezel:#15171c;
+    --screen:#ffffff;
+    --surface:#f3f4f6;
+    --surface-2:#eceef1;
+    --stroke:#dcdee3;
+    --stroke-2:#c6c9cf;
+    --ink:#33363b;
+    --ink-2:#5b5f66;
+    --muted:#a2a7ae;
+    --accent:#ff6b52;
+    --accent-tint:#ffe9e3;
+    --accent-ink:#c23a24;
+    --good:#46b26a;
+    --good-tint:#e3f4e9;
+    --bad:#e5462b;
+    --radius:9px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-family:"Inter",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:var(--board);
+    background-image:radial-gradient(var(--board-line) 1px,transparent 1px);
+    background-size:26px 26px;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding:40px 22px 80px;
+  }
+
+  /* ---------- Board header ---------- */
+  .board-head{max-width:1240px;margin:0 auto 30px;}
+  .brandline{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .logo{width:40px;height:40px;border-radius:11px;background:var(--accent);
+    display:grid;place-items:center;color:#fff;flex:none;
+    box-shadow:0 6px 16px rgba(255,107,82,.35);}
+  .logo svg{width:22px;height:22px;}
+  h1{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:0;}
+  .board-sub{color:var(--ink-2);font-size:14.5px;margin:12px 2px 0;max-width:680px;line-height:1.55;}
+  .legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font-size:12.5px;color:var(--ink-2);}
+  .legend span{display:inline-flex;align-items:center;gap:8px;}
+  .sw{width:26px;height:15px;border-radius:4px;border:1px solid var(--stroke-2);flex:none;}
+  .sw.acc{background:var(--accent);border-color:var(--accent);}
+  .sw.ph{background:repeating-linear-gradient(45deg,#e2e4e8 0 6px,#eaecef 6px 12px);}
+  .sw.tog{background:var(--good);border-color:var(--good);}
+
+  /* ---------- Section ---------- */
+  .section{max-width:1240px;margin:0 auto;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin:46px 2px 22px;
+    border-bottom:1.5px solid var(--board-line);padding-bottom:10px;}
+  .sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent-ink);
+    background:var(--accent-tint);padding:3px 8px;border-radius:6px;font-weight:600;}
+  .sec-head h2{font-size:16px;font-weight:600;letter-spacing:.01em;margin:0;text-transform:uppercase;}
+  .sec-head p{margin:0;color:var(--muted);font-size:12.5px;}
+
+  .grid{display:flex;flex-wrap:wrap;gap:30px 26px;align-items:flex-start;}
+
+  /* ---------- Device ---------- */
+  .device{width:300px;animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  @media(prefers-reduced-motion:reduce){.device{animation:none;}}
+  .cap{display:flex;align-items:center;gap:8px;margin:0 4px 9px;}
+  .cap b{font-size:13.5px;font-weight:600;color:var(--ink);}
+  .cap .tag{font-family:var(--mono);font-size:10.5px;color:var(--ink-2);
+    background:#fff;border:1px solid var(--stroke);padding:2px 7px;border-radius:20px;}
+  .cap .num{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto;}
+
+  .phone{background:var(--bezel);border-radius:34px;padding:9px;
+    box-shadow:0 18px 40px -14px rgba(20,22,28,.5),0 2px 4px rgba(0,0,0,.15);}
+  .screen{background:var(--screen);border-radius:26px;height:632px;overflow:hidden;
+    display:flex;flex-direction:column;position:relative;}
+
+  /* status bar */
+  .sb{display:flex;justify-content:space-between;align-items:center;
+    padding:12px 20px 6px;font-size:12px;font-weight:600;color:var(--ink);flex:none;}
+  .sb .r{display:flex;align-items:center;gap:5px;}
+  .sb svg{width:15px;height:12px;fill:var(--ink);}
+
+  /* app bar */
+  .appbar{display:flex;align-items:center;gap:8px;padding:6px 14px 12px;flex:none;
+    border-bottom:1px solid var(--stroke);}
+  .appbar.plain{border-bottom:none;padding-bottom:6px;}
+  .appbar .title{font-size:16px;font-weight:600;flex:1;}
+  .appbar .title.c{text-align:center;}
+  .ibtn{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+    color:var(--ink-2);flex:none;background:transparent;}
+  .ibtn.f{background:var(--surface);}
+  .ibtn svg{width:19px;height:19px;}
+
+  /* scroll body */
+  .body{flex:1;overflow:hidden;padding:14px;display:flex;flex-direction:column;gap:12px;}
+  .body.np{padding:0;}
+
+  /* tab bar */
+  .tabbar{display:flex;justify-content:space-around;align-items:center;flex:none;
+    border-top:1px solid var(--stroke);padding:8px 6px 12px;background:#fff;}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);flex:1;}
+  .tab svg{width:21px;height:21px;}
+  .tab span{font-size:9.5px;font-weight:500;}
+  .tab.on{color:var(--accent);}
+  .tab .fab{width:46px;height:46px;border-radius:16px;background:var(--accent);color:#fff;
+    display:grid;place-items:center;margin-top:-16px;box-shadow:0 8px 18px rgba(255,107,82,.4);}
+  .tab .fab svg{width:24px;height:24px;}
+
+  /* ---------- Wireframe atoms ---------- */
+  .h{font-size:13px;font-weight:600;color:var(--ink);margin:2px 0;}
+  .h.big{font-size:17px;}
+  .sub{font-size:11px;color:var(--muted);line-height:1.4;}
+  .ln{height:9px;border-radius:5px;background:var(--surface-2);}
+  .ln.d{background:#e2e4e8;}
+  .w25{width:25%;}.w40{width:40%;}.w50{width:50%;}.w60{width:60%;}.w70{width:70%;}.w85{width:85%;}.w100{width:100%;}
+
+  .card{background:var(--surface);border:1px solid var(--stroke);border-radius:var(--radius);padding:11px;}
+  .card.tint{background:var(--accent-tint);border-color:#ffd7cd;}
+
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .flabel{font-size:11px;font-weight:600;color:var(--ink-2);}
+  .input{border:1px solid var(--stroke-2);border-radius:8px;background:#fff;
+    padding:10px 11px;font-size:12px;color:var(--muted);min-height:38px;display:flex;align-items:center;}
+  .input.area{min-height:58px;align-items:flex-start;}
+
+  .btn{border:1px solid var(--stroke-2);border-radius:9px;background:#fff;color:var(--ink);
+    font-size:12.5px;font-weight:600;padding:11px;text-align:center;}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;
+    box-shadow:0 6px 14px rgba(255,107,82,.32);}
+  .btn.block{width:100%;}
+  .btn.sm{padding:7px 12px;font-size:11.5px;}
+  .btn.ghost{background:var(--surface);border-color:var(--stroke);color:var(--ink-2);}
+
+  .chips{display:flex;gap:7px;flex-wrap:wrap;}
+  .chip{border:1px solid var(--stroke-2);border-radius:20px;padding:6px 12px;font-size:11px;
+    font-weight:500;color:var(--ink-2);background:#fff;}
+  .chip.on{background:var(--accent-tint);border-color:var(--accent);color:var(--accent-ink);}
+
+  .days{display:flex;gap:5px;}
+  .day{flex:1;aspect-ratio:1;border:1px solid var(--stroke-2);border-radius:8px;background:#fff;
+    display:grid;place-items:center;font-size:10px;font-weight:600;color:var(--muted);}
+  .day.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+  .row{display:flex;align-items:center;gap:10px;padding:11px 2px;}
+  .rowc{background:var(--surface);border:1px solid var(--stroke);border-radius:var(--radius);
+    padding:11px;display:flex;align-items:center;gap:10px;}
+  .row .grow,.rowc .grow{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;}
+  .divide{height:1px;background:var(--stroke);}
+
+  .av{width:34px;height:34px;border-radius:50%;background:var(--surface-2);flex:none;
+    display:grid;place-items:center;color:var(--muted);border:1px solid var(--stroke);}
+  .av svg{width:18px;height:18px;}
+  .av.sm{width:26px;height:26px;}.av.sm svg{width:14px;height:14px;}
+  .av.lg{width:64px;height:64px;}.av.lg svg{width:30px;height:30px;}
+
+  .ph-img{background:repeating-linear-gradient(45deg,#e2e4e8 0 7px,#eaecef 7px 14px);
+    border:1px solid var(--stroke);border-radius:8px;display:grid;place-items:center;color:#b7bcc2;}
+  .ph-img svg{width:26px;height:26px;}
+  .ph-img.sq{aspect-ratio:1;}
+
+  .toggle{width:38px;height:22px;border-radius:20px;background:#d3d6db;flex:none;position:relative;transition:.2s;}
+  .toggle::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;
+    top:3px;left:3px;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:.2s;}
+  .toggle.on{background:var(--good);}
+  .toggle.on::after{left:19px;}
+  .toggle.acc.on{background:var(--accent);}
+
+  .radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--stroke-2);flex:none;}
+  .radio.on{border-color:var(--accent);box-shadow:inset 0 0 0 3px var(--accent);}
+
+  .check{width:24px;height:24px;border-radius:50%;border:2px solid var(--stroke-2);flex:none;
+    display:grid;place-items:center;color:#fff;}
+  .check.on{background:var(--good);border-color:var(--good);}
+  .check.on svg{width:13px;height:13px;stroke:#fff;}
+
+  .stats{display:flex;gap:9px;}
+  .stat{flex:1;background:var(--surface);border:1px solid var(--stroke);border-radius:var(--radius);
+    padding:10px;text-align:center;}
+  .stat .n{font-size:19px;font-weight:700;color:var(--ink);line-height:1;}
+  .stat .n .fl{color:var(--accent);}
+  .stat .l{font-size:9px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.03em;}
+
+  .pill{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;
+    padding:3px 8px;border-radius:20px;background:var(--accent-tint);color:var(--accent-ink);}
+  .pill svg{width:11px;height:11px;stroke:var(--accent);}
+  .pill.g{background:var(--good-tint);color:#2b7a45;}
+  .pill.g svg{stroke:var(--good);}
+  .pill.n{background:var(--surface-2);color:var(--ink-2);}
+
+  .seg{display:flex;background:var(--surface-2);border-radius:9px;padding:3px;}
+  .seg div{flex:1;text-align:center;font-size:11px;font-weight:600;padding:7px;border-radius:7px;color:var(--muted);}
+  .seg div.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);}
+
+  .rx{display:flex;gap:6px;}
+  .rx div{width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid var(--stroke);
+    display:grid;place-items:center;font-size:15px;}
+  .rx div.on{background:var(--accent-tint);border-color:var(--accent);}
+
+  .note{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:center;
+    padding:3px 0;letter-spacing:.02em;}
+  .anno{font-family:var(--mono);font-size:9.5px;color:var(--accent-ink);background:var(--accent-tint);
+    display:inline-block;padding:2px 7px;border-radius:5px;}
+
+  .qr{width:110px;height:110px;margin:2px auto;border:1px solid var(--stroke-2);border-radius:12px;
+    display:grid;place-items:center;color:var(--ink-2);background:#fff;}
+  .qr svg{width:60px;height:60px;}
+
+  .cam{flex:1;background:#22252b;display:flex;flex-direction:column;color:#e9ebef;position:relative;
+    background-image:repeating-linear-gradient(45deg,#25282e 0 12px,#2a2d34 12px 24px);}
+  .cam .top{display:flex;justify-content:space-between;align-items:center;padding:14px;}
+  .cam .badge{font-size:11px;font-weight:600;background:rgba(255,107,82,.92);color:#fff;
+    padding:6px 12px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;}
+  .cam .badge svg{width:13px;height:13px;stroke:#fff;}
+  .cam .cbtn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);
+    display:grid;place-items:center;}
+  .cam .cbtn svg{width:16px;height:16px;stroke:#e9ebef;}
+  .cam .mid{flex:1;display:grid;place-items:center;color:rgba(255,255,255,.35);}
+  .cam .mid svg{width:46px;height:46px;stroke:rgba(255,255,255,.3);}
+  .cam .ctrl{display:flex;justify-content:space-around;align-items:center;padding:20px 24px 26px;}
+  .cam .thumb{width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,.15);}
+  .shutter{width:64px;height:64px;border-radius:50%;border:4px solid #fff;background:rgba(255,255,255,.25);}
+  .cam .flip{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.15);display:grid;place-items:center;}
+  .cam .flip svg{width:19px;height:19px;stroke:#fff;}
+
+  @media(max-width:560px){
+    body{padding:26px 14px 60px;}
+    .grid{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-home"><path d="M4 11l8-7 8 7M6 10v10h12V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-cal"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 3v4M16 3v4M4 10h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-cam"><path d="M4 8h3l1.6-2h6.8L23 8" fill="none"/><path d="M3.5 8h3l1.6-2h6.8L16.5 8H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 .5-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-users"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 20c0-3.3 2.5-5.2 5.5-5.2s5.5 1.9 5.5 5.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16.5 5.4a3.2 3.2 0 0 1 0 5.2M20.5 20c0-2.6-1.3-4.4-3.4-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-user"><circle cx="12" cy="8" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-gear"><path d="M4 7h9M18 7h2M4 12h2M11 12h9M4 17h13M20 17h0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-plus"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></g>
+    <g id="i-back"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-fwd"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-heart"><path d="M12 20s-7-4.4-9.2-8.8C1.4 8 3 4.6 6.2 4.6c1.9 0 3.1 1.1 3.8 2.2.7-1.1 1.9-2.2 3.8-2.2 3.2 0 4.8 3.4 3.4 6.6C19 15.6 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+    <g id="i-check"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-search"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-bell"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2H4.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-x"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></g>
+    <g id="i-qr"><rect x="4" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><rect x="14" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><rect x="4" y="14" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 14h3v3M20 14v6M14 20h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-lock"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-mail"><rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7.5l8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-share"><circle cx="6" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="6" r="2.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="2.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.1 11l7.8-3.8M8.1 13l7.8 3.8" fill="none" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-flame"><path d="M12 3c2.4 3 4.2 4.6 4.2 8A4.2 4.2 0 0 1 7.8 11c0-1.4.4-2.4 1-3.2C10 8.6 11 7 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+    <g id="i-img"><rect x="4" y="5" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="10" r="1.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 17l4.5-4 3.5 3 3-2.5L20 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+    <g id="i-flip"><path d="M4 12a8 8 0 0 1 13.5-5.8M20 5v4h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 0 1-13.5 5.8M4 19v-4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-bolt"><path d="M13 3L5 13h6l-1 8 8-10h-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+    <g id="i-trash"><path d="M5 7h14M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M7 7l1 13h8l1-13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </defs>
+</svg>
+
+<div class="board-head">
+  <div class="brandline">
+    <div class="logo"><svg><use href="#i-flame"/></svg></div>
+    <h1>ProcrastinaTea — Wireframes</h1>
+  </div>
+  <p class="board-sub">Low-fidelity mobile screens mapped from the user flow. The whole product rests on one idea: you complete a habit, snap a photo as proof, and your friends see it and cheer you on — so proof-of-completion and the social feed are the spine of every screen below.</p>
+  <div class="legend">
+    <span><i class="sw acc"></i> Coral = primary action / active state</span>
+    <span><i class="sw ph"></i> Hatched box = habit photo (proof)</span>
+    <span><i class="sw tog"></i> Green toggle = enabled</span>
+  </div>
+</div>
+
+<!-- ================= SECTION A ================= -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-idx">A</span>
+    <h2>Onboarding &amp; the core loop</h2>
+    <p>start → add habit → home → log with photo → calendar</p>
+  </div>
+  <div class="grid">
+
+    <!-- S01 Intro -->
+    <figure class="device">
+      <div class="cap"><b>Intro</b><span class="tag">onboarding</span><span class="num">S01</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 20 12"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1" opacity=".4"/></svg><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="body" style="justify-content:space-between;padding:22px 18px 26px;">
+          <div style="display:flex;flex-direction:column;gap:20px;align-items:center;margin-top:26px;">
+            <div class="logo" style="width:66px;height:66px;border-radius:20px;"><svg style="width:34px;height:34px;"><use href="#i-flame"/></svg></div>
+            <div style="text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;">
+              <div class="h big">ProcrastinaTea</div>
+              <div class="sub" style="max-width:200px;">Build habits together. Snap the proof. Keep each other going.</div>
+            </div>
+            <div class="ph-img" style="width:100%;height:150px;"><svg><use href="#i-img"/></svg></div>
+            <div style="display:flex;gap:6px;"><span style="width:18px;height:6px;border-radius:3px;background:var(--accent);"></span><span style="width:6px;height:6px;border-radius:3px;background:var(--stroke-2);"></span><span style="width:6px;height:6px;border-radius:3px;background:var(--stroke-2);"></span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="btn primary block">Get started</div>
+            <div class="btn block ghost">I already have an account</div>
+          </div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S02 Add habit -->
+    <figure class="device">
+      <div class="cap"><b>Add habit</b><span class="tag">create</span><span class="num">S02</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-x"/></svg></div><div class="title">New habit</div></div>
+        <div class="body">
+          <div class="field"><span class="flabel">Habit name</span><div class="input">e.g. Morning run</div></div>
+          <div class="field"><span class="flabel">Icon</span>
+            <div class="chips"><span class="chip on">🏃</span><span class="chip">📚</span><span class="chip">💧</span><span class="chip">🧘</span><span class="chip">＋</span></div>
+          </div>
+          <div class="field"><span class="flabel">Repeat</span>
+            <div class="chips"><span class="chip on">Daily</span><span class="chip">Weekly</span><span class="chip">Custom</span></div>
+            <div class="days"><span class="day on">M</span><span class="day on">T</span><span class="day on">W</span><span class="day on">T</span><span class="day on">F</span><span class="day">S</span><span class="day">S</span></div>
+          </div>
+          <div class="rowc"><div class="grow"><span class="flabel">Require photo proof</span><span class="sub">Log this habit with a photo</span></div><div class="toggle acc on"></div></div>
+          <div class="field"><span class="flabel">Share to group</span><div class="input" style="justify-content:space-between;">Early Risers <svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div></div>
+          <div style="flex:1"></div>
+          <div class="btn primary block">Create habit</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S03 Home -->
+    <figure class="device">
+      <div class="cap"><b>Home</b><span class="tag">dashboard</span><span class="num">S03</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar plain"><div class="title">Hi, Alex 👋</div><div class="ibtn f"><svg><use href="#i-bell"/></svg></div></div>
+        <div class="body">
+          <div class="stats">
+            <div class="stat"><div class="n"><span class="fl">12</span>🔥</div><div class="l">Day streak</div></div>
+            <div class="stat"><div class="n">86%</div><div class="l">This week</div></div>
+            <div class="stat"><div class="n">3/4</div><div class="l">Today</div></div>
+          </div>
+          <div class="h">Today's habits</div>
+          <div class="rowc"><div class="check on"><svg><use href="#i-check"/></svg></div><div class="grow"><div class="ln w70"></div><span class="sub">Logged · photo added</span></div></div>
+          <div class="rowc"><div class="check"></div><div class="grow"><div class="ln w60"></div><span class="sub">Tap to log with a photo</span></div><span class="pill"><svg><use href="#i-cam"/></svg></span></div>
+          <div class="h" style="margin-top:4px;">Friends' recent activity</div>
+          <div class="card" style="display:flex;gap:9px;align-items:center;">
+            <div class="av"><svg><use href="#i-user"/></svg></div>
+            <div class="grow"><div class="ln w50"></div><span class="sub">Jordan just completed Read 20 pages</span></div>
+            <div class="ph-img" style="width:40px;height:40px;"><svg style="width:16px;height:16px;"><use href="#i-img"/></svg></div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="tab on"><svg><use href="#i-home"/></svg><span>Home</span></div>
+          <div class="tab"><svg><use href="#i-users"/></svg><span>Feed</span></div>
+          <div class="tab"><div class="fab"><svg><use href="#i-cam"/></svg></div></div>
+          <div class="tab"><svg><use href="#i-cal"/></svg><span>Calendar</span></div>
+          <div class="tab"><svg><use href="#i-gear"/></svg><span>Settings</span></div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S04 Habit selection -->
+    <figure class="device">
+      <div class="cap"><b>Habit selection</b><span class="tag">log · step 1</span><span class="num">S04</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-x"/></svg></div><div class="title">What did you finish?</div></div>
+        <div class="body">
+          <div class="sub" style="margin-bottom:2px;">Pick a habit, then snap your proof</div>
+          <div class="rowc" style="border-color:var(--accent);background:var(--accent-tint);"><span style="font-size:20px;">🏃</span><div class="grow"><div class="h">Morning run</div><span class="sub">12 day streak · due today</span></div><div class="radio on"></div></div>
+          <div class="rowc"><span style="font-size:20px;">💧</span><div class="grow"><div class="h">Drink water</div><span class="sub">5 day streak · due today</span></div><div class="radio"></div></div>
+          <div class="rowc"><span style="font-size:20px;">🧘</span><div class="grow"><div class="h">Meditate</div><span class="sub">Due today</span></div><div class="radio"></div></div>
+          <div class="rowc" style="opacity:.55;"><span style="font-size:20px;">📚</span><div class="grow"><div class="h">Read 20 pages</div><span class="sub">Already logged ✓</span></div></div>
+          <div style="flex:1"></div>
+          <div class="btn primary block">Open camera</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S05 Camera / Tracking -->
+    <figure class="device">
+      <div class="cap"><b>Tracking (camera)</b><span class="tag">log · step 2</span><span class="num">S05</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb" style="color:#fff;background:#22252b;padding-top:12px;"><span>9:41</span><span class="r" style="color:#fff;"><svg viewBox="0 0 24 12" style="fill:#fff;"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="#fff" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="cam">
+          <div class="top">
+            <div class="cbtn"><svg><use href="#i-x"/></svg></div>
+            <div class="badge"><svg><use href="#i-flame"/></svg> Logging: Morning run</div>
+            <div class="cbtn"><svg><use href="#i-bolt"/></svg></div>
+          </div>
+          <div class="mid"><svg><use href="#i-cam"/></svg></div>
+          <div style="text-align:center;font-size:11px;color:rgba(255,255,255,.55);padding-bottom:6px;">Photo proof keeps your streak honest</div>
+          <div class="ctrl">
+            <div class="thumb"></div>
+            <div class="shutter"></div>
+            <div class="flip"><svg><use href="#i-flip"/></svg></div>
+          </div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S06 Calendar -->
+    <figure class="device">
+      <div class="cap"><b>Calendar</b><span class="tag">history</span><span class="num">S06</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar plain"><div class="title">Your progress</div><div class="ibtn f"><svg><use href="#i-share"/></svg></div></div>
+        <div class="body">
+          <div class="seg"><div>Weekly</div><div class="on">Monthly</div><div>Annually</div></div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div class="h">March 2026</div><div style="display:flex;gap:6px;color:var(--muted);"><svg style="width:16px;height:16px;"><use href="#i-back"/></svg><svg style="width:16px;height:16px;"><use href="#i-fwd"/></svg></div></div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;">
+              <!-- generated cells -->
+              <span class="cell"></span><span class="cell"></span><span class="cell d"></span><span class="cell d"></span><span class="cell d"></span><span class="cell"></span><span class="cell d"></span>
+              <span class="cell d"></span><span class="cell d"></span><span class="cell"></span><span class="cell d"></span><span class="cell d"></span><span class="cell d"></span><span class="cell d"></span>
+              <span class="cell d"></span><span class="cell"></span><span class="cell d"></span><span class="cell d"></span><span class="cell d"></span><span class="cell d"></span><span class="cell now"></span>
+              <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:center;font-size:10px;color:var(--muted);">
+            <span style="display:inline-flex;gap:5px;align-items:center;"><i style="width:12px;height:12px;border-radius:4px;background:var(--accent);display:inline-block;"></i> completed</span>
+            <span style="display:inline-flex;gap:5px;align-items:center;"><i style="width:12px;height:12px;border-radius:4px;background:var(--surface-2);display:inline-block;"></i> missed</span>
+          </div>
+          <div class="h" style="margin-top:2px;">March 21 · 3 habits</div>
+          <div style="display:flex;gap:7px;">
+            <div class="ph-img sq" style="flex:1;"><svg style="width:18px;height:18px;"><use href="#i-img"/></svg></div>
+            <div class="ph-img sq" style="flex:1;"><svg style="width:18px;height:18px;"><use href="#i-img"/></svg></div>
+            <div class="ph-img sq" style="flex:1;"><svg style="width:18px;height:18px;"><use href="#i-img"/></svg></div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="tab"><svg><use href="#i-home"/></svg><span>Home</span></div>
+          <div class="tab"><svg><use href="#i-users"/></svg><span>Feed</span></div>
+          <div class="tab"><div class="fab"><svg><use href="#i-cam"/></svg></div></div>
+          <div class="tab on"><svg><use href="#i-cal"/></svg><span>Calendar</span></div>
+          <div class="tab"><svg><use href="#i-gear"/></svg><span>Settings</span></div>
+        </div>
+      </div></div>
+    </figure>
+
+  </div>
+</div>
+
+<!-- ================= SECTION B ================= -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-idx">B</span>
+    <h2>Social &amp; accountability</h2>
+    <p>group feed · react · approve proof · friends · groups · share</p>
+  </div>
+  <div class="grid">
+
+    <!-- S07 Group feed -->
+    <figure class="device">
+      <div class="cap"><b>Group feed</b><span class="tag">social</span><span class="num">S07</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-users"/></svg></div><div class="title">Early Risers</div><div class="ibtn"><svg style="position:relative"><use href="#i-bell"/></svg></div></div>
+        <div class="body np" style="gap:0;overflow:hidden;">
+          <div style="padding:10px 14px 4px;"><div class="chips"><span class="chip on">Early Risers</span><span class="chip">Gym Buddies</span><span class="chip">Book Club</span></div></div>
+          <div style="padding:12px 14px;border-bottom:1px solid var(--stroke);display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;gap:9px;align-items:center;"><div class="av"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w40"></div><span class="sub">completed Morning run · 2h</span></div><span class="pill g"><svg><use href="#i-check"/></svg> Approved</span></div>
+            <div class="ph-img" style="width:100%;height:140px;"><svg><use href="#i-img"/></svg></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span class="pill">🔥 3</span><span class="pill n">👏 5</span><div style="flex:1"></div><div class="btn sm ghost" style="display:inline-flex;gap:5px;align-items:center;"><svg style="width:13px;height:13px;"><use href="#i-heart"/></svg> React</div></div>
+          </div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;gap:9px;align-items:center;"><div class="av"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w50"></div><span class="sub">completed Meditate · 4h</span></div></div>
+            <div class="ph-img" style="width:100%;height:70px;"><svg><use href="#i-img"/></svg></div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="tab"><svg><use href="#i-home"/></svg><span>Home</span></div>
+          <div class="tab on"><svg><use href="#i-users"/></svg><span>Feed</span></div>
+          <div class="tab"><div class="fab"><svg><use href="#i-cam"/></svg></div></div>
+          <div class="tab"><svg><use href="#i-cal"/></svg><span>Calendar</span></div>
+          <div class="tab"><svg><use href="#i-gear"/></svg><span>Settings</span></div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S08 React -->
+    <figure class="device">
+      <div class="cap"><b>React</b><span class="tag">from feed</span><span class="num">S08</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Jordan's proof</div></div>
+        <div class="body">
+          <div style="display:flex;gap:9px;align-items:center;"><div class="av"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="h">Jordan</div><span class="sub">Morning run · today, 7:02am</span></div></div>
+          <div class="ph-img" style="width:100%;height:230px;"><svg style="width:34px;height:34px;"><use href="#i-img"/></svg></div>
+          <div class="card" style="display:flex;flex-direction:column;gap:9px;">
+            <span class="flabel">React</span>
+            <div class="rx"><div class="on">🔥</div><div>👏</div><div>💪</div><div>❤️</div><div>🎉</div></div>
+          </div>
+          <div class="field"><div class="input" style="justify-content:space-between;">Add a comment… <span class="pill">Send</span></div></div>
+          <div style="flex:1"></div>
+          <div class="note">← react loops back to Group feed</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S09 Approval -->
+    <figure class="device">
+      <div class="cap"><b>Approval</b><span class="tag">verify proof</span><span class="num">S09</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Pending approvals</div><span class="pill" style="margin-left:auto;">2</span></div>
+        <div class="body">
+          <div class="sub">Confirm friends' photos to keep proof honest</div>
+          <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:9px;align-items:center;"><div class="av sm"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w50"></div><span class="sub">Sam · Drink water</span></div></div>
+            <div class="ph-img" style="width:100%;height:110px;"><svg style="width:22px;height:22px;"><use href="#i-img"/></svg></div>
+            <div style="display:flex;gap:8px;"><div class="btn sm block" style="display:inline-flex;gap:5px;justify-content:center;align-items:center;"><svg style="width:13px;height:13px;color:var(--bad)"><use href="#i-x"/></svg> Reject</div><div class="btn sm primary block" style="display:inline-flex;gap:5px;justify-content:center;align-items:center;"><svg style="width:13px;height:13px;"><use href="#i-check"/></svg> Approve</div></div>
+          </div>
+          <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:9px;align-items:center;"><div class="av sm"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w40"></div><span class="sub">Mia · Meditate</span></div></div>
+            <div class="ph-img" style="width:100%;height:80px;"><svg style="width:20px;height:20px;"><use href="#i-img"/></svg></div>
+          </div>
+          <div class="anno">on approve → app notifies the friend</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S10 Friends list -->
+    <figure class="device">
+      <div class="cap"><b>Friends list</b><span class="tag">manage friends</span><span class="num">S10</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Friends</div><div class="ibtn f"><svg><use href="#i-plus"/></svg></div></div>
+        <div class="body">
+          <div class="input" style="gap:8px;color:var(--muted);"><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-search"/></svg> Search friends</div>
+          <div style="display:flex;gap:8px;">
+            <div class="btn sm ghost block" style="display:inline-flex;gap:6px;justify-content:center;align-items:center;"><svg style="width:14px;height:14px;"><use href="#i-plus"/></svg> Add friend</div>
+            <div class="btn sm ghost block" style="display:inline-flex;gap:6px;justify-content:center;align-items:center;"><svg style="width:14px;height:14px;"><use href="#i-users"/></svg> Create group</div>
+          </div>
+          <div class="h">All friends · 8</div>
+          <div class="row"><div class="av"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w40"></div><span class="sub">🔥 22 · 2 shared groups</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+          <div class="divide"></div>
+          <div class="row"><div class="av"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w50"></div><span class="sub">🔥 9 · 1 shared group</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+          <div class="divide"></div>
+          <div class="row"><div class="av"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w40"></div><span class="sub">🔥 5 · 3 shared groups</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S11 Add friend -->
+    <figure class="device">
+      <div class="cap"><b>Add friend</b><span class="tag">search / QR</span><span class="num">S11</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Add friend</div></div>
+        <div class="body">
+          <div class="input" style="gap:8px;color:var(--muted);"><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-search"/></svg> Search by username</div>
+          <div class="row" style="padding:8px 2px;"><div class="av sm"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w50"></div><span class="sub">@teahabit</span></div><span class="pill">Add</span></div>
+          <div style="display:flex;align-items:center;gap:10px;margin:4px 0;"><div class="divide" style="flex:1"></div><span class="sub">or</span><div class="divide" style="flex:1"></div></div>
+          <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <span class="flabel">Your QR code</span>
+            <div class="qr"><svg><use href="#i-qr"/></svg></div>
+            <span class="sub">Friends scan this to add you instantly</span>
+          </div>
+          <div style="flex:1"></div>
+          <div class="btn block ghost" style="display:inline-flex;gap:7px;justify-content:center;align-items:center;"><svg style="width:16px;height:16px;"><use href="#i-qr"/></svg> Scan a QR code</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S12 Groups list -->
+    <figure class="device">
+      <div class="cap"><b>Groups list</b><span class="tag">manage groups</span><span class="num">S12</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Groups</div><div class="ibtn f"><svg><use href="#i-plus"/></svg></div></div>
+        <div class="body">
+          <div class="rowc"><div class="av"><svg><use href="#i-users"/></svg></div><div class="grow"><div class="h">Early Risers</div><span class="sub">6 members · 4 active today</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+          <div class="rowc"><div class="av"><svg><use href="#i-users"/></svg></div><div class="grow"><div class="h">Gym Buddies</div><span class="sub">4 members · 2 active today</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+          <div class="rowc"><div class="av"><svg><use href="#i-users"/></svg></div><div class="grow"><div class="h">Book Club</div><span class="sub">9 members · 5 active today</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+          <div style="flex:1"></div>
+          <div class="btn primary block" style="display:inline-flex;gap:7px;justify-content:center;align-items:center;"><svg style="width:16px;height:16px;"><use href="#i-plus"/></svg> Create group</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S13 Create group -->
+    <figure class="device">
+      <div class="cap"><b>Create group</b><span class="tag">create</span><span class="num">S13</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-x"/></svg></div><div class="title">New group</div></div>
+        <div class="body">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="ph-img" style="width:56px;height:56px;border-radius:16px;"><svg style="width:22px;height:22px;"><use href="#i-img"/></svg></div>
+            <div class="field grow"><span class="flabel">Group name</span><div class="input">e.g. 6am Club</div></div>
+          </div>
+          <div class="rowc"><div class="grow"><span class="flabel">Require photo proof</span><span class="sub">Members log with a photo</span></div><div class="toggle acc on"></div></div>
+          <div class="field"><span class="flabel">Privacy</span>
+            <div class="chips"><span class="chip on">Private</span><span class="chip">Invite link</span><span class="chip">Public</span></div>
+          </div>
+          <div class="field"><span class="flabel">Add members</span>
+            <div class="input" style="gap:8px;color:var(--muted);"><svg style="width:15px;height:15px;color:var(--muted)"><use href="#i-search"/></svg> Search friends</div>
+          </div>
+          <div class="rowc"><div class="av sm"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w50"></div></div><div class="check on"><svg><use href="#i-check"/></svg></div></div>
+          <div class="rowc"><div class="av sm"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w40"></div></div><div class="check on"><svg><use href="#i-check"/></svg></div></div>
+          <div style="flex:1"></div>
+          <div class="btn primary block">Create group</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S14 Share activity -->
+    <figure class="device">
+      <div class="cap"><b>Share activity</b><span class="tag">share to social?</span><span class="num">S14</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-x"/></svg></div><div class="title">Share your streak</div></div>
+        <div class="body">
+          <div class="card tint" style="display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;padding:18px;">
+            <div class="logo" style="width:40px;height:40px;"><svg style="width:20px;height:20px;"><use href="#i-flame"/></svg></div>
+            <div class="h big">12-day streak 🔥</div>
+            <span class="sub">86% completion this week on ProcrastinaTea</span>
+            <div style="display:flex;gap:7px;width:100%;margin-top:4px;">
+              <div class="ph-img sq" style="flex:1;"><svg style="width:16px;height:16px;"><use href="#i-img"/></svg></div>
+              <div class="ph-img sq" style="flex:1;"><svg style="width:16px;height:16px;"><use href="#i-img"/></svg></div>
+              <div class="ph-img sq" style="flex:1;"><svg style="width:16px;height:16px;"><use href="#i-img"/></svg></div>
+            </div>
+          </div>
+          <div class="h">Share to social media?</div>
+          <div style="display:flex;gap:10px;">
+            <div class="rowc block" style="flex:1;flex-direction:column;text-align:center;gap:6px;"><div class="av"><svg><use href="#i-share"/></svg></div><span class="sub">Instagram</span></div>
+            <div class="rowc block" style="flex:1;flex-direction:column;text-align:center;gap:6px;"><div class="av"><svg><use href="#i-share"/></svg></div><span class="sub">X / TikTok</span></div>
+            <div class="rowc block" style="flex:1;flex-direction:column;text-align:center;gap:6px;"><div class="av"><svg><use href="#i-share"/></svg></div><span class="sub">More</span></div>
+          </div>
+          <div style="flex:1"></div>
+          <div class="btn primary block">Share now</div>
+          <div class="btn block ghost">Not now</div>
+        </div>
+      </div></div>
+    </figure>
+
+  </div>
+</div>
+
+<!-- ================= SECTION C ================= -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-idx">C</span>
+    <h2>Settings &amp; profile</h2>
+    <p>hub → profile · privacy · notifications · account</p>
+  </div>
+  <div class="grid">
+
+    <!-- S15 Settings -->
+    <figure class="device">
+      <div class="cap"><b>Settings</b><span class="tag">hub</span><span class="num">S15</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar plain"><div class="title">Settings</div></div>
+        <div class="body">
+          <div class="rowc"><div class="av lg" style="width:48px;height:48px;"><svg style="width:24px;height:24px;"><use href="#i-user"/></svg></div><div class="grow"><div class="h">Alex Rivera</div><span class="sub">@alexr · 8 friends</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+          <div style="display:flex;flex-direction:column;">
+            <div class="row"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="ln w40"></div></div><span class="sub">Profile</span></div>
+            <div class="divide"></div>
+            <div class="row"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-lock"/></svg></div><div class="grow"><div class="ln w50"></div></div><span class="sub">Privacy</span></div>
+            <div class="divide"></div>
+            <div class="row"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-bell"/></svg></div><div class="grow"><div class="ln w40"></div></div><span class="sub">Notifications</span></div>
+            <div class="divide"></div>
+            <div class="row"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-mail"/></svg></div><div class="grow"><div class="ln w50"></div></div><span class="sub">Account</span></div>
+            <div class="divide"></div>
+            <div class="row"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-users"/></svg></div><div class="grow"><div class="ln w40"></div></div><span class="sub">Groups</span></div>
+            <div class="divide"></div>
+            <div class="row"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-users"/></svg></div><div class="grow"><div class="ln w50"></div></div><span class="sub">Friends</span></div>
+          </div>
+          <div style="flex:1"></div>
+          <div class="btn block ghost" style="color:var(--bad);">Log out</div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S16 Profile settings -->
+    <figure class="device">
+      <div class="cap"><b>Profile</b><span class="tag">edit profile</span><span class="num">S16</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Edit profile</div><span class="pill" style="margin-left:auto;">Save</span></div>
+        <div class="body">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px 0;">
+            <div class="av lg"><svg><use href="#i-user"/></svg></div>
+            <span class="pill">Change photo</span>
+          </div>
+          <div class="field"><span class="flabel">Display name</span><div class="input" style="color:var(--ink)">Alex Rivera</div></div>
+          <div class="field"><span class="flabel">Username</span><div class="input" style="color:var(--ink)">@alexr</div></div>
+          <div class="field"><span class="flabel">Bio</span><div class="input area">Trying to run more and read more ☕</div></div>
+          <div class="field"><span class="flabel">Interests</span>
+            <div class="chips"><span class="chip on">Running</span><span class="chip on">Reading</span><span class="chip on">Meditation</span><span class="chip">＋ Add</span></div>
+          </div>
+          <div class="divide"></div>
+          <div class="row"><div class="grow"><div class="h">Manage groups</div><span class="sub">Groups you belong to</span></div><svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-fwd"/></svg></div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S17 Privacy -->
+    <figure class="device">
+      <div class="cap"><b>Privacy</b><span class="tag">settings</span><span class="num">S17</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Privacy</div></div>
+        <div class="body">
+          <div class="h">Profile visibility</div>
+          <div class="rowc"><div class="grow"><div class="h">Everyone</div><span class="sub">Anyone can find your profile</span></div><div class="radio"></div></div>
+          <div class="rowc" style="border-color:var(--accent);"><div class="grow"><div class="h">Friends only</div><span class="sub">Only friends see your activity</span></div><div class="radio on"></div></div>
+          <div class="rowc"><div class="grow"><div class="h">Private</div><span class="sub">Nobody but you</span></div><div class="radio"></div></div>
+          <div class="divide" style="margin:4px 0;"></div>
+          <div class="rowc"><div class="grow"><div class="h">Sync with contacts</div><span class="sub">Find friends from your phone</span></div><div class="toggle on"></div></div>
+          <div class="rowc"><div class="grow"><div class="h">Allow friend requests</div><span class="sub">From people you may know</span></div><div class="toggle on"></div></div>
+          <div class="rowc"><div class="grow"><div class="h">Show streak on shared cards</div></div><div class="toggle"></div></div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S18 Notifications -->
+    <figure class="device">
+      <div class="cap"><b>Notifications</b><span class="tag">settings</span><span class="num">S18</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Notifications</div></div>
+        <div class="body">
+          <div class="rowc"><div class="grow"><div class="h">Enable notifications</div><span class="sub">Master switch</span></div><div class="toggle on"></div></div>
+          <div class="h">Channels</div>
+          <div class="rowc"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-mail"/></svg></div><div class="grow"><div class="h">Email</div></div><div class="toggle"></div></div>
+          <div class="rowc"><div class="av sm" style="border-radius:8px;"><svg><use href="#i-bell"/></svg></div><div class="grow"><div class="h">Push notification</div></div><div class="toggle on"></div></div>
+          <div class="h">Notify me about</div>
+          <div class="rowc"><div class="grow"><div class="h">Friend activity &amp; reactions</div></div><div class="toggle on"></div></div>
+          <div class="rowc"><div class="grow"><div class="h">Habit reminders</div></div><div class="toggle on"></div></div>
+          <div class="rowc"><div class="grow"><div class="h">Proof approvals</div></div><div class="toggle on"></div></div>
+        </div>
+      </div></div>
+    </figure>
+
+    <!-- S19 Account -->
+    <figure class="device">
+      <div class="cap"><b>Account</b><span class="tag">email / password</span><span class="num">S19</span></div>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+        <div class="appbar"><div class="ibtn"><svg><use href="#i-back"/></svg></div><div class="title">Account</div></div>
+        <div class="body">
+          <div class="h">Email</div>
+          <div class="field"><div class="input" style="color:var(--ink);justify-content:space-between;">alex@email.com <svg style="width:15px;height:15px;color:var(--muted)"><use href="#i-mail"/></svg></div></div>
+          <div class="btn block ghost">Update email</div>
+          <div class="divide" style="margin:4px 0;"></div>
+          <div class="h">Password</div>
+          <div class="field"><span class="flabel">Current password</span><div class="input">••••••••</div></div>
+          <div class="field"><span class="flabel">New password</span><div class="input">••••••••</div></div>
+          <div class="btn primary block">Update password</div>
+          <div style="flex:1"></div>
+          <div class="row" style="justify-content:center;color:var(--bad);gap:7px;"><svg style="width:15px;height:15px;"><use href="#i-trash"/></svg><span style="font-size:12px;font-weight:600;">Delete account</span></div>
+        </div>
+      </div></div>
+    </figure>
+
+  </div>
+</div>
+
+<style>
+  .cell{aspect-ratio:1;border-radius:5px;background:var(--surface-2);}
+  .cell.d{background:var(--accent);opacity:.85;}
+  .cell.now{background:var(--accent);box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--accent);}
+</style>
+
+</body>
+</html>
