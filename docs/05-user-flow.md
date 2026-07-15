@@ -1,58 +1,73 @@
 # 5 · User flow
 
-> Reconstructed from the board's User Flow diagram (`design-source/figjam-board-full.png`)
-> plus the realized wireframes. The board colour-codes several sub-flows (green = friends /
-> approval, blue = settings, pink = auth). Labels are best-effort — **verify against the
-> source**.
+Transcribed from `raw files/User Flow.png`. The board colour-codes sub-flows
+(green = friends / groups, blue = settings, pink = stats → share).
 
 ```mermaid
 flowchart TD
-  start([Start]) --> intro[Intro / onboarding slides]
-  intro --> hasAcct{Already have<br/>an account?}
-  hasAcct -- no --> signup[Sign up]
-  hasAcct -- yes --> login[Log in]
-  signup --> home[Home]
-  login --> home
+  start([Start]) --> intro[Intro]
+  intro --> add[Add habit screen]
+  add -- habit successfully added --> home[(Home page:<br/>summary stats,<br/>friend's recent activity)]
 
-  %% Core loop: log with photo proof
-  home --> camera[Camera - snap proof]
-  camera --> which[Which habit are you tracking?]
-  which -- retake --> camera
-  which --> logged[Logged: teabag +1]
-  logged --> share[Share to group / social]
-  share --> home
+  %% Core logging loop
+  home --> camera[Tracking screen - camera]
+  camera --> habitSel[Habit selection]
+  habitSel -- habit selected --> feed[Group feed]
 
-  %% Create a habit
-  home --> add[Add habit]
-  add --> tmpl[Pick a template]
-  tmpl --> custom[Customize: name / cover photo / repeat]
-  custom --> home
+  %% Re-adding habits
+  home -- add habit --> add
+  friends[Friends list] -- add habit --> add
 
-  %% Social / accountability
-  home --> feed[Group feed]
-  feed --> proof[Open a friend's proof]
-  proof --> approve{Approve?}
-  approve -- approve --> notify[/App notifies the friend/]
-  approve -- reject --> feed
-  proof --> react[React / comment]
+  %% Friend's activity
+  home -- friend's activity --> feed
+
+  %% Group feed interactions
+  feed -- React to photos --> react[React screen]
   react --> feed
-  feed --> groups[Groups]
-  groups --> newGroup[Create group]
-  feed --> friends[Friends]
-  friends --> addFriend[Add friend - search / QR]
+  feed -- Approve pending photos --> approval[Approval screen]
+  approval --> notify[/app sends notification to friend/]
+  notify --> feed
 
-  %% Progress
-  home --> stats[Statistics - per-habit heatmaps]
+  %% Friends & groups
+  home --> friends
+  friends -- Add friends to group --> createGroup[Create group page]
+  friends -- create group --> createGroup
+  friends -- add friends --> findFriends[Search by username or scan QR]
+
+  %% Stats → share
+  home -- summary stats --> calendar[Calendar]
+  calendar --> annually[Annually]
+  calendar --> monthly[Monthly]
+  calendar --> weekly[Weekly]
+  calendar -- Share Activity --> shareQ{Share to<br/>social media?}
+  shareQ -- Yes --> social[Social media platforms]
+  shareQ -- No --> stop1[ ]
 
   %% Settings
   home --> settings[Settings]
-  settings --> privacy[Privacy: visibility / sync contacts]
-  settings --> notif[Notifications: channels / reminders]
-  notif --> notifChoice{Enabled?}
-  settings --> account[Account: update email / password]
-  settings --> profile[Profile: name / photo / bio / interests]
-  profile --> manageGroups[Manage groups & friends]
-  settings --> logout[Log out]
+  settings --> privacy[Privacy setting]
+  privacy --> pv[Profile visibility]
+  privacy --> sync[Sync with contact]
+  settings --> notif[Notification setting]
+  notif --> channel[Channel: email / push notification]
+  notif --> enabled[Enabled]
+  enabled --> on([On])
+  enabled --> off([Off])
+  settings --> account[Account setting - update email or password]
+  account --> uEmail[Update email]
+  account --> uPass[Update password]
+  settings --> profile[Profile setting]
+  profile --> editP[Edit display name, profile picture, bio and interests]
+  profile -- Manage groups --> groupsList[Groups list]
+  profile -- Manage friends --> friends
 ```
 
-_Verify node labels and branch conditions against `design-source/figjam-board-full.png`._
+**Notes / reconciliation with the wireframes**
+
+- Onboarding is **Intro → Add habit → Home** (no separate sign-up/login step is drawn).
+  The wireframe intro keeps a "log in" affordance, but the happy path adds a first habit immediately.
+- After logging, the user lands on the **Group feed** (proof posted for the group).
+  The wireframes add a short "Logged / share" confirmation before the feed — a superset, not a conflict.
+- **Sharing to social media** happens from **Calendar → Share Activity**, not from the log step.
+- **React** and **Approval** are separate screens here; the wireframes combine them into one
+  "proof detail" screen. Flag if they should be split.

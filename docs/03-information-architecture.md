@@ -1,48 +1,49 @@
 # 3 · Information architecture
 
-> Reconstructed from the board's IA diagram (`design-source/figjam-board-full.png`) plus
-> the realized wireframes. Labels are best-effort — **verify against the source**, especially
-> the deeper Settings nodes which were low-resolution in the export.
+Transcribed from `raw files/Information Architecture.png`.
 
 ```mermaid
 graph TD
-  App[Procrastea]
+  Intro[Intro] --> Add[Add habit screen]
+  Add --> Home[Homepage: Group feed]
+  Home --> Nav[Nav bar]
 
-  App --> Onb[Onboarding]
-  Onb --> Intro[Intro / value prop]
-  Onb --> SignUp[Sign up]
-  Onb --> LogIn[Log in]
+  Nav --> Feed[Group feed]
+  Nav --> Track[Track habit]
+  Track --> AddNew[Add new habit]
+  Nav --> Stats[Personal stats]
+  Stats --> Cal[Calendar]
+  Cal --> CY[Annually]
+  Cal --> CW[Weekly]
+  Cal --> CM[Monthly]
+  Nav --> Tracking[Tracking screen]
+  Tracking --> HabitSel[Habit selection]
+  Nav --> Settings[Settings]
 
-  App --> Home[Home]
-  Home --> Stats2[Today's stats: done / streak / completion]
-  Home --> Today[Today's habit cards]
-  Home --> FriendAct[Friend activity + approve]
-  Home --> AddHabit[Add habit]
-  AddHabit --> Templates[Habit templates]
-  Templates --> Customize[Customize habit: name / cover photo / repeat]
+  %% top-level concepts alongside the homepage
+  Approve[Approve friend's habit]
+  React[Interaction: reaction / celebrate consistency]
+  CreateG[Create group]
 
-  App --> Log[Log a habit]
-  Log --> Camera[Camera - snap proof]
-  Camera --> Which[Which habit?]
-  Which --> Logged[Logged + share]
-
-  App --> Group[Group]
-  Group --> Feed[Group feed]
-  Feed --> Proof[Proof detail: approve / reject / react]
-  Group --> Groups[Groups list]
-  Groups --> NewGroup[Create group]
-  Group --> Friends[Friends list]
-  Friends --> AddFriend[Add friend: search / QR]
-
-  App --> StatsScreen[Statistics]
-  StatsScreen --> Heat[Per-habit heatmaps: streak / completion / logs]
-
-  App --> Settings[Settings]
+  Settings --> Privacy[Privacy settings]
+  Privacy --> PV[Profile visibility]
+  Privacy --> SC[Sync with contact]
+  Settings --> Account[Account settings]
+  Account --> UEP[Update email / password]
+  Settings --> Notif[Notification settings]
+  Notif --> NCh[Channel: email / push notification]
+  Notif --> NEn[Enabled: on / off]
   Settings --> Profile[Profile]
-  Settings --> Privacy[Privacy: visibility / sync contacts / requests]
-  Settings --> Notif[Notifications: channels / reminders / approvals]
-  Settings --> Account[Account: email / password / delete]
-  Settings --> GF[Groups & friends]
+  Profile --> Edit[Edit display name, profile photo, bio, interests]
+  Profile --> MG[Manage groups]
+  MG --> CatG[Category of group]
+  Profile --> MF[Manage friends]
+  MF --> Invite[Invite friends]
 ```
 
-_Verify labels against `design-source/figjam-board-full.png`._
+**Notes**
+
+- The homepage *is* the group feed; a nav bar fans out to Group feed, Track habit, Personal
+  stats (→ Calendar: annually / weekly / monthly), Tracking screen (→ Habit selection) and Settings.
+- "Approve friend's habit" and "Interaction: reaction / celebrate consistency" are called out
+  as first-class concepts of the product, not buried screens.
