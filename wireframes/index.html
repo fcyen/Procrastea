@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procrastea — Low-fidelity Wireframes</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+<style>
+  /* the gallery embeds each standalone screen file in an iframe */
+  .frame{width:316px;height:712px;border:0;overflow:hidden;background:transparent;
+    animation:rise .5s ease both;}
+  .grid{gap:16px 10px;}
+  a.open{display:inline-block;margin:2px 0 0 6px;font-size:11px;color:var(--green-ink);
+    text-decoration:none;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="board-head">
+  <div class="brandline">
+    <div class="logo">🫖</div>
+    <h1>Procrastea — Low-fidelity Wireframes</h1>
+  </div>
+  <p class="board-sub">Nineteen mobile screens mapped from the user flow. The product rests on one loop: complete a habit, snap a photo as proof, and your group approves it and cheers you on — so photo-proof and the social feed are the spine of every screen. Each screen lives in its own file under <code>screens/</code> and shares one stylesheet, so any single screen can be edited in isolation.</p>
+  <div class="legend">
+    <span><i class="sw acc"></i> Green = primary action / active state</span>
+    <span><i class="sw ph"></i> Hatched box = habit photo (proof)</span>
+    <span><i class="sw tog"></i> Green toggle = enabled</span>
+  </div>
+</div>
+
+<!-- SECTION A -->
+<div class="section">
+  <div class="sec-head"><span class="sec-idx">A</span><h2>Onboarding &amp; the core loop</h2>
+    <p>intro → pick / customize habit → home → camera → which habit → logged</p></div>
+  <div class="grid">
+    <iframe class="frame" src="screens/01-intro.html" title="S01 Intro"></iframe>
+    <iframe class="frame" src="screens/02-new-habit.html" title="S02 New habit"></iframe>
+    <iframe class="frame" src="screens/03-customize-habit.html" title="S03 Customize habit"></iframe>
+    <iframe class="frame" src="screens/04-home.html" title="S04 Home"></iframe>
+    <iframe class="frame" src="screens/05-camera.html" title="S05 Camera"></iframe>
+    <iframe class="frame" src="screens/06-select-habit.html" title="S06 Which habit"></iframe>
+    <iframe class="frame" src="screens/07-logged.html" title="S07 Logged"></iframe>
+  </div>
+</div>
+
+<!-- SECTION B -->
+<div class="section">
+  <div class="sec-head"><span class="sec-idx">B</span><h2>Social &amp; accountability</h2>
+    <p>group feed · approve proof · react · friends · add friend · groups · create group</p></div>
+  <div class="grid">
+    <iframe class="frame" src="screens/08-group-feed.html" title="S08 Group feed"></iframe>
+    <iframe class="frame" src="screens/09-proof-detail.html" title="S09 Proof detail"></iframe>
+    <iframe class="frame" src="screens/10-friends.html" title="S10 Friends"></iframe>
+    <iframe class="frame" src="screens/11-add-friend.html" title="S11 Add friend"></iframe>
+    <iframe class="frame" src="screens/12-groups.html" title="S12 Groups"></iframe>
+    <iframe class="frame" src="screens/13-create-group.html" title="S13 Create group"></iframe>
+  </div>
+</div>
+
+<!-- SECTION C -->
+<div class="section">
+  <div class="sec-head"><span class="sec-idx">C</span><h2>Settings &amp; profile</h2>
+    <p>hub → profile · privacy · notifications · account</p></div>
+  <div class="grid">
+    <iframe class="frame" src="screens/14-settings.html" title="S14 Settings"></iframe>
+    <iframe class="frame" src="screens/15-profile.html" title="S15 Profile"></iframe>
+    <iframe class="frame" src="screens/16-privacy.html" title="S16 Privacy"></iframe>
+    <iframe class="frame" src="screens/17-notifications.html" title="S17 Notifications"></iframe>
+    <iframe class="frame" src="screens/18-account.html" title="S18 Account"></iframe>
+  </div>
+</div>
+
+<!-- SECTION D -->
+<div class="section">
+  <div class="sec-head"><span class="sec-idx">D</span><h2>Progress &amp; statistics</h2>
+    <p>per-habit contribution heatmaps · streaks · completion</p></div>
+  <div class="grid">
+    <iframe class="frame" src="screens/19-statistics.html" title="S19 Statistics"></iframe>
+  </div>
+</div>
+
+</body>
+</html>
