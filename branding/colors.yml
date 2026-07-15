@@ -1,0 +1,59 @@
+# Procrastea — colour palette
+# Source: raw files/color_palette.png. Names follow the tea theme.
+# Roles describe where each colour is used in the UI.
+
+brand:
+  matcha:            # PRIMARY — active states, primary buttons, the mark
+    hex: "#A0D286"
+    role: Primary. Active/selected states, primary buttons, brand mark, "filled teabag" progress.
+    on: "#20252D"    # text/icon colour to place on matcha
+    tints:
+      50:  "#f1f8ec"
+      100: "#eaf5e2"
+      200: "#d3ebc3"
+      300: "#bde0a4"
+      400: "#a0d286" # base
+      500: "#84bd67"
+      600: "#4c7d33" # matcha-ink — readable green for text on light
+  steep:             # SECONDARY — links, informational accents
+    hex: "#2E5B9A"
+    role: Secondary. Links, info accents, secondary emphasis.
+    on: "#ffffff"
+    tints:
+      100: "#e4edf7"
+      400: "#2e5b9a" # base
+      600: "#21426f"
+  honey:             # ACCENT — streaks, highlights, celebration
+    hex: "#F6C343"
+    role: Accent. Streaks, pending-approval highlight, celebration, small emphases. Use sparingly.
+    on: "#3d2f00"
+    tints:
+      100: "#fdf1d2"
+      400: "#f6c343" # base
+      600: "#9a7410"
+
+neutral:
+  charcoal:          # INK — primary text, dark surfaces, stat tiles
+    hex: "#20252D"
+    role: Primary text and dark surfaces (stat tiles, camera chrome).
+  ink-2:   "#565f6b" # secondary text
+  muted:   "#9aa2ad" # placeholder / tertiary text
+  line:    "#e2e5ea" # hairlines, borders
+  line-2:  "#cdd2d9" # stronger borders, input outlines
+  surface: "#f2f4f6" # subtle fills, ghost buttons
+  porcelain:         # PAPER — app background, cards
+    hex: "#FAFBFC"
+    role: App background and card surfaces.
+  white:   "#ffffff"
+
+semantic:
+  success: "#4c7d33" # matcha-ink — approvals, completed, toggles on
+  warning: "#F6C343" # honey — pending approval
+  error:   "#E5544B" # destructive / reject / delete
+  info:    "#2E5B9A" # steep
+
+usage_notes:
+  - Matcha is light; always pair it with charcoal text/icons, never white.
+  - Honey signals streaks and "needs your approval" — keep it rare so it stays meaningful.
+  - Steep is the only blue; reserve it for links and info, not primary actions.
+  - Charcoal on porcelain is the default text pairing (WCAG AA+ at body sizes).

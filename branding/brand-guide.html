@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procrastea — Brand Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --matcha:#a0d286; --matcha-tint:#eaf5e2; --matcha-50:#f1f8ec; --matcha-ink:#4c7d33; --matcha-deep:#84bd67;
+    --steep:#2e5b9a; --steep-tint:#e4edf7;
+    --honey:#f6c343; --honey-tint:#fdf1d2; --honey-ink:#9a7410;
+    --charcoal:#20252d; --ink-2:#565f6b; --muted:#9aa2ad;
+    --line:#e2e5ea; --line-2:#cdd2d9; --surface:#f2f4f6; --porcelain:#fafbfc; --white:#fff;
+    --error:#e5544b;
+    --r:16px;
+    font-family:"Figtree",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{background:var(--porcelain);color:var(--charcoal);-webkit-font-smoothing:antialiased;line-height:1.5;}
+  .wrap{max-width:1080px;margin:0 auto;padding:56px 28px 100px;}
+
+  /* type scale */
+  .display{font-size:clamp(38px,7vw,58px);font-weight:900;letter-spacing:-.03em;line-height:1.02;margin:0;}
+  h2.sec{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--matcha-ink);
+    margin:0 0 20px;padding-bottom:12px;border-bottom:2px solid var(--line);display:flex;align-items:baseline;gap:12px;}
+  h2.sec .n{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:0;}
+  h3{font-size:15px;font-weight:700;margin:0 0 12px;letter-spacing:-.01em;}
+  p.lede{font-size:17px;color:var(--ink-2);max-width:640px;line-height:1.6;}
+  .cap{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+  section{margin-top:64px;}
+  a{color:var(--steep);}
+
+  /* logo lockups */
+  .mark{display:inline-block;line-height:0;}
+  .wordmark{font-weight:900;letter-spacing:-.03em;color:var(--charcoal);}
+  .wordmark .tea{color:var(--matcha-ink);}
+  .hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:20px;}
+  .hero .mark svg{width:96px;height:96px;}
+  .hero .wordmark{font-size:56px;}
+  .tagline{font-size:16px;color:var(--ink-2);margin-top:8px;}
+
+  .cardgrid{display:grid;gap:16px;}
+  .cols-2{grid-template-columns:repeat(2,1fr);}
+  .cols-3{grid-template-columns:repeat(3,1fr);}
+  .cols-4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:820px){.cols-3,.cols-4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.cols-2,.cols-3,.cols-4{grid-template-columns:1fr;}}
+
+  .panel{border:1px solid var(--line);border-radius:var(--r);background:var(--white);padding:22px;}
+  .panel.center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;min-height:150px;}
+  .panel.dark{background:var(--charcoal);border-color:var(--charcoal);color:var(--porcelain);}
+
+  /* colour swatches */
+  .swatch{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--white);}
+  .swatch .chip{height:104px;display:flex;align-items:flex-end;padding:12px;}
+  .swatch .meta{padding:12px 14px 14px;}
+  .swatch .meta .nm{font-weight:800;font-size:14px;}
+  .swatch .meta .hex{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--ink-2);
+    text-transform:uppercase;margin-top:2px;}
+  .swatch .meta .role{font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.4;}
+  .ramp{display:flex;height:34px;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin-top:8px;}
+  .ramp span{flex:1;}
+
+  /* type specimen */
+  .spec{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+  .spec .lbl{width:120px;flex:none;}
+  .spec .lbl b{display:block;font-size:13px;}
+  .spec .lbl span{font-size:11px;color:var(--muted);font-family:ui-monospace,monospace;}
+
+  /* components */
+  .btn{border:1px solid var(--line-2);border-radius:11px;background:var(--white);color:var(--charcoal);
+    font-size:14px;font-weight:700;padding:12px 18px;cursor:default;display:inline-flex;gap:8px;align-items:center;font-family:inherit;}
+  .btn.primary{background:var(--matcha);border-color:var(--matcha);color:var(--charcoal);
+    box-shadow:0 6px 16px rgba(160,210,134,.5);}
+  .btn.dark{background:var(--charcoal);border-color:var(--charcoal);color:var(--porcelain);}
+  .btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink-2);}
+  .btn.danger{background:#fff;border-color:#f1c9c5;color:var(--error);}
+  .btn svg{width:16px;height:16px;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+
+  .input{border:1px solid var(--line-2);border-radius:11px;background:#fff;padding:12px 14px;font-size:14px;
+    color:var(--muted);min-width:200px;}
+  .chip{border:1px solid var(--line-2);border-radius:20px;padding:8px 14px;font-size:13px;font-weight:600;
+    color:var(--ink-2);background:#fff;}
+  .chip.on{background:var(--matcha-tint);border-color:var(--matcha);color:var(--matcha-ink);}
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;padding:5px 11px;border-radius:20px;}
+  .pill.m{background:var(--matcha-tint);color:var(--matcha-ink);}
+  .pill.h{background:var(--honey-tint);color:var(--honey-ink);}
+  .pill.s{background:var(--steep-tint);color:var(--steep);}
+  .pill.n{background:var(--surface);color:var(--ink-2);}
+
+  .toggle{width:46px;height:27px;border-radius:20px;background:#d3d6db;position:relative;flex:none;display:inline-block;}
+  .toggle::after{content:"";position:absolute;width:21px;height:21px;border-radius:50%;background:#fff;top:3px;left:3px;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+  .toggle.on{background:var(--matcha-ink);}
+  .toggle.on::after{left:22px;}
+  .check{width:26px;height:26px;border-radius:50%;border:2px solid var(--line-2);display:inline-grid;place-items:center;}
+  .check.on{background:var(--matcha-ink);border-color:var(--matcha-ink);}
+  .check.on svg{width:14px;height:14px;stroke:#fff;fill:none;}
+  .radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--line-2);display:inline-block;}
+  .radio.on{border-color:var(--matcha-ink);box-shadow:inset 0 0 0 4px var(--matcha);}
+
+  .stat{background:var(--charcoal);border-radius:14px;padding:16px;color:#fff;min-width:120px;}
+  .stat .n{font-size:28px;font-weight:900;line-height:1;}
+  .stat .l{font-size:11px;color:rgba(255,255,255,.7);margin-top:6px;}
+  .av{width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--line);
+    display:grid;place-items:center;color:var(--muted);}
+  .av svg{width:20px;height:20px;}
+
+  .tabbar{display:flex;justify-content:space-around;align-items:center;border:1px solid var(--line);
+    border-radius:16px;padding:10px 8px;background:#fff;max-width:360px;}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);flex:1;font-size:10px;font-weight:700;}
+  .tab svg{width:22px;height:22px;}
+  .tab.on{color:var(--matcha-ink);}
+  .tab .fab{width:50px;height:50px;border-radius:17px;background:var(--matcha);color:var(--charcoal);
+    display:grid;place-items:center;margin-top:-18px;box-shadow:0 8px 18px rgba(160,210,134,.55);}
+  .tab .fab svg{width:25px;height:25px;}
+
+  .do{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);padding:9px 0;}
+  .do .k{font-weight:800;flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:13px;}
+  .do .k.y{background:var(--matcha-tint);color:var(--matcha-ink);}
+  .do .k.n{background:#fbe3e0;color:var(--error);}
+
+  .prin{display:flex;gap:14px;align-items:flex-start;}
+  .prin .num{font-size:13px;font-weight:900;color:var(--matcha-ink);background:var(--matcha-tint);
+    width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none;}
+  .prin b{font-size:14px;}
+  .prin p{margin:3px 0 0;font-size:13px;color:var(--ink-2);}
+
+  .foot{margin-top:80px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<!-- reusable icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="m-mark">
+    <g fill="none" stroke="#84bd67" stroke-width="2.6" stroke-linecap="round"><path d="M25 13c-2.4-2 0-4.2 0-6.6"/><path d="M32 13c-2.4-2 0-4.2 0-6.6"/><path d="M39 13c-2.4-2 0-4.2 0-6.6"/></g>
+    <path d="M35 24c1.4-5.6 3.8-7.6 6.4-10.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <rect x="37.5" y="7.5" width="10" height="10" rx="2.2" transform="rotate(10 42.5 12.5)" fill="#F6C343" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M13 23h31v11.5A15.5 15.5 0 0 1 28.5 50 15.5 15.5 0 0 1 13 34.5Z" fill="#A0D286" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+    <ellipse cx="28.5" cy="23" rx="15.5" ry="3.6" fill="#84bd67" stroke="currentColor" stroke-width="2.4"/>
+    <path d="M44 26.5h3.5a7.5 7.5 0 0 1 0 15H45" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M14 54h29" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <g id="i-check"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-cup"><path d="M5 8h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 9h2.5a2 2 0 0 1 0 4H16" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 3.5c-.6.8-.6 1.7 0 2.5M11.5 3.5c-.6.8-.6 1.7 0 2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></g>
+  <g id="i-users"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 20c0-3.3 2.5-5.2 5.5-5.2s5.5 1.9 5.5 5.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16.5 5.4a3.2 3.2 0 0 1 0 5.2M20.5 20c0-2.6-1.3-4.4-3.4-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="i-cam"><path d="M3.5 8h3l1.6-2h6.8L16.5 8H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 .5-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/></g>
+  <g id="i-chart"><path d="M5 20V4M20 20H4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="7" y="12" width="3" height="5" rx="1" fill="currentColor"/><rect x="12" y="8" width="3" height="9" rx="1" fill="currentColor"/><rect x="17" y="5" width="3" height="12" rx="1" fill="currentColor"/></g>
+  <g id="i-gear"><path d="M4 7h9M18 7h2M4 12h2M11 12h9M4 17h13M20 17h0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/></g>
+  <g id="i-user"><circle cx="12" cy="8" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="i-flame"><path d="M12 3c2.4 3 4.2 4.6 4.2 8A4.2 4.2 0 0 1 7.8 11c0-1.4.4-2.4 1-3.2C10 8.6 11 7 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+</defs></svg>
+
+<div class="wrap">
+
+  <!-- COVER -->
+  <p class="cap">Brand Guide · v1</p>
+  <div class="hero">
+    <span class="mark"><svg viewBox="0 0 64 64"><use href="#m-mark"/></svg></span>
+    <div>
+      <div class="wordmark">Procras<span class="tea">tea</span></div>
+      <div class="tagline">Good habits are built together. Conquer procrasteanation, fill your teabag.</div>
+    </div>
+  </div>
+  <p class="lede" style="margin-top:26px;">Procrastea is a social habit tracker where friends keep each other honest with
+  photo proof. The brand should feel <b>warm, encouraging and a little playful</b> — a cup of tea with friends,
+  never a clinical productivity app.</p>
+
+  <!-- LOGO -->
+  <section>
+    <h2 class="sec">Logo <span class="n">01</span></h2>
+    <div class="cardgrid cols-4">
+      <div class="panel center"><span class="mark"><svg viewBox="0 0 64 64" style="width:72px;height:72px"><use href="#m-mark"/></svg></span><span class="cap">App mark</span></div>
+      <div class="panel center"><div class="wordmark" style="font-size:30px">Procras<span class="tea">tea</span></div><span class="cap">Wordmark</span></div>
+      <div class="panel center" style="gap:10px"><span class="mark"><svg viewBox="0 0 64 64" style="width:44px;height:44px"><use href="#m-mark"/></svg></span><div class="wordmark" style="font-size:22px">Procras<span class="tea">tea</span></div><span class="cap">Horizontal lockup</span></div>
+      <div class="panel center dark"><span class="mark"><svg viewBox="0 0 64 64" style="width:56px;height:56px"><use href="#m-mark" fill="" /></svg></span><span class="cap" style="color:rgba(255,255,255,.55)">On charcoal</span></div>
+    </div>
+    <div class="cardgrid cols-3" style="margin-top:16px;">
+      <div class="panel">
+        <h3>Construction</h3>
+        <p style="font-size:13px;color:var(--ink-2);margin:0">A matcha cup with a honey teabag tag and rising steam. The
+        cup is the constant; the tag and steam may be dropped only below 20&nbsp;px (favicon).</p>
+      </div>
+      <div class="panel">
+        <h3>Clear space & size</h3>
+        <p style="font-size:13px;color:var(--ink-2);margin:0">Keep clear space equal to the cup's width on all sides.
+        Minimum mark size 20&nbsp;px; minimum lockup width 96&nbsp;px.</p>
+      </div>
+      <div class="panel">
+        <h3>Wordmark</h3>
+        <p style="font-size:13px;color:var(--ink-2);margin:0">Figtree Black. Always split the emphasis: <b>Procras</b> in
+        charcoal, <b class="wordmark"><span class="tea">tea</span></b> in matcha&#8209;ink — the pun is the point.</p>
+      </div>
+    </div>
+    <div class="cardgrid cols-2" style="margin-top:16px;">
+      <div class="panel">
+        <div class="do"><span class="k y">✓</span> Use the mark on porcelain, matcha-tint or charcoal.</div>
+        <div class="do"><span class="k y">✓</span> Keep the tag honey and the cup matcha.</div>
+        <div class="do"><span class="k y">✓</span> Pair mark + wordmark for first/primary placements.</div>
+      </div>
+      <div class="panel">
+        <div class="do"><span class="k n">✕</span> Don't recolour the cup or stretch the mark.</div>
+        <div class="do"><span class="k n">✕</span> Don't place the light mark on a busy photo without a scrim.</div>
+        <div class="do"><span class="k n">✕</span> Don't set the wordmark in another typeface.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOUR -->
+  <section>
+    <h2 class="sec">Colour <span class="n">02</span></h2>
+    <p class="lede" style="margin-bottom:22px;">Matcha leads, charcoal grounds, honey celebrates. Blue is reserved for links and info.</p>
+    <div class="cardgrid cols-3">
+      <div class="swatch"><div class="chip" style="background:#a0d286"></div><div class="meta"><div class="nm">Matcha</div><div class="hex">#A0D286</div><div class="role">Primary · active states, primary buttons, the mark, "filled teabag" progress. Pair with charcoal text.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#20252d"></div><div class="meta"><div class="nm">Charcoal</div><div class="hex">#20252D</div><div class="role">Ink · primary text and dark surfaces (stat tiles, camera).</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#f6c343"></div><div class="meta"><div class="nm">Honey</div><div class="hex">#F6C343</div><div class="role">Accent · streaks, "needs approval", celebration. Use sparingly.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#2e5b9a"></div><div class="meta"><div class="nm">Steep</div><div class="hex">#2E5B9A</div><div class="role">Secondary · links and informational accents only.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#fafbfc;border-bottom:1px solid var(--line)"></div><div class="meta"><div class="nm">Porcelain</div><div class="hex">#FAFBFC</div><div class="role">Paper · app background and card surfaces.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#4c7d33"></div><div class="meta"><div class="nm">Matcha&nbsp;Ink</div><div class="hex">#4C7D33</div><div class="role">Readable green for text/icons on light — toggles on, approvals, success.</div></div></div>
+    </div>
+    <div class="panel" style="margin-top:16px;">
+      <h3>Matcha ramp</h3>
+      <div class="ramp"><span style="background:#f1f8ec"></span><span style="background:#eaf5e2"></span><span style="background:#d3ebc3"></span><span style="background:#bde0a4"></span><span style="background:#a0d286"></span><span style="background:#84bd67"></span><span style="background:#4c7d33"></span></div>
+      <div class="row" style="margin-top:14px;">
+        <span class="pill m">🍵 success</span><span class="pill h">🔥 streak</span><span class="pill s">link</span><span class="pill n">neutral</span>
+        <span class="pill" style="background:#fbe3e0;color:#b5322a">error #E5544B</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section>
+    <h2 class="sec">Typeface <span class="n">03</span></h2>
+    <div class="panel">
+      <div class="row" style="justify-content:space-between;align-items:flex-end;">
+        <div><div style="font-size:52px;font-weight:900;letter-spacing:-.02em;line-height:1">Figtree</div>
+          <div class="cap" style="margin-top:8px">Aa · the whole system, 400 – 900</div></div>
+        <div style="font-size:30px;font-weight:400;color:var(--muted)">AaBbCc 0123 &amp; ?!</div>
+      </div>
+      <div style="margin-top:20px">
+        <div class="spec"><div class="lbl"><b>Display</b><span>900 · 40–58</span></div><div style="font-size:38px;font-weight:900;letter-spacing:-.03em">Fill your teabag</div></div>
+        <div class="spec"><div class="lbl"><b>Heading 1</b><span>800 · 30</span></div><div style="font-size:30px;font-weight:800;letter-spacing:-.02em">Today's habits</div></div>
+        <div class="spec"><div class="lbl"><b>Heading 2</b><span>700 · 22</span></div><div style="font-size:22px;font-weight:700">Early Risers</div></div>
+        <div class="spec"><div class="lbl"><b>Body</b><span>400/600 · 15</span></div><div style="font-size:15px">Snap a photo as proof — your group approves it. <b>19 day streak.</b></div></div>
+        <div class="spec"><div class="lbl"><b>Caption</b><span>700 · 11 · caps</span></div><div class="cap">Logged · photo added</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section>
+    <h2 class="sec">UI components <span class="n">04</span></h2>
+    <div class="cardgrid cols-2">
+      <div class="panel"><h3>Buttons</h3>
+        <div class="row"><button class="btn primary">Add habit</button><button class="btn dark">Log in</button><button class="btn ghost">Not now</button></div>
+        <div class="row" style="margin-top:12px"><button class="btn primary"><svg><use href="#i-check"/></svg> Approve</button><button class="btn danger">Reject</button></div>
+      </div>
+      <div class="panel"><h3>Inputs & chips</h3>
+        <div class="input">Habit name</div>
+        <div class="row" style="margin-top:12px"><span class="chip on">Daily</span><span class="chip">Weekly</span><span class="chip">Custom</span></div>
+      </div>
+      <div class="panel"><h3>Selection controls</h3>
+        <div class="row" style="gap:22px">
+          <span class="row" style="gap:8px"><span class="toggle on"></span><span class="cap" style="letter-spacing:.02em">on</span></span>
+          <span class="toggle"></span>
+          <span class="check on"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
+          <span class="check"></span>
+          <span class="radio on"></span>
+          <span class="radio"></span>
+        </div>
+      </div>
+      <div class="panel"><h3>Pills & avatars</h3>
+        <div class="row"><span class="pill m"><svg style="width:12px;height:12px;stroke:var(--matcha-ink);fill:none" viewBox="0 0 24 24"><use href="#i-check"/></svg> Approved</span><span class="pill h">🔥 19</span><span class="pill n">👏 6</span>
+          <span class="row" style="gap:-6px"><span class="av"><svg><use href="#i-user"/></svg></span></span></div>
+      </div>
+      <div class="panel"><h3>Stat tiles</h3>
+        <div class="row"><div class="stat"><div class="n">19</div><div class="l">days streak</div></div><div class="stat"><div class="n">90%</div><div class="l">completion</div></div><div class="stat"><div class="n">2/3</div><div class="l">habits done</div></div></div>
+      </div>
+      <div class="panel"><h3>Tab bar</h3>
+        <div class="tabbar">
+          <div class="tab on"><svg><use href="#i-cup"/></svg><span>Home</span></div>
+          <div class="tab"><svg><use href="#i-users"/></svg><span>Group</span></div>
+          <div class="tab"><div class="fab"><svg><use href="#i-cam"/></svg></div></div>
+          <div class="tab"><svg><use href="#i-chart"/></svg><span>Stats</span></div>
+          <div class="tab"><svg><use href="#i-gear"/></svg><span>Settings</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <h3>Iconography</h3>
+      <div class="row" style="gap:26px;color:var(--charcoal)">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><use href="#i-cup"/></svg>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><use href="#i-users"/></svg>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><use href="#i-cam"/></svg>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><use href="#i-chart"/></svg>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><use href="#i-gear"/></svg>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><use href="#i-flame"/></svg>
+        <span class="cap" style="margin-left:auto">2px stroke · rounded caps · 24px grid</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONALITY -->
+  <section>
+    <h2 class="sec">Personality & motion <span class="n">05</span></h2>
+    <div class="cardgrid cols-2">
+      <div class="panel">
+        <h3>Voice & tone</h3>
+        <div class="prin" style="margin-bottom:14px"><span class="num">A</span><div><b>Encouraging, not preachy.</b><p>"Nice work — teabag filled +1." Never guilt-trip a missed day.</p></div></div>
+        <div class="prin" style="margin-bottom:14px"><span class="num">B</span><div><b>Warm & playful.</b><p>Lean into the tea pun and cosy metaphors. Short, human sentences.</p></div></div>
+        <div class="prin"><span class="num">C</span><div><b>Honest.</b><p>Proof and approval language is plain and trustworthy — the whole point is verifiable streaks.</p></div></div>
+      </div>
+      <div class="panel">
+        <h3>Signature motions</h3>
+        <p style="font-size:13px;color:var(--ink-2);margin-top:0">Progress is expressed as brewing tea (from the brand brief):</p>
+        <div class="prin" style="margin-bottom:12px"><span class="num">1</span><div><b>Fill the teabag</b><p>Completing a habit drops a tea leaf into the bag — the core reward moment.</p></div></div>
+        <div class="prin" style="margin-bottom:12px"><span class="num">2</span><div><b>Pour hot water</b><p>Logging pours water into the cup; the group grid "fills up" together.</p></div></div>
+        <div class="prin"><span class="num">3</span><div><b>Steep</b><p>Streak milestones let the tea steep and deepen in colour.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    Procrastea Brand Guide · sources: <code>raw files/branding.yml</code>, <code>raw files/color_palette.png</code>,
+    <code>raw files/teabag.png</code> · palette also in <code>branding/colors.yml</code> · mark in <code>branding/logo-mark.svg</code>.
+    Type: <a href="https://fonts.google.com/specimen/Figtree">Figtree</a>.
+  </div>
+</div>
+</body>
+</html>
