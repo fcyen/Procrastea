@@ -29,3 +29,5 @@
     3. Completed a step, ask human to validate deliverable
 
 3. Break steps down into smaller steps whenever necessary.
+
+4. When moving on a new step, persist important states as files in the repo, then clean up the context memory.
