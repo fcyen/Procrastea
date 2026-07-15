@@ -1,0 +1,14 @@
+Problem
+People struggle to stay consistent with habits because traditional habit trackers feel lonely and accountability feels like pressure.
+
+Solution
+A social habit tracker where friends encourage each other by sharing proof of completed habits.
+
+Value proposition
+A habit tracker that reduces the friction of logging and leverages on the power of social community to motivate user to stay on track
+
+User Pain Points
+- Data logging fatigue
+- The Guilt of Broken Streaks
+- The Loneliness of Self-Improvement
+- Lack of Verifiable Proof
