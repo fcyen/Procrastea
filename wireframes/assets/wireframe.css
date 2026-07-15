@@ -252,7 +252,30 @@ h1{font-size:27px;font-weight:800;letter-spacing:-.02em;margin:0;}
 .tmpl.new{border:1.5px dashed var(--stroke-2);background:var(--surface);}
 .tmpl.new .thumb{background:none;border:none;color:var(--green-ink);}
 
-/* ---------- setlog-style feed card (group) ---------- */
+/* ---------- setlog-style 2xN proof grid (group feed) ---------- */
+.feedgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.feedcell{position:relative;aspect-ratio:1;border-radius:13px;overflow:hidden;
+  border:1px solid var(--stroke);display:grid;place-items:center;color:#b7bcc2;
+  background:repeating-linear-gradient(45deg,#e2e4e8 0 8px,#eaecef 8px 16px);}
+.feedcell>svg{width:30px;height:30px;}
+.feedcell .nm{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 7px;color:#fff;
+  font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;
+  background:linear-gradient(transparent,rgba(20,22,28,.6));}
+.feedcell .bd{position:absolute;top:7px;right:7px;display:inline-flex;align-items:center;gap:4px;
+  font-size:9px;font-weight:700;padding:3px 7px;border-radius:20px;}
+.feedcell .bd svg{width:11px;height:11px;}
+.feedcell .bd.ok{background:var(--green-ink);color:#fff;}
+.feedcell .bd.wait{background:var(--yellow);color:#3d2f00;}
+.feedcell.pending{border-color:var(--yellow);box-shadow:0 0 0 2px var(--yellow);}
+.feedcell.me{background:var(--surface);border:1.5px dashed var(--stroke-2);color:var(--green-ink);
+  flex-direction:column;}
+.feedcell.me .lbl{position:static;background:none;color:var(--ink-2);font-size:11px;font-weight:700;
+  display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;}
+.feedcell.me .lbl svg{width:24px;height:24px;color:var(--green-ink);}
+.feedcell.empty{background:var(--surface-2);color:var(--muted);}
+.feedcell.empty .nm{background:none;color:var(--muted);}
+
+/* ---------- setlog-style feed card (legacy, kept for reference) ---------- */
 .setcard{border:1px solid var(--stroke);border-radius:16px;background:#fff;overflow:hidden;
   box-shadow:0 2px 8px rgba(20,22,28,.04);flex:none;}
 .setcard .top{display:flex;align-items:center;gap:9px;padding:11px 12px 9px;}
