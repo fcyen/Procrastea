@@ -13,23 +13,32 @@
     <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
     <div class="appbar"><div class="ibtn"><svg><use href="#i-users"/></svg></div><div class="title">Early Risers</div><div class="ibtn f"><svg><use href="#i-plus"/></svg></div></div>
     <div class="body np" style="gap:0;">
-      <div style="padding:10px 14px 6px;"><div class="chips"><span class="chip on">Early Risers</span><span class="chip">Gym Buddies</span><span class="chip">Book Club</span></div></div>
-      <div style="padding:2px 14px 6px;display:flex;align-items:center;gap:8px;">
-        <span class="h" style="font-size:12px;">Today</span><div class="grow-sp"></div><span class="pill y"><svg><use href="#i-bell"/></svg> 2 to approve</span>
-      </div>
+      <div style="padding:10px 14px 8px;"><div class="chips"><span class="chip on">Early Risers</span><span class="chip">Gym Buddies</span><span class="chip">Book Club</span></div></div>
 
       <div class="fade-b" style="padding:0 14px 14px;overflow:hidden;">
         <div class="feedgrid">
+          <!-- pending your approval — shown first -->
+          <div class="feedcell pending"><svg><use href="#i-img"/></svg>
+            <span class="appstack"><i><svg><use href="#i-user"/></svg></i><span class="cnt">1</span></span>
+            <span class="bd wait"><svg><use href="#i-bell"/></svg> Approve</span><span class="nm">Jordan · Meal prep</span></div>
+          <div class="feedcell pending"><svg><use href="#i-img"/></svg>
+            <span class="appstack"><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><span class="cnt">2</span></span>
+            <span class="bd wait"><svg><use href="#i-bell"/></svg> Approve</span><span class="nm">Priya · Meditate</span></div>
           <!-- your own tile: not logged yet -->
           <div class="feedcell me"><div class="lbl"><svg><use href="#i-cam"/></svg>Add today's<br>proof</div></div>
-          <!-- pending your approval -->
-          <div class="feedcell pending"><svg><use href="#i-img"/></svg><span class="bd wait"><svg><use href="#i-bell"/></svg> Approve</span><span class="nm">Jordan · Meal prep</span></div>
           <!-- approved -->
-          <div class="feedcell"><svg><use href="#i-img"/></svg><span class="bd ok"><svg><use href="#i-check"/></svg></span><span class="nm">Sam · Run 🔥4</span></div>
-          <div class="feedcell pending"><svg><use href="#i-img"/></svg><span class="bd wait"><svg><use href="#i-bell"/></svg> Approve</span><span class="nm">Priya · Meditate</span></div>
-          <div class="feedcell"><svg><use href="#i-img"/></svg><span class="bd ok"><svg><use href="#i-check"/></svg></span><span class="nm">Mia · Read 👏6</span></div>
-          <div class="feedcell"><svg><use href="#i-img"/></svg><span class="bd ok"><svg><use href="#i-check"/></svg></span><span class="nm">Dan · Water</span></div>
-          <div class="feedcell"><svg><use href="#i-img"/></svg><span class="bd ok"><svg><use href="#i-check"/></svg></span><span class="nm">Leo · Run 💪2</span></div>
+          <div class="feedcell"><svg><use href="#i-img"/></svg>
+            <span class="appstack"><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><span class="cnt">3</span></span>
+            <span class="nm">Sam · Run</span></div>
+          <div class="feedcell"><svg><use href="#i-img"/></svg>
+            <span class="appstack"><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><span class="cnt">5</span></span>
+            <span class="nm">Mia · Read</span></div>
+          <div class="feedcell"><svg><use href="#i-img"/></svg>
+            <span class="appstack"><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><span class="cnt">2</span></span>
+            <span class="nm">Dan · Water</span></div>
+          <div class="feedcell"><svg><use href="#i-img"/></svg>
+            <span class="appstack"><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><i><svg><use href="#i-user"/></svg></i><span class="cnt">4</span></span>
+            <span class="nm">Leo · Run</span></div>
           <!-- not logged yet -->
           <div class="feedcell empty"><span class="nm">Chris · not yet</span></div>
         </div>

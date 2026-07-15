@@ -274,6 +274,14 @@ h1{font-size:27px;font-weight:800;letter-spacing:-.02em;margin:0;}
 .feedcell.me .lbl svg{width:24px;height:24px;color:var(--green-ink);}
 .feedcell.empty{background:var(--surface-2);color:var(--muted);}
 .feedcell.empty .nm{background:none;color:var(--muted);}
+/* approver avatar stack = how many friends approved this proof */
+.appstack{position:absolute;top:7px;left:7px;display:inline-flex;align-items:center;
+  background:rgba(20,22,28,.45);border-radius:20px;padding:3px 6px 3px 3px;}
+.appstack i{width:15px;height:15px;border-radius:50%;background:var(--surface-2);
+  border:1.5px solid #fff;display:grid;place-items:center;margin-left:-6px;color:var(--ink-2);}
+.appstack i:first-child{margin-left:0;}
+.appstack i svg{width:9px;height:9px;}
+.appstack .cnt{color:#fff;font-size:10px;font-weight:700;margin-left:4px;}
 
 /* ---------- setlog-style feed card (legacy, kept for reference) ---------- */
 .setcard{border:1px solid var(--stroke);border-radius:16px;background:#fff;overflow:hidden;
