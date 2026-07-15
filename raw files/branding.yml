@@ -1,0 +1,6 @@
+tagline: Conquer procasteanation, fill your teabag
+font: Figtree
+example-motions: # need more thought on how it fits in the app interactions
+ - filling up a tea bag with individual tea leaf
+ - pouring hot water into a cup with teabag
+ - steeping tea
