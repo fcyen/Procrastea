@@ -5,10 +5,15 @@ personality & motion).
 
 ```
 branding/
-├─ brand-guide.html   the full visual brand guide
-├─ colors.yml         colour palette with roles, tints and semantic mapping
-└─ logo-mark.svg      the teacup + teabag mark (standalone, for light backgrounds)
+├─ brand-guide.html      the full visual brand guide (uses direction 00)
+├─ logo-variations.html  4 logo directions to choose from (00 + A/B/C)
+├─ colors.yml            colour palette with roles, tints and semantic mapping
+└─ logo-mark.svg         the direction-00 teacup + teabag mark (standalone)
 ```
+
+**Logo directions** (see `logo-variations.html`): 00 matcha cup + teabag tag (shipped),
+A "Teo" teabag mascot (playful), B tea-leaf-as-checkmark (minimal, my pick for the app
+icon), C fill-the-cup (conceptual/progress). Awaiting a pick to lock into the hi-fi screens.
 
 Grounded in `raw files/` — `branding.yml` (tagline, Figtree, tea motions),
 `color_palette.png` (palette) and `teabag.png` (mascot).
