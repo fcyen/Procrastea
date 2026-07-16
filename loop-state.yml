@@ -1,0 +1,93 @@
+# Machine-readable pipeline state for LOOP.md.
+#
+# The orchestrator (orchestrator/run.py) reads this file to decide what to do
+# next; worker sessions update substeps as they work; only a human moves a
+# step from awaiting_validation to done (LOOP.md rule 2.3).
+#
+# Step statuses: pending | in_progress | awaiting_validation | done
+# pending_question is set when the loop is paused for human input
+# (types: blocked | improvement | validation — LOOP.md rule 2).
+#
+# Note: the orchestrator rewrites this file programmatically, which strips
+# these comments on first save — that is expected.
+
+current_step: 6
+pending_question: null
+
+steps:
+  - id: 1
+    name: UX research
+    status: done
+
+  - id: 2
+    name: Design principle
+    status: done
+
+  - id: 3
+    name: Information Architecture (IA)
+    status: done
+
+  - id: 4
+    name: User persona
+    status: done
+
+  - id: 5
+    name: User flow
+    status: done
+
+  - id: 6
+    name: Low fidelity wireframe
+    status: in_progress
+    dir: steps/06-low-fidelity-wireframe
+    acceptance_criteria: >
+      Wireframes for all screens, covering all interactions in the user flow
+      (see "raw files/User Flow.png").
+    deliverables:
+      - wireframes/
+    substeps:
+      - name: Split procrastinatea_wireframes.html into per-screen files
+        status: pending
+      - name: Apply major modifications from sketches in /wireframe-references
+        status: pending
+      - name: Design group screen (setlog-style UI with approve-a-friend's-habit affordance)
+        status: pending
+      - name: Design calendar (statistics) screen from reference, suggestions welcome
+        status: pending
+
+  - id: 7
+    name: Branding guide
+    status: in_progress
+    dir: steps/07-branding-guide
+    acceptance_criteria: >
+      Full set of logo, colour palette, typeface, UI components.
+    deliverables:
+      - branding/
+
+  - id: 8
+    name: High fidelity wireframe
+    status: pending
+    dir: steps/08-high-fidelity-wireframe
+    acceptance_criteria: >
+      Same screens as low fidelity wireframe, but adopts the branding guide.
+      May be combined with Prototype in the next step if that makes sense.
+
+  - id: 9
+    name: Prototype
+    status: pending
+    dir: steps/09-prototype
+    acceptance_criteria: >
+      Interactive prototype covering the user flow, ready for user testing.
+
+  - id: 10
+    name: Testing
+    status: pending
+    dir: steps/10-testing
+    acceptance_criteria: >
+      Analysis of feedback from users after trying the prototype.
+
+  - id: 11
+    name: Refine
+    status: pending
+    dir: steps/11-refine
+    acceptance_criteria: >
+      Addressed the feedback from the previous step.
