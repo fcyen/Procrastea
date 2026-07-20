@@ -47,6 +47,13 @@
   .slide p{margin:0;font-size:13.5px;color:var(--ink-2);}
   .slide .ai{margin-top:8px;font-size:12.5px;color:var(--matcha-ink);}
   .slide .ai b{font-weight:800;}
+  .role{display:inline-block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+    padding:3px 9px;border-radius:20px;margin:2px 0 2px;}
+  .role.human{background:var(--matcha-tint);color:var(--matcha-ink);}
+  .role.ai{background:#e4edf7;color:#2e5b9a;}
+  .role.both{background:#fdf1d2;color:#9a7410;}
+  ul.bul{margin:9px 0 0;padding-left:18px;}
+  ul.bul li{font-size:13.5px;color:var(--ink-2);margin:4px 0;line-height:1.5;}
   .ph{margin-top:10px;height:8px;border-radius:5px;background:var(--surface);}
   .ph.s{width:60%;}
 
@@ -66,50 +73,89 @@
     <a class="back" href="../index.html">← Home</a>
   </div>
 
-  <span class="badge">Draft · placeholder</span>
+  <span class="badge">Draft · notes to expand</span>
   <h1>Designing Procrastea with an AI collaborator</h1>
-  <p class="lede">A case study on running a full UX process — research to prototype — with Claude as a
-  design partner: what it did well, where a human had to steer, and how the two split the work.</p>
+  <p class="lede">A full UX process — brainstorm to prototype — run with AI as a design partner. The pattern
+  we settled on: <b>humans own the thinking that needs intent</b> (structure, journey, brand), and
+  <b>AI accelerates the breadth and the build</b>.</p>
 
-  <div class="note">🚧 <b>This case study hasn't been written yet.</b> The outline below is a placeholder skeleton —
-  each slide will be filled in with narrative, artefacts and before/after screenshots.</div>
+  <div class="note">✍️ <b>Working notes.</b> Short bullets below capture the process step by step; the full write-up
+  will be told in the author's own voice.</div>
 
-  <h2>Proposed slide outline</h2>
+  <h2>The process, step by step</h2>
   <div class="slides">
-    <div class="slide"><span class="no">01</span><div class="b"><h3>The brief &amp; the setup</h3>
-      <p>What Procrastea is, why "social proof + habits", and how the human + AI workflow was set up (a repo, a LOOP.md process, Claude Code on the web).</p>
-      <div class="ph"></div><div class="ph s"></div></div></div>
+    <div class="slide"><span class="no">01</span><div class="b"><h3>Brainstorm in FigJam</h3>
+      <span class="role human">Human · FigJam</span>
+      <ul class="bul">
+        <li>Open-ended sticky-note ideation — kept it wide on purpose to make room for breadth.</li>
+        <li>Talked through the apps we use daily and what's trending.</li>
+        <li>Landed on a <b>Setlog-inspired social habit tracker</b>.</li>
+      </ul></div></div>
 
-    <div class="slide"><span class="no">02</span><div class="b"><h3>Research &amp; synthesis</h3>
-      <p>Competitor teardown (Setlog, BeReal, Folksable, HabitShare), pain points and personas.</p>
-      <div class="ai"><b>AI did:</b> transcribed the FigJam board, structured the comparison &amp; personas. <b>Human did:</b> the actual research and insight.</div></div></div>
+    <div class="slide"><span class="no">02</span><div class="b"><h3>Market scan</h3>
+      <span class="role ai">AI-assisted</span>
+      <ul class="bul">
+        <li>With a broad direction set, asked AI to surface similar apps.</li>
+        <li>Reviewed the list and narrowed to <b>four competitors</b> — direct, or adjacent with proven success (&gt;100k downloads).</li>
+      </ul></div></div>
 
-    <div class="slide"><span class="no">03</span><div class="b"><h3>IA &amp; user flow</h3>
-      <p>Turning the flow into Mermaid diagrams and reconciling them with the screens.</p>
-      <div class="ai"><b>AI did:</b> converted diagrams, cross-checked flow ↔ wireframes.</div></div></div>
+    <div class="slide"><span class="no">03</span><div class="b"><h3>In-depth competitor analysis</h3>
+      <span class="role both">Human + AI</span>
+      <ul class="bul">
+        <li>Gave AI research directions per competitor: strengths, gaps, est. DAU, time in market.</li>
+        <li>Downloaded and used the apps ourselves; noted first-use impressions.</li>
+        <li>Had AI fold our notes into the final analysis table.</li>
+      </ul></div></div>
 
-    <div class="slide"><span class="no">04</span><div class="b"><h3>Wireframes</h3>
-      <p>Splitting a monolith into 19 per-screen files; the photo-first log flow; the setlog-style group grid with proof approval.</p>
-      <div class="ai"><b>AI did:</b> built &amp; iterated screens from sketches. <b>Human did:</b> reviewed and redirected (grid vs feed, approval rules).</div></div></div>
+    <div class="slide"><span class="no">04</span><div class="b"><h3>Framing the problem</h3>
+      <span class="role human">Human</span>
+      <ul class="bul">
+        <li>Extracted user pain points from the analysis.</li>
+        <li>Wrote the problem statement, proposed solution and value proposition.</li>
+      </ul></div></div>
 
-    <div class="slide"><span class="no">05</span><div class="b"><h3>Branding</h3>
-      <p>From a coral placeholder to the matcha palette, the two-leaf logo, Teo the teabag mascot and the "fill your teabag" progress device — including logo exploration.</p>
-      <div class="ai"><b>AI did:</b> generated logo directions &amp; the guide. <b>Human did:</b> picked B, supplied reference art, pushed for the cozy teabag.</div></div></div>
+    <div class="slide"><span class="no">05</span><div class="b"><h3>User personas</h3>
+      <span class="role ai">AI draft</span>
+      <ul class="bul">
+        <li>Asked AI to generate <b>3 personas</b> from the research and framing.</li>
+      </ul></div></div>
 
-    <div class="slide"><span class="no">06</span><div class="b"><h3>Hi-fi &amp; prototype</h3>
-      <p>Re-skinning the screens in-brand and wiring the clickable prototype.</p>
-      <div class="ai"><b>AI did:</b> built the interactive prototype. </div></div></div>
+    <div class="slide"><span class="no">06</span><div class="b"><h3>Information architecture</h3>
+      <span class="role human">By hand · FigJam</span>
+      <ul class="bul">
+        <li>Reviewed the personas, then built the IA as flowcharts by hand.</li>
+        <li>Kept it manual on purpose — we wanted to be intentional about how information is structured.</li>
+      </ul></div></div>
 
-    <div class="slide"><span class="no">07</span><div class="b"><h3>What worked, what didn't</h3>
-      <p>Honest reflection: speed and breadth from AI, vs. taste, judgement and reference-setting from the human. Where AI got it wrong and how the loop caught it.</p>
-      <div class="ph"></div><div class="ph s"></div></div></div>
+    <div class="slide"><span class="no">07</span><div class="b"><h3>User journey</h3>
+      <span class="role human">By hand · FigJam</span>
+      <ul class="bul">
+        <li>Plotted the journey by hand to force thinking through the whole flow.</li>
+        <li>Made <b>significant IA changes</b> along the way — designing a proper experience and closing gaps we saw in existing habit trackers.</li>
+      </ul></div></div>
 
-    <div class="slide"><span class="no">08</span><div class="b"><h3>Takeaways</h3>
-      <p>A repeatable pattern for AI-assisted design, and when to keep a human firmly in the loop.</p>
-      <div class="ph"></div></div></div>
+    <div class="slide"><span class="no">08</span><div class="b"><h3>Wireframes</h3>
+      <span class="role both">AI + human review</span>
+      <ul class="bul">
+        <li>AI generated wireframes from the IA and user journey.</li>
+        <li>Reviewed the screens; sketched over the ones needing significant layout changes.</li>
+      </ul></div></div>
+
+    <div class="slide"><span class="no">09</span><div class="b"><h3>Design guide</h3>
+      <span class="role human">By hand</span>
+      <ul class="bul">
+        <li>Built a mood board; chose palette and typography for the target audience — <b>working adults</b>.</li>
+        <li>Aimed for trust and professionalism, while keeping fun elements so habit tracking stays enjoyable.</li>
+      </ul></div></div>
+
+    <div class="slide"><span class="no">10</span><div class="b"><h3>High-fidelity prototype</h3>
+      <span class="role ai">AI build</span>
+      <ul class="bul">
+        <li>Built the high-fidelity, clickable prototype from the design guide.</li>
+      </ul></div></div>
   </div>
 
-  <footer>Procrastea · AI-assisted design case study (draft placeholder) —
+  <footer>Procrastea · AI-assisted design case study (working draft) —
   <a href="../index.html">back to home</a> · <a href="../prototype/index.html">view the prototype</a></footer>
 </div>
 </body>
