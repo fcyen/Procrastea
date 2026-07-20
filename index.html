@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procrastea — Design</title>
+<meta name="description" content="Procrastea — a social habit tracker. Design process, wireframes, branding and prototype.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --matcha:#a0d286;--matcha-deep:#84bd67;--matcha-ink:#4c7d33;--matcha-tint:#eaf5e2;
+    --honey:#f6c343;--charcoal:#20252d;--ink-2:#565f6b;--muted:#9aa2ad;
+    --line:#e2e5ea;--surface:#f2f4f6;--porcelain:#fafbfc;
+    font-family:"Figtree",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;} html,body{margin:0;}
+  body{background:var(--porcelain);color:var(--charcoal);-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 22px;}
+  .head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:34px;}
+  .mark{width:76px;height:76px;background:var(--matcha-tint);border-radius:22px;display:grid;place-items:center;}
+  .mark svg{width:48px;height:48px;}
+  h1{font-size:40px;font-weight:900;letter-spacing:-.03em;margin:0;}
+  h1 .tea{color:var(--matcha-ink);}
+  .tagline{font-size:15px;color:var(--ink-2);margin:0;max-width:440px;line-height:1.55;}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(220px,260px));gap:16px;width:100%;max-width:560px;}
+  @media(max-width:560px){.grid{grid-template-columns:1fr;}}
+  a.card{text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;background:#fff;
+    padding:20px;display:flex;flex-direction:column;gap:6px;transition:transform .12s ease,box-shadow .12s ease;}
+  a.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(20,22,28,.35);}
+  a.card .k{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--matcha-ink);}
+  a.card .t{font-size:17px;font-weight:800;letter-spacing:-.01em;}
+  a.card .d{font-size:12.5px;color:var(--ink-2);line-height:1.45;}
+  a.card.primary{background:var(--matcha-tint);border-color:#cfe6bd;grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;}
+  a.card.primary .arrow{margin-left:auto;font-size:22px;color:var(--matcha-ink);}
+  a.card.soon{opacity:.72;}
+  a.card.soon .k{color:var(--muted);}
+  .badge{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+    background:var(--honey);color:#3d2f00;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+  footer{margin-top:34px;font-size:12px;color:var(--muted);text-align:center;}
+  footer a{color:var(--matcha-ink);}
+</style>
+</head>
+<body>
+  <div class="head">
+    <div class="mark">
+      <svg viewBox="0 0 64 64" aria-label="Procrastea">
+        <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+        <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#eaf5e2" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
+        <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#eaf5e2" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>Procras<span class="tea">tea</span></h1>
+    <p class="tagline">A social habit tracker — snap the proof, your friends cheer you on. Good habits are built together.</p>
+  </div>
+
+  <div class="grid">
+    <a class="card primary" href="prototype/index.html">
+      <div>
+        <div class="k">Interactive</div>
+        <div class="t">Prototype</div>
+        <div class="d">The clickable high-fidelity prototype — all 19 screens.</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="card" href="wireframes/index.html">
+      <div class="k">Step 6</div>
+      <div class="t">Wireframes</div>
+      <div class="d">Low-fidelity screens for the whole user flow.</div>
+    </a>
+
+    <a class="card" href="branding/brand-guide.html">
+      <div class="k">Step 7</div>
+      <div class="t">Brand guide</div>
+      <div class="d">Logo, colour, typeface &amp; UI components.</div>
+    </a>
+
+    <a class="card" href="branding/logo-variations.html">
+      <div class="k">Branding</div>
+      <div class="t">Logo directions</div>
+      <div class="d">The logo concepts explored.</div>
+    </a>
+
+    <a class="card" href="docs/README.md">
+      <div class="k">Steps 1–5</div>
+      <div class="t">Research &amp; flow</div>
+      <div class="d">UX research, personas, IA and user flow.</div>
+    </a>
+  </div>
+
+  <footer>Procrastea design process · <a href="https://github.com/fcyen/Procratea">github.com/fcyen/Procratea</a></footer>
+</body>
+</html>
