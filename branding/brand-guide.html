@@ -144,20 +144,29 @@
     <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
     <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
   </g>
-  <!-- Teo, the teabag mascot (label text is drawn per-instance, not here) -->
+  <!-- illustrated teabag parts (cozy style) -->
+  <linearGradient id="baggrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e7eff1"/></linearGradient>
+  <g id="leaf"><path d="M0 0 C 9 -8 10 -22 0 -34 C -10 -22 -9 -8 0 0 Z" fill="#7cc35c"/><path d="M0 -2 L0 -31" stroke="#3f6b28" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M0 -10 L5 -15 M0 -10 L-5 -15 M0 -18 L5 -23 M0 -18 L-5 -23" stroke="#3f6b28" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/></g>
+  <g id="leafd"><path d="M0 0 C 9 -8 10 -22 0 -34 C -10 -22 -9 -8 0 0 Z" fill="#4f8f36"/><path d="M0 -2 L0 -31" stroke="#2c4d1c" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M0 -10 L5 -15 M0 -10 L-5 -15 M0 -18 L5 -23 M0 -18 L-5 -23" stroke="#2c4d1c" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/></g>
+  <!-- Teo, the teabag mascot — translucent bag, leaves, smiley face, habit-name tag -->
   <g id="m-teo">
-    <path d="M64 32 C64 15 86 11 96 20 C104 27 99 37 104 43" fill="none" stroke="#20252d" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M41 32l4-7h14l4 7z" fill="#eef6e7" stroke="#20252d" stroke-width="2.4" stroke-linejoin="round"/>
-    <clipPath id="teobag"><rect x="22" y="32" width="56" height="74" rx="10"/></clipPath>
-    <rect x="22" y="32" width="56" height="74" rx="10" fill="#fff"/>
-    <g clip-path="url(#teobag)">
-      <path d="M16 68C30 61 35 72 50 68C63 64.5 68 72 84 68V108H16Z" fill="#a0d286"/>
-      <path d="M34 90a3 3 0 0 1 5 1 3 3 0 0 1-5-1z" fill="#5f9e3f"/><circle cx="60" cy="95" r="2" fill="#5f9e3f"/><circle cx="46" cy="99" r="1.6" fill="#5f9e3f"/>
+    <path d="M80 44 C 80 26 40 30 34 16" fill="none" stroke="#c9d2cf" stroke-width="2.4" stroke-linecap="round"/>
+    <g transform="rotate(-6 34 8)">
+      <rect x="4" y="-14" width="60" height="46" rx="8" fill="#f6f1df" stroke="#e2dcc4" stroke-width="1.5"/>
+      <text x="34" y="9" text-anchor="middle" font-family="Figtree" font-weight="800" font-size="12" letter-spacing="1" fill="#2f5233">READ</text>
+      <use href="#leaf" transform="translate(26 24) scale(.3) rotate(-20)"/><use href="#leaf" transform="translate(42 24) scale(.3) rotate(20)"/>
     </g>
-    <rect x="22" y="32" width="56" height="74" rx="10" fill="none" stroke="#20252d" stroke-width="2.6"/>
-    <circle cx="41" cy="80" r="2.7" fill="#20252d"/><circle cx="59" cy="80" r="2.7" fill="#20252d"/>
-    <path d="M44 86a6 5.5 0 0 0 12 0z" fill="#e5544b" stroke="#20252d" stroke-width="1.7" stroke-linejoin="round"/>
-    <ellipse cx="34" cy="86" rx="3.4" ry="2.3" fill="#f2a3a3"/><ellipse cx="66" cy="86" rx="3.4" ry="2.3" fill="#f2a3a3"/>
+    <path d="M60 56 h40 l14 14 v72 a10 10 0 0 1 -10 10 H56 a10 10 0 0 1 -10 -10 V70 Z" fill="url(#baggrad)" stroke="#cfd8da" stroke-width="2"/>
+    <rect x="74" y="52" width="12" height="7" rx="2" fill="#eef2f3" stroke="#cfd8da" stroke-width="1.6"/>
+    <clipPath id="teoclip"><path d="M60 56 h40 l14 14 v72 a10 10 0 0 1 -10 10 H56 a10 10 0 0 1 -10 -10 V70 Z"/></clipPath>
+    <g clip-path="url(#teoclip)">
+      <use href="#leaf" transform="translate(80 158) scale(1.2) rotate(-3)"/>
+      <use href="#leafd" transform="translate(98 155) scale(1) rotate(30)"/>
+      <use href="#leafd" transform="translate(64 154) scale(1) rotate(-32)"/>
+    </g>
+    <circle cx="70" cy="104" r="3" fill="#20252d"/><circle cx="90" cy="104" r="3" fill="#20252d"/>
+    <path d="M73 111a7 6 0 0 0 14 0z" fill="#e5544b" stroke="#20252d" stroke-width="1.7" stroke-linejoin="round"/>
+    <ellipse cx="62" cy="110" rx="4" ry="2.6" fill="#f2a3a3"/><ellipse cx="98" cy="110" rx="4" ry="2.6" fill="#f2a3a3"/>
   </g>
   <g id="i-check"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
   <g id="i-cup"><path d="M5 8h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 9h2.5a2 2 0 0 1 0 4H16" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 3.5c-.6.8-.6 1.7 0 2.5M11.5 3.5c-.6.8-.6 1.7 0 2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></g>
@@ -230,15 +239,14 @@
     <p class="lede" style="margin-bottom:22px;">Teo is a teabag who fills up as you build a habit. Use him for onboarding,
     streaks, celebration and empty states — the <b>tag shows the habit's name</b>, and the tea level shows progress.</p>
     <div class="cardgrid cols-3">
-      <div class="panel center"><svg viewBox="0 0 130 112" style="width:150px"><use href="#m-teo"/></svg><span class="cap">Teo · tag = habit</span></div>
-      <div class="panel center dark"><svg viewBox="0 0 130 112" style="width:130px"><use href="#m-teo"/></svg><span class="cap" style="color:rgba(255,255,255,.55)">On charcoal</span></div>
+      <div class="panel center"><svg viewBox="-8 -30 150 196" style="width:150px"><use href="#m-teo"/></svg><span class="cap">Teo · tag = habit</span></div>
+      <div class="panel center dark"><svg viewBox="-8 -30 150 196" style="width:130px"><use href="#m-teo"/></svg><span class="cap" style="color:rgba(255,255,255,.55)">On charcoal</span></div>
       <div class="panel">
         <h3>Anatomy & style</h3>
-        <p style="font-size:13px;color:var(--ink-2);margin:0 0 10px">MBE style: 2.5&nbsp;px charcoal outline, flat fills, a
-        smiley face (dot eyes, open smile, blush) and a habit-name tag on a curled string.</p>
-        <div class="row">
-          <div class="do" style="padding:4px 0"><span class="k y">✓</span> Swap the tag text per habit (Read, Run…).</div>
-        </div>
+        <p style="font-size:13px;color:var(--ink-2);margin:0 0 10px">A soft, illustrated teabag: a translucent stapled bag,
+        real tea leaves inside, a smiley face (dot eyes, open smile, blush) and a habit-name tag on a curled string.</p>
+        <div class="do" style="padding:4px 0"><span class="k y">✓</span> Swap the tag text per habit (Read, Run…).</div>
+        <div class="do" style="padding:4px 0"><span class="k y">✓</span> Let the leaves grow with the streak.</div>
         <div class="do" style="padding:4px 0"><span class="k n">✕</span> Don't use Teo as the app icon — that's the leaf mark's job.</div>
       </div>
     </div>
@@ -247,8 +255,8 @@
   <!-- PROGRESS -->
   <section>
     <h2 class="sec">Progress — Fill your teabag <span class="n">03</span></h2>
-    <p class="lede" style="margin-bottom:20px;">Every completed habit adds tea to the bag. The fill is the app's core
-    reward device — on habit cards, streak celebrations and Teo himself.</p>
+    <p class="lede" style="margin-bottom:20px;">Every completed habit drops a tea leaf into the bag. The bag filling with
+    leaves is the app's core reward device — on habit cards, streak celebrations and Teo himself.</p>
     <div class="panel"><div id="fillrow" class="row" style="justify-content:space-between;align-items:flex-end;gap:12px"></div></div>
   </section>
 
@@ -374,26 +382,26 @@
 </div>
 
 <script>
-  // "Fill your teabag" — render 5 progress states into #fillrow
+  // "Fill your teabag" — render 5 progress states (leaves accumulating) into #fillrow
   (function(){
     var row = document.getElementById('fillrow'); if(!row) return;
-    var levels=[0,.25,.5,.75,1], labels=['0% empty','25%','50%','75%','100% full'];
-    var x=8, w=44, H=64, ty=18, out='';
-    for(var i=0;i<levels.length;i++){
-      var f=levels[i], clip='fclip-'+i;
-      var fillTop=(ty+6)+(H-6)*(1-f), leaves='';
-      if(f>0){ var n=Math.round(f*5); for(var k=0;k<n;k++){ var lx=x+9+(k%3)*11, ly=ty+H-8-Math.floor(k/3)*10;
-        leaves+='<ellipse cx="'+lx+'" cy="'+ly+'" rx="2.4" ry="1.5" fill="#5f9e3f" transform="rotate('+(-25+k*15)+' '+lx+' '+ly+')"/>'; } }
-      var fill = f>0 ? '<g clip-path="url(#'+clip+')"><path d="M'+x+' '+fillTop+' C '+(x+w*0.3)+' '+(fillTop-4)+', '+(x+w*0.6)+' '+(fillTop+4)+', '+(x+w)+' '+fillTop+' V '+(ty+H)+' H '+x+' Z" fill="#a0d286"/>'+leaves+'</g>' : '';
+    var BAG='M60 56 h40 l14 14 v72 a10 10 0 0 1 -10 10 H56 a10 10 0 0 1 -10 -10 V70 Z';
+    var LEAVES=[
+      '<use href="#leaf"  transform="translate(80 158) scale(1.5) rotate(-3)"/>',
+      '<use href="#leafd" transform="translate(98 154) scale(1.2) rotate(32)"/>',
+      '<use href="#leafd" transform="translate(64 152) scale(1.15) rotate(-34)"/>',
+      '<use href="#leaf"  transform="translate(92 150) scale(1.05) rotate(18)"/>',
+      '<use href="#leaf"  transform="translate(74 150) scale(1.05) rotate(-16)"/>',
+      '<use href="#leaf"  transform="translate(82 141) scale(.92) rotate(5)"/>'];
+    var counts=[0,2,3,4,6], labels=['0% empty','25%','50%','75%','100% full'], out='';
+    for(var i=0;i<counts.length;i++){
+      var clip='pclip-'+i, inner=LEAVES.slice(0,counts[i]).join('');
       out+='<div style="text-align:center;flex:1">'
-        +'<svg viewBox="0 0 '+(w+16)+' '+(H+ty+8)+'" style="width:100%;max-width:96px">'
-        +'<path d="M'+(x+w/2-7)+' '+(ty+2)+'l3-5h8l3 5z" fill="#eef6e7" stroke="#20252d" stroke-width="2" stroke-linejoin="round"/>'
-        +'<path d="M'+(x+w/2)+' '+ty+'C'+(x+w/2)+' '+(ty-8)+' '+(x+w+4)+' '+(ty-9)+' '+(x+w+6)+' '+(ty-1)+'" fill="none" stroke="#20252d" stroke-width="1.8" stroke-linecap="round"/>'
-        +'<rect x="'+(x+w+2)+'" y="'+(ty-3)+'" width="7" height="7" rx="1.5" fill="#fff" stroke="#20252d" stroke-width="1.6"/>'
-        +'<clipPath id="'+clip+'"><rect x="'+x+'" y="'+(ty+2)+'" width="'+w+'" height="'+H+'" rx="7"/></clipPath>'
-        +'<rect x="'+x+'" y="'+(ty+2)+'" width="'+w+'" height="'+H+'" rx="7" fill="'+(f>0?'#eef6e7':'#a0d286')+'"/>'
-        +fill
-        +'<rect x="'+x+'" y="'+(ty+2)+'" width="'+w+'" height="'+H+'" rx="7" fill="none" stroke="#20252d" stroke-width="2.2"/>'
+        +'<svg viewBox="30 46 100 116" style="width:100%;max-width:92px">'
+        +'<rect x="74" y="52" width="12" height="7" rx="2" fill="#eef2f3" stroke="#cfd8da" stroke-width="1.6"/>'
+        +'<path d="'+BAG+'" fill="url(#baggrad)" stroke="#cfd8da" stroke-width="2"/>'
+        +'<clipPath id="'+clip+'"><path d="'+BAG+'"/></clipPath>'
+        +'<g clip-path="url(#'+clip+')">'+inner+'</g>'
         +'</svg>'
         +'<div style="font-size:11px;font-weight:800;color:var(--ink-2);margin-top:4px">'+labels[i]+'</div>'
         +'</div>';

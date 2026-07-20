@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -30 150 196" width="150" height="196" role="img" aria-label="Procrastea teabag">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e7eff1"/></linearGradient>
+    <g id="lf"><path d="M0 0 C 9 -8 10 -22 0 -34 C -10 -22 -9 -8 0 0 Z" fill="#7cc35c"/><path d="M0 -2 L0 -31" stroke="#3f6b28" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M0 -10 L5 -15 M0 -10 L-5 -15 M0 -18 L5 -23 M0 -18 L-5 -23" stroke="#3f6b28" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/></g>
+    <g id="lfd"><path d="M0 0 C 9 -8 10 -22 0 -34 C -10 -22 -9 -8 0 0 Z" fill="#4f8f36"/><path d="M0 -2 L0 -31" stroke="#2c4d1c" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M0 -10 L5 -15 M0 -10 L-5 -15 M0 -18 L5 -23 M0 -18 L-5 -23" stroke="#2c4d1c" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/></g>
+    <clipPath id="bagclip"><path d="M60 56 h40 l14 14 v72 a10 10 0 0 1 -10 10 H56 a10 10 0 0 1 -10 -10 V70 Z"/></clipPath>
+  </defs>
+  <!-- string -->
+  <path d="M80 44 C 80 26 40 30 34 16" fill="none" stroke="#c9d2cf" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- label (swap the text per habit) -->
+  <g transform="rotate(-6 34 8)">
+    <rect x="4" y="-14" width="60" height="46" rx="8" fill="#f6f1df" stroke="#e2dcc4" stroke-width="1.5"/>
+    <text x="34" y="9" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="800" font-size="12" letter-spacing="1" fill="#2f5233">TEA</text>
+    <use href="#lf" transform="translate(26 24) scale(.3) rotate(-20)"/><use href="#lf" transform="translate(42 24) scale(.3) rotate(20)"/>
+  </g>
+  <!-- bag -->
+  <path d="M60 56 h40 l14 14 v72 a10 10 0 0 1 -10 10 H56 a10 10 0 0 1 -10 -10 V70 Z" fill="url(#bg)" stroke="#cfd8da" stroke-width="2"/>
+  <rect x="74" y="52" width="12" height="7" rx="2" fill="#eef2f3" stroke="#cfd8da" stroke-width="1.6"/>
+  <!-- leaves -->
+  <g clip-path="url(#bagclip)">
+    <use href="#lf"  transform="translate(80 158) scale(1.5) rotate(-3)"/>
+    <use href="#lfd" transform="translate(98 154) scale(1.2) rotate(32)"/>
+    <use href="#lfd" transform="translate(64 152) scale(1.15) rotate(-34)"/>
+    <use href="#lf"  transform="translate(92 150) scale(1.05) rotate(18)"/>
+    <use href="#lf"  transform="translate(74 150) scale(1.05) rotate(-16)"/>
+    <use href="#lf"  transform="translate(82 141) scale(.92) rotate(5)"/>
+  </g>
+</svg>
