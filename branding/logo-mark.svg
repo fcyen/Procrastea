@@ -1,19 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Procrastea mark">
-  <!-- steam -->
-  <g fill="none" stroke="#84bd67" stroke-width="2.6" stroke-linecap="round">
-    <path d="M25 13c-2.4-2 0-4.2 0-6.6"/>
-    <path d="M32 13c-2.4-2 0-4.2 0-6.6"/>
-    <path d="M39 13c-2.4-2 0-4.2 0-6.6"/>
-  </g>
-  <!-- teabag string + tag -->
-  <path d="M35 24c1.4-5.6 3.8-7.6 6.4-10.4" fill="none" stroke="#20252D" stroke-width="2.2" stroke-linecap="round"/>
-  <rect x="37.5" y="7.5" width="10" height="10" rx="2.2" transform="rotate(10 42.5 12.5)" fill="#F6C343" stroke="#20252D" stroke-width="1.8"/>
-  <!-- cup body -->
-  <path d="M13 23h31v11.5A15.5 15.5 0 0 1 28.5 50 15.5 15.5 0 0 1 13 34.5Z" fill="#A0D286" stroke="#20252D" stroke-width="2.4" stroke-linejoin="round"/>
-  <!-- tea surface -->
-  <ellipse cx="28.5" cy="23" rx="15.5" ry="3.6" fill="#84bd67" stroke="#20252D" stroke-width="2.4"/>
-  <!-- handle -->
-  <path d="M44 26.5h3.5a7.5 7.5 0 0 1 0 15H45" fill="none" stroke="#20252D" stroke-width="2.6" stroke-linecap="round"/>
-  <!-- saucer -->
-  <path d="M14 54h29" fill="none" stroke="#20252D" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- big leaf (upper-right) -->
+  <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+  <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#fafbfc" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- small leaf (lower-left) — deeper green for depth -->
+  <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
+  <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#fafbfc" stroke-width="2.2" stroke-linecap="round"/>
 </svg>

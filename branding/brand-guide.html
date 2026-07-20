@@ -137,14 +137,27 @@
 
 <!-- reusable icons -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <!-- primary mark: two-leaf sprout with a checkmark in the negative space -->
   <g id="m-mark">
-    <g fill="none" stroke="#84bd67" stroke-width="2.6" stroke-linecap="round"><path d="M25 13c-2.4-2 0-4.2 0-6.6"/><path d="M32 13c-2.4-2 0-4.2 0-6.6"/><path d="M39 13c-2.4-2 0-4.2 0-6.6"/></g>
-    <path d="M35 24c1.4-5.6 3.8-7.6 6.4-10.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <rect x="37.5" y="7.5" width="10" height="10" rx="2.2" transform="rotate(10 42.5 12.5)" fill="#F6C343" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M13 23h31v11.5A15.5 15.5 0 0 1 28.5 50 15.5 15.5 0 0 1 13 34.5Z" fill="#A0D286" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-    <ellipse cx="28.5" cy="23" rx="15.5" ry="3.6" fill="#84bd67" stroke="currentColor" stroke-width="2.4"/>
-    <path d="M44 26.5h3.5a7.5 7.5 0 0 1 0 15H45" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
-    <path d="M14 54h29" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+    <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
+    <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <!-- Teo, the teabag mascot (label text is drawn per-instance, not here) -->
+  <g id="m-teo">
+    <path d="M64 32 C64 15 86 11 96 20 C104 27 99 37 104 43" fill="none" stroke="#20252d" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M41 32l4-7h14l4 7z" fill="#eef6e7" stroke="#20252d" stroke-width="2.4" stroke-linejoin="round"/>
+    <clipPath id="teobag"><rect x="22" y="32" width="56" height="74" rx="10"/></clipPath>
+    <rect x="22" y="32" width="56" height="74" rx="10" fill="#fff"/>
+    <g clip-path="url(#teobag)">
+      <path d="M16 68C30 61 35 72 50 68C63 64.5 68 72 84 68V108H16Z" fill="#a0d286"/>
+      <path d="M34 90a3 3 0 0 1 5 1 3 3 0 0 1-5-1z" fill="#5f9e3f"/><circle cx="60" cy="95" r="2" fill="#5f9e3f"/><circle cx="46" cy="99" r="1.6" fill="#5f9e3f"/>
+    </g>
+    <rect x="22" y="32" width="56" height="74" rx="10" fill="none" stroke="#20252d" stroke-width="2.6"/>
+    <circle cx="41" cy="80" r="2.7" fill="#20252d"/><circle cx="59" cy="80" r="2.7" fill="#20252d"/>
+    <path d="M44 86a6 5.5 0 0 0 12 0z" fill="#e5544b" stroke="#20252d" stroke-width="1.7" stroke-linejoin="round"/>
+    <ellipse cx="34" cy="86" rx="3.4" ry="2.3" fill="#f2a3a3"/><ellipse cx="66" cy="86" rx="3.4" ry="2.3" fill="#f2a3a3"/>
   </g>
   <g id="i-check"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
   <g id="i-cup"><path d="M5 8h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 9h2.5a2 2 0 0 1 0 4H16" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 3.5c-.6.8-.6 1.7 0 2.5M11.5 3.5c-.6.8-.6 1.7 0 2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></g>
@@ -178,18 +191,18 @@
       <div class="panel center"><span class="mark"><svg viewBox="0 0 64 64" style="width:72px;height:72px"><use href="#m-mark"/></svg></span><span class="cap">App mark</span></div>
       <div class="panel center"><div class="wordmark" style="font-size:30px">Procras<span class="tea">tea</span></div><span class="cap">Wordmark</span></div>
       <div class="panel center" style="gap:10px"><span class="mark"><svg viewBox="0 0 64 64" style="width:44px;height:44px"><use href="#m-mark"/></svg></span><div class="wordmark" style="font-size:22px">Procras<span class="tea">tea</span></div><span class="cap">Horizontal lockup</span></div>
-      <div class="panel center dark"><span class="mark"><svg viewBox="0 0 64 64" style="width:56px;height:56px"><use href="#m-mark" fill="" /></svg></span><span class="cap" style="color:rgba(255,255,255,.55)">On charcoal</span></div>
+      <div class="panel center dark"><span class="mark"><svg viewBox="0 0 64 64" style="width:56px;height:56px"><use href="#m-mark"/></svg></span><span class="cap" style="color:rgba(255,255,255,.55)">On charcoal</span></div>
     </div>
     <div class="cardgrid cols-3" style="margin-top:16px;">
       <div class="panel">
         <h3>Construction</h3>
-        <p style="font-size:13px;color:var(--ink-2);margin:0">A matcha cup with a honey teabag tag and rising steam. The
-        cup is the constant; the tag and steam may be dropped only below 20&nbsp;px (favicon).</p>
+        <p style="font-size:13px;color:var(--ink-2);margin:0">Two tea leaves — a deeper leaf lower-left, a lighter leaf
+        upper-right — whose negative space forms a <b>checkmark</b>: tea + "habit done" in one growing sprout.</p>
       </div>
       <div class="panel">
         <h3>Clear space & size</h3>
-        <p style="font-size:13px;color:var(--ink-2);margin:0">Keep clear space equal to the cup's width on all sides.
-        Minimum mark size 20&nbsp;px; minimum lockup width 96&nbsp;px.</p>
+        <p style="font-size:13px;color:var(--ink-2);margin:0">Keep clear space equal to the small leaf's height on all sides.
+        The mark holds down to a 16&nbsp;px favicon; minimum lockup width 96&nbsp;px.</p>
       </div>
       <div class="panel">
         <h3>Wordmark</h3>
@@ -200,20 +213,48 @@
     <div class="cardgrid cols-2" style="margin-top:16px;">
       <div class="panel">
         <div class="do"><span class="k y">✓</span> Use the mark on porcelain, matcha-tint or charcoal.</div>
-        <div class="do"><span class="k y">✓</span> Keep the tag honey and the cup matcha.</div>
+        <div class="do"><span class="k y">✓</span> Keep both leaves green; let the check read through the gap.</div>
         <div class="do"><span class="k y">✓</span> Pair mark + wordmark for first/primary placements.</div>
       </div>
       <div class="panel">
-        <div class="do"><span class="k n">✕</span> Don't recolour the cup or stretch the mark.</div>
-        <div class="do"><span class="k n">✕</span> Don't place the light mark on a busy photo without a scrim.</div>
+        <div class="do"><span class="k n">✕</span> Don't recolour the leaves or stretch the mark.</div>
+        <div class="do"><span class="k n">✕</span> Don't fill the negative-space check with colour.</div>
         <div class="do"><span class="k n">✕</span> Don't set the wordmark in another typeface.</div>
       </div>
     </div>
   </section>
 
+  <!-- MASCOT -->
+  <section>
+    <h2 class="sec">Mascot — Teo <span class="n">02</span></h2>
+    <p class="lede" style="margin-bottom:22px;">Teo is a teabag who fills up as you build a habit. Use him for onboarding,
+    streaks, celebration and empty states — the <b>tag shows the habit's name</b>, and the tea level shows progress.</p>
+    <div class="cardgrid cols-3">
+      <div class="panel center"><svg viewBox="0 0 130 112" style="width:150px"><use href="#m-teo"/></svg><span class="cap">Teo · tag = habit</span></div>
+      <div class="panel center dark"><svg viewBox="0 0 130 112" style="width:130px"><use href="#m-teo"/></svg><span class="cap" style="color:rgba(255,255,255,.55)">On charcoal</span></div>
+      <div class="panel">
+        <h3>Anatomy & style</h3>
+        <p style="font-size:13px;color:var(--ink-2);margin:0 0 10px">MBE style: 2.5&nbsp;px charcoal outline, flat fills, a
+        smiley face (dot eyes, open smile, blush) and a habit-name tag on a curled string.</p>
+        <div class="row">
+          <div class="do" style="padding:4px 0"><span class="k y">✓</span> Swap the tag text per habit (Read, Run…).</div>
+        </div>
+        <div class="do" style="padding:4px 0"><span class="k n">✕</span> Don't use Teo as the app icon — that's the leaf mark's job.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESS -->
+  <section>
+    <h2 class="sec">Progress — Fill your teabag <span class="n">03</span></h2>
+    <p class="lede" style="margin-bottom:20px;">Every completed habit adds tea to the bag. The fill is the app's core
+    reward device — on habit cards, streak celebrations and Teo himself.</p>
+    <div class="panel"><div id="fillrow" class="row" style="justify-content:space-between;align-items:flex-end;gap:12px"></div></div>
+  </section>
+
   <!-- COLOUR -->
   <section>
-    <h2 class="sec">Colour <span class="n">02</span></h2>
+    <h2 class="sec">Colour <span class="n">04</span></h2>
     <p class="lede" style="margin-bottom:22px;">Matcha leads, charcoal grounds, honey celebrates. Blue is reserved for links and info.</p>
     <div class="cardgrid cols-3">
       <div class="swatch"><div class="chip" style="background:#a0d286"></div><div class="meta"><div class="nm">Matcha</div><div class="hex">#A0D286</div><div class="role">Primary · active states, primary buttons, the mark, "filled teabag" progress. Pair with charcoal text.</div></div></div>
@@ -235,7 +276,7 @@
 
   <!-- TYPE -->
   <section>
-    <h2 class="sec">Typeface <span class="n">03</span></h2>
+    <h2 class="sec">Typeface <span class="n">05</span></h2>
     <div class="panel">
       <div class="row" style="justify-content:space-between;align-items:flex-end;">
         <div><div style="font-size:52px;font-weight:900;letter-spacing:-.02em;line-height:1">Figtree</div>
@@ -254,7 +295,7 @@
 
   <!-- COMPONENTS -->
   <section>
-    <h2 class="sec">UI components <span class="n">04</span></h2>
+    <h2 class="sec">UI components <span class="n">06</span></h2>
     <div class="cardgrid cols-2">
       <div class="panel"><h3>Buttons</h3>
         <div class="row"><button class="btn primary">Add habit</button><button class="btn dark">Log in</button><button class="btn ghost">Not now</button></div>
@@ -307,7 +348,7 @@
 
   <!-- PERSONALITY -->
   <section>
-    <h2 class="sec">Personality & motion <span class="n">05</span></h2>
+    <h2 class="sec">Personality & motion <span class="n">07</span></h2>
     <div class="cardgrid cols-2">
       <div class="panel">
         <h3>Voice & tone</h3>
@@ -331,5 +372,34 @@
     Type: <a href="https://fonts.google.com/specimen/Figtree">Figtree</a>.
   </div>
 </div>
+
+<script>
+  // "Fill your teabag" — render 5 progress states into #fillrow
+  (function(){
+    var row = document.getElementById('fillrow'); if(!row) return;
+    var levels=[0,.25,.5,.75,1], labels=['0% empty','25%','50%','75%','100% full'];
+    var x=8, w=44, H=64, ty=18, out='';
+    for(var i=0;i<levels.length;i++){
+      var f=levels[i], clip='fclip-'+i;
+      var fillTop=(ty+6)+(H-6)*(1-f), leaves='';
+      if(f>0){ var n=Math.round(f*5); for(var k=0;k<n;k++){ var lx=x+9+(k%3)*11, ly=ty+H-8-Math.floor(k/3)*10;
+        leaves+='<ellipse cx="'+lx+'" cy="'+ly+'" rx="2.4" ry="1.5" fill="#5f9e3f" transform="rotate('+(-25+k*15)+' '+lx+' '+ly+')"/>'; } }
+      var fill = f>0 ? '<g clip-path="url(#'+clip+')"><path d="M'+x+' '+fillTop+' C '+(x+w*0.3)+' '+(fillTop-4)+', '+(x+w*0.6)+' '+(fillTop+4)+', '+(x+w)+' '+fillTop+' V '+(ty+H)+' H '+x+' Z" fill="#a0d286"/>'+leaves+'</g>' : '';
+      out+='<div style="text-align:center;flex:1">'
+        +'<svg viewBox="0 0 '+(w+16)+' '+(H+ty+8)+'" style="width:100%;max-width:96px">'
+        +'<path d="M'+(x+w/2-7)+' '+(ty+2)+'l3-5h8l3 5z" fill="#eef6e7" stroke="#20252d" stroke-width="2" stroke-linejoin="round"/>'
+        +'<path d="M'+(x+w/2)+' '+ty+'C'+(x+w/2)+' '+(ty-8)+' '+(x+w+4)+' '+(ty-9)+' '+(x+w+6)+' '+(ty-1)+'" fill="none" stroke="#20252d" stroke-width="1.8" stroke-linecap="round"/>'
+        +'<rect x="'+(x+w+2)+'" y="'+(ty-3)+'" width="7" height="7" rx="1.5" fill="#fff" stroke="#20252d" stroke-width="1.6"/>'
+        +'<clipPath id="'+clip+'"><rect x="'+x+'" y="'+(ty+2)+'" width="'+w+'" height="'+H+'" rx="7"/></clipPath>'
+        +'<rect x="'+x+'" y="'+(ty+2)+'" width="'+w+'" height="'+H+'" rx="7" fill="'+(f>0?'#eef6e7':'#a0d286')+'"/>'
+        +fill
+        +'<rect x="'+x+'" y="'+(ty+2)+'" width="'+w+'" height="'+H+'" rx="7" fill="none" stroke="#20252d" stroke-width="2.2"/>'
+        +'</svg>'
+        +'<div style="font-size:11px;font-weight:800;color:var(--ink-2);margin-top:4px">'+labels[i]+'</div>'
+        +'</div>';
+    }
+    row.innerHTML=out;
+  })();
+</script>
 </body>
 </html>
