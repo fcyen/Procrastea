@@ -3,182 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Procrastea — AI-assisted design case study</title>
-<meta name="description" content="How Procrastea was designed with an AI collaborator — a case study (draft).">
+<title>Procrastea — Design Process (case study)</title>
+<meta name="description" content="Procrastea — the AI-assisted design process, as a scrollable slide deck.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --matcha:#a0d286;--matcha-deep:#84bd67;--matcha-ink:#4c7d33;--matcha-tint:#eaf5e2;
-    --honey:#f6c343;--charcoal:#20252d;--ink-2:#565f6b;--muted:#9aa2ad;
-    --line:#e2e5ea;--surface:#f2f4f6;--porcelain:#fafbfc;
-    font-family:"Figtree",system-ui,-apple-system,sans-serif;
-  }
+  :root{ --olive:#7c9458; --olive-d:#66794a; --ink:#1e1d1b; --beige:#d9d5cc; }
   *{box-sizing:border-box;} html,body{margin:0;}
-  body{background:var(--porcelain);color:var(--charcoal);-webkit-font-smoothing:antialiased;line-height:1.55;}
-  a{color:var(--matcha-ink);}
-  .wrap{max-width:860px;margin:0 auto;padding:48px 24px 90px;}
+  html{scroll-behavior:smooth;}
+  body{background:#cfcabf;color:var(--ink);font-family:"Figtree",system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;}
 
-  .top{display:flex;align-items:center;gap:10px;margin-bottom:30px;}
-  .top .mk{width:34px;height:34px;background:var(--matcha-tint);border-radius:10px;display:grid;place-items:center;}
-  .top .mk svg{width:22px;height:22px;}
-  .top a{font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--charcoal);}
-  .top a .tea{color:var(--matcha-ink);}
-  .top .back{margin-left:auto;font-size:13px;font-weight:700;color:var(--ink-2);text-decoration:none;}
+  .bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;
+    padding:12px 20px;background:rgba(207,202,191,.86);backdrop-filter:blur(8px);
+    border-bottom:1px solid #bcb7ac;}
+  .bar .brand{font-weight:800;letter-spacing:-.01em;}
+  .bar .brand .tea{color:var(--olive-d);}
+  .bar .sub{font-size:12.5px;color:#6c6c66;font-weight:600;}
+  .bar .draft{margin-left:auto;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+    background:var(--olive);color:#fff;padding:4px 10px;border-radius:20px;}
+  .bar a.home{font-size:13px;font-weight:700;color:var(--olive-d);text-decoration:none;}
 
-  .badge{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
-    background:var(--honey);color:#3d2f00;padding:4px 10px;border-radius:20px;}
-  h1{font-size:clamp(32px,6vw,50px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin:16px 0 12px;}
-  .lede{font-size:18px;color:var(--ink-2);max-width:640px;}
+  .deck{max-width:1120px;margin:0 auto;padding:26px 16px 40px;display:flex;flex-direction:column;gap:22px;}
+  figure.slide{margin:0;position:relative;}
+  figure.slide img{display:block;width:100%;height:auto;border-radius:14px;
+    box-shadow:0 12px 34px -18px rgba(20,22,28,.5);background:var(--beige);}
+  figure.slide .n{position:absolute;top:12px;left:12px;font-size:11px;font-weight:800;color:#fff;
+    background:rgba(30,29,27,.45);padding:3px 9px;border-radius:20px;letter-spacing:.03em;}
 
-  .note{margin:26px 0;border:1px dashed var(--matcha);background:var(--matcha-tint);border-radius:14px;
-    padding:16px 18px;font-size:14px;color:var(--matcha-ink);}
-  .note b{color:var(--charcoal);}
-
-  h2{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--matcha-ink);
-    margin:44px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--line);}
-  .slides{display:grid;gap:14px;}
-  .slide{border:1px solid var(--line);border-radius:16px;background:#fff;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;}
-  .slide .no{font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;color:var(--muted);
-    background:var(--surface);border-radius:8px;padding:5px 9px;flex:none;min-width:34px;text-align:center;}
-  .slide .b{flex:1;}
-  .slide h3{font-size:16px;font-weight:800;letter-spacing:-.01em;margin:2px 0 4px;}
-  .slide p{margin:0;font-size:13.5px;color:var(--ink-2);}
-  .slide .ai{margin-top:8px;font-size:12.5px;color:var(--matcha-ink);}
-  .slide .ai b{font-weight:800;}
-  .role{display:inline-block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
-    padding:3px 9px;border-radius:20px;margin:2px 0 2px;}
-  .role.human{background:var(--matcha-tint);color:var(--matcha-ink);}
-  .role.ai{background:#e4edf7;color:#2e5b9a;}
-  .role.both{background:#fdf1d2;color:#9a7410;}
-  ul.bul{margin:9px 0 0;padding-left:18px;}
-  ul.bul li{font-size:13.5px;color:var(--ink-2);margin:4px 0;line-height:1.5;}
-  .ph{margin-top:10px;height:8px;border-radius:5px;background:var(--surface);}
-  .ph.s{width:60%;}
-
-  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;}
+  .end{max-width:1120px;margin:0 auto;padding:6px 16px 70px;text-align:center;color:#5f5f59;}
+  .end .card{border:1.5px dashed var(--olive);background:rgba(124,148,88,.12);border-radius:16px;
+    padding:22px;font-size:14px;color:var(--olive-d);}
+  .end .card b{color:var(--ink);}
+  .end .links{margin-top:16px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .end .links a{font-size:13px;font-weight:700;color:#fff;background:var(--olive);text-decoration:none;
+    padding:10px 16px;border-radius:100px;}
+  .end .links a.ghost{background:transparent;color:var(--olive-d);border:1.5px solid var(--olive);}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top">
-    <span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
-      <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#eaf5e2" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
-      <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#eaf5e2" stroke-width="2.2" stroke-linecap="round"/>
-    </svg></span>
-    <a href="../index.html">Procras<span class="tea">tea</span></a>
-    <a class="back" href="../index.html">← Home</a>
+  <div class="bar">
+    <span class="brand">Procras<span class="tea">tea</span></span>
+    <span class="sub">Design process</span>
+    <span class="draft">Working draft</span>
+    <a class="home" href="../index.html" style="margin-left:14px;">← Home</a>
   </div>
 
-  <span class="badge">Draft · notes to expand</span>
-  <h1>Designing Procrastea with an AI collaborator</h1>
-  <p class="lede">A full UX process — brainstorm to prototype — run with AI as a design partner. The pattern
-  we settled on: <b>humans own the thinking that needs intent</b> (structure, journey, brand), and
-  <b>AI accelerates the breadth and the build</b>.</p>
-
-  <div class="note">✍️ <b>Working notes.</b> Short bullets below capture the process step by step; the full write-up
-  will be told in the author's own voice.</div>
-
-  <h2>The process, step by step</h2>
-  <div class="slides">
-    <div class="slide"><span class="no">01</span><div class="b"><h3>Brainstorm in FigJam</h3>
-      <span class="role human">Human · FigJam</span>
-      <ul class="bul">
-        <li>Open-ended sticky-note ideation — kept it wide on purpose to make room for breadth.</li>
-        <li>Talked through the apps we use daily and what's trending.</li>
-        <li>Landed on a <b>Setlog-inspired social habit tracker</b>.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">02</span><div class="b"><h3>Market scan</h3>
-      <span class="role ai">AI-assisted</span>
-      <ul class="bul">
-        <li>With a broad direction set, asked AI to surface similar apps.</li>
-        <li>Reviewed the list and narrowed to <b>four competitors</b> — direct, or adjacent with proven success (&gt;100k downloads).</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">03</span><div class="b"><h3>In-depth competitor analysis</h3>
-      <span class="role both">Human + AI</span>
-      <ul class="bul">
-        <li>Gave AI research directions per competitor: strengths, gaps, est. DAU, time in market.</li>
-        <li>Downloaded and used the apps ourselves; noted first-use impressions.</li>
-        <li>Had AI fold our notes into the final analysis table.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">04</span><div class="b"><h3>Framing the problem</h3>
-      <span class="role human">Human</span>
-      <ul class="bul">
-        <li>Extracted user pain points from the analysis.</li>
-        <li>Wrote the problem statement, proposed solution and value proposition.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">05</span><div class="b"><h3>User personas</h3>
-      <span class="role ai">AI draft</span>
-      <ul class="bul">
-        <li>Asked AI to generate <b>3 personas</b> from the research and framing.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">06</span><div class="b"><h3>Information architecture</h3>
-      <span class="role human">By hand · FigJam</span>
-      <ul class="bul">
-        <li>Reviewed the personas, then built the IA as flowcharts by hand.</li>
-        <li>Kept it manual on purpose — we wanted to be intentional about how information is structured.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">07</span><div class="b"><h3>User journey</h3>
-      <span class="role human">By hand · FigJam</span>
-      <ul class="bul">
-        <li>Plotted the journey by hand to force thinking through the whole flow.</li>
-        <li>Made <b>significant IA changes</b> along the way — designing a proper experience and closing gaps we saw in existing habit trackers.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">08</span><div class="b"><h3>Wireframes</h3>
-      <span class="role both">AI + human review</span>
-      <ul class="bul">
-        <li>AI generated wireframes from the IA and user journey.</li>
-        <li>Reviewed the screens; sketched over the ones needing significant layout changes.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">09</span><div class="b"><h3>Design guide</h3>
-      <span class="role human">By hand</span>
-      <ul class="bul">
-        <li>Built a mood board; chose palette and typography for the target audience — <b>working adults</b>.</li>
-        <li>Aimed for trust and professionalism, while keeping fun elements so habit tracking stays enjoyable.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">10</span><div class="b"><h3>High-fidelity prototype</h3>
-      <span class="role ai">AI build</span>
-      <ul class="bul">
-        <li>Built the high-fidelity, clickable prototype from the design guide.</li>
-      </ul></div></div>
+  <div class="deck">
+    <figure class="slide"><span class="n">01</span><img src="slides/slide-01.png" alt="Process — cover slide" loading="eager"></figure>
+    <figure class="slide"><span class="n">02</span><img src="slides/slide-02.png" alt="Ideation with FigJam" loading="lazy"></figure>
+    <figure class="slide"><span class="n">03</span><img src="slides/slide-03.png" alt="Market research with AI assist" loading="lazy"></figure>
   </div>
 
-  <h2>Reflection &amp; what's next</h2>
-  <div class="slides">
-    <div class="slide"><span class="no">11</span><div class="b"><h3>What didn't work — the friction</h3>
-      <span class="role both">Honest reflection</span>
-      <ul class="bul">
-        <li>Branding first went out on an off-brand coral accent before we reset to the matcha palette.</li>
-        <li>AI built the group screen as a vertical feed; we redirected to the Setlog-style <b>2×4 proof grid</b>.</li>
-        <li>The logo's first leaf-check was too flat — it took reference art and a few passes to reach the two-leaf mark and the cozy teabag.</li>
-        <li>A flattened FigJam PDF export was too low-res to transcribe (the personas) — we needed higher-res, per-frame exports.</li>
-        <li><b>Pattern:</b> AI moves fast but guesses; tight, frequent review caught the drift early.</li>
-      </ul></div></div>
-
-    <div class="slide"><span class="no">12</span><div class="b"><h3>Testing, refine &amp; takeaways</h3>
-      <span class="role human">Human-led · next</span>
-      <ul class="bul">
-        <li><b>Test:</b> run the prototype with target users (working adults); capture friction and points of confusion.</li>
-        <li><b>Refine:</b> address the feedback — tighten the log → approve flow and thread the illustrated teabag through the screens.</li>
-        <li><b>Takeaway:</b> humans own the intent (structure, journey, brand); AI owns the breadth and the build.</li>
-        <li>Keep a human firmly in the loop at the decision points — direction, taste, and reference-setting.</li>
-      </ul></div></div>
+  <div class="end">
+    <div class="card">✍️ <b>More slides on the way.</b> This is the deck so far — research synthesis, personas, IA &amp;
+      user flow, wireframes, branding and the prototype are still being added.</div>
+    <div class="links">
+      <a href="../prototype/index.html">View the prototype →</a>
+      <a class="ghost" href="../index.html">Back to home</a>
+    </div>
   </div>
-
-  <footer>Procrastea · AI-assisted design case study (working draft) —
-  <a href="../index.html">back to home</a> · <a href="../prototype/index.html">view the prototype</a></footer>
-</div>
 </body>
 </html>
