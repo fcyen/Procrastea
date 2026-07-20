@@ -7,43 +7,60 @@
 <meta name="description" content="Procrastea — the AI-assisted design process, as a scrollable slide deck.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{ --olive:#7c9458; --olive-d:#66794a; --ink:#1e1d1b; --beige:#d9d5cc; }
+  :root{
+    --matcha:#a0d286; --matcha-deep:#84bd67; --matcha-ink:#4c7d33; --matcha-tint:#eaf5e2;
+    --honey:#f6c343; --charcoal:#20252d; --ink-2:#565f6b; --muted:#9aa2ad;
+    --line:#e2e5ea; --porcelain:#fafbfc;
+    --bar-h:56px;
+    font-family:"Figtree",system-ui,-apple-system,sans-serif;
+  }
   *{box-sizing:border-box;} html,body{margin:0;}
-  html{scroll-behavior:smooth;}
-  body{background:#cfcabf;color:var(--ink);font-family:"Figtree",system-ui,-apple-system,sans-serif;
-    -webkit-font-smoothing:antialiased;}
+  html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:var(--bar-h);}
+  body{background:var(--porcelain);color:var(--charcoal);-webkit-font-smoothing:antialiased;}
 
-  .bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;
-    padding:12px 20px;background:rgba(207,202,191,.86);backdrop-filter:blur(8px);
-    border-bottom:1px solid #bcb7ac;}
+  /* brand bar */
+  .bar{position:sticky;top:0;z-index:10;height:var(--bar-h);display:flex;align-items:center;gap:12px;
+    padding:0 20px;background:rgba(250,251,252,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .bar .mk{width:26px;height:26px;background:var(--matcha-tint);border-radius:8px;display:grid;place-items:center;flex:none;}
+  .bar .mk svg{width:17px;height:17px;}
   .bar .brand{font-weight:800;letter-spacing:-.01em;}
-  .bar .brand .tea{color:var(--olive-d);}
-  .bar .sub{font-size:12.5px;color:#6c6c66;font-weight:600;}
+  .bar .brand .tea{color:var(--matcha-ink);}
+  .bar .sub{font-size:12.5px;color:var(--ink-2);font-weight:600;}
   .bar .draft{margin-left:auto;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
-    background:var(--olive);color:#fff;padding:4px 10px;border-radius:20px;}
-  .bar a.home{font-size:13px;font-weight:700;color:var(--olive-d);text-decoration:none;}
+    background:var(--matcha);color:var(--charcoal);padding:4px 10px;border-radius:20px;}
+  .bar a.home{font-size:13px;font-weight:700;color:var(--matcha-ink);text-decoration:none;}
 
-  .deck{max-width:1120px;margin:0 auto;padding:26px 16px 40px;display:flex;flex-direction:column;gap:22px;}
-  figure.slide{margin:0;position:relative;}
-  figure.slide img{display:block;width:100%;height:auto;border-radius:14px;
-    box-shadow:0 12px 34px -18px rgba(20,22,28,.5);background:var(--beige);}
-  figure.slide .n{position:absolute;top:12px;left:12px;font-size:11px;font-weight:800;color:#fff;
-    background:rgba(30,29,27,.45);padding:3px 9px;border-radius:20px;letter-spacing:.03em;}
+  /* full-bleed slides */
+  .deck{display:flex;flex-direction:column;}
+  figure.slide{margin:0;width:100%;scroll-snap-align:start;position:relative;
+    opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+  figure.slide.in{opacity:1;transform:none;}
+  figure.slide img{display:block;width:100%;height:auto;}
+  figure.slide .n{position:absolute;top:16px;left:16px;font-size:11px;font-weight:800;color:#fff;
+    background:rgba(30,29,27,.4);padding:3px 10px;border-radius:20px;letter-spacing:.03em;}
+  @media(prefers-reduced-motion:reduce){figure.slide{opacity:1;transform:none;transition:none;}}
 
-  .end{max-width:1120px;margin:0 auto;padding:6px 16px 70px;text-align:center;color:#5f5f59;}
-  .end .card{border:1.5px dashed var(--olive);background:rgba(124,148,88,.12);border-radius:16px;
-    padding:22px;font-size:14px;color:var(--olive-d);}
-  .end .card b{color:var(--ink);}
-  .end .links{margin-top:16px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-  .end .links a{font-size:13px;font-weight:700;color:#fff;background:var(--olive);text-decoration:none;
-    padding:10px 16px;border-radius:100px;}
-  .end .links a.ghost{background:transparent;color:var(--olive-d);border:1.5px solid var(--olive);}
+  /* outro */
+  .end{scroll-snap-align:start;padding:70px 20px 90px;display:flex;flex-direction:column;align-items:center;gap:20px;}
+  .end .card{max-width:640px;border:1.5px dashed var(--matcha);background:var(--matcha-tint);border-radius:16px;
+    padding:22px;font-size:14.5px;color:var(--matcha-ink);text-align:center;line-height:1.55;}
+  .end .card b{color:var(--charcoal);}
+  .end .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .end .links a{font-size:14px;font-weight:800;color:var(--charcoal);background:var(--matcha);text-decoration:none;
+    padding:12px 20px;border-radius:100px;box-shadow:0 8px 18px -8px rgba(160,210,134,.7);}
+  .end .links a.ghost{background:transparent;color:var(--matcha-ink);border:1.5px solid var(--matcha);box-shadow:none;}
 </style>
 </head>
 <body>
   <div class="bar">
+    <span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+      <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#eaf5e2" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
+      <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#eaf5e2" stroke-width="2.2" stroke-linecap="round"/>
+    </svg></span>
     <span class="brand">Procras<span class="tea">tea</span></span>
     <span class="sub">Design process</span>
     <span class="draft">Working draft</span>
@@ -57,12 +74,20 @@
   </div>
 
   <div class="end">
-    <div class="card">✍️ <b>More slides on the way.</b> This is the deck so far — research synthesis, personas, IA &amp;
-      user flow, wireframes, branding and the prototype are still being added.</div>
+    <div class="card">✍️ <b>More slides on the way.</b> This is the deck so far — research synthesis, personas,
+      IA &amp; user flow, wireframes, branding and the prototype are still being added.</div>
     <div class="links">
       <a href="../prototype/index.html">View the prototype →</a>
       <a class="ghost" href="../index.html">Back to home</a>
     </div>
   </div>
+
+<script>
+  // smooth reveal as each slide scrolls into view
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('figure.slide').forEach(function(s){ io.observe(s); });
+</script>
 </body>
 </html>
