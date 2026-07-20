@@ -24,20 +24,15 @@
   h1{font-size:40px;font-weight:900;letter-spacing:-.03em;margin:0;}
   h1 .tea{color:var(--matcha-ink);}
   .tagline{font-size:15px;color:var(--ink-2);margin:0;max-width:440px;line-height:1.55;}
-  .grid{display:grid;grid-template-columns:repeat(2,minmax(220px,260px));gap:16px;width:100%;max-width:560px;}
-  @media(max-width:560px){.grid{grid-template-columns:1fr;}}
+  .grid{display:flex;flex-direction:column;gap:14px;width:100%;max-width:440px;}
   a.card{text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;background:#fff;
-    padding:20px;display:flex;flex-direction:column;gap:6px;transition:transform .12s ease,box-shadow .12s ease;}
+    padding:20px 22px;display:flex;align-items:center;gap:14px;transition:transform .12s ease,box-shadow .12s ease;}
   a.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(20,22,28,.35);}
   a.card .k{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--matcha-ink);}
-  a.card .t{font-size:17px;font-weight:800;letter-spacing:-.01em;}
+  a.card .t{font-size:18px;font-weight:800;letter-spacing:-.01em;}
   a.card .d{font-size:12.5px;color:var(--ink-2);line-height:1.45;}
-  a.card.primary{background:var(--matcha-tint);border-color:#cfe6bd;grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;}
-  a.card.primary .arrow{margin-left:auto;font-size:22px;color:var(--matcha-ink);}
-  a.card.soon{opacity:.72;}
-  a.card.soon .k{color:var(--muted);}
-  .badge{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
-    background:var(--honey);color:#3d2f00;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+  a.card .arrow{margin-left:auto;font-size:22px;color:var(--matcha-ink);}
+  a.card.primary{background:var(--matcha-tint);border-color:#cfe6bd;}
   footer{margin-top:34px;font-size:12px;color:var(--muted);text-align:center;}
   footer a{color:var(--matcha-ink);}
 </style>
@@ -60,37 +55,22 @@
     <a class="card primary" href="prototype/index.html">
       <div>
         <div class="k">Interactive</div>
-        <div class="t">Prototype</div>
-        <div class="d">The clickable high-fidelity prototype — all 19 screens.</div>
+        <div class="t">View the prototype</div>
+        <div class="d">The clickable high-fidelity app.</div>
       </div>
       <span class="arrow">→</span>
     </a>
 
-    <a class="card" href="wireframes/index.html">
-      <div class="k">Step 6</div>
-      <div class="t">Wireframes</div>
-      <div class="d">Low-fidelity screens for the whole user flow.</div>
-    </a>
-
-    <a class="card" href="branding/brand-guide.html">
-      <div class="k">Step 7</div>
-      <div class="t">Brand guide</div>
-      <div class="d">Logo, colour, typeface &amp; UI components.</div>
-    </a>
-
-    <a class="card" href="branding/logo-variations.html">
-      <div class="k">Branding</div>
-      <div class="t">Logo directions</div>
-      <div class="d">The logo concepts explored.</div>
-    </a>
-
-    <a class="card" href="docs/README.md">
-      <div class="k">Steps 1–5</div>
-      <div class="t">Research &amp; flow</div>
-      <div class="d">UX research, personas, IA and user flow.</div>
+    <a class="card" href="case-study/index.html">
+      <div>
+        <div class="k">Behind the design</div>
+        <div class="t">Read the case study</div>
+        <div class="d">How we designed Procrastea with AI.</div>
+      </div>
+      <span class="arrow">→</span>
     </a>
   </div>
 
-  <footer>Procrastea design process · <a href="https://github.com/fcyen/Procratea">github.com/fcyen/Procratea</a></footer>
+  <footer>Procrastea · <a href="https://github.com/fcyen/Procratea">github.com/fcyen/Procratea</a></footer>
 </body>
 </html>

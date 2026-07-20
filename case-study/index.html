@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procrastea — AI-assisted design case study</title>
+<meta name="description" content="How Procrastea was designed with an AI collaborator — a case study (draft).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --matcha:#a0d286;--matcha-deep:#84bd67;--matcha-ink:#4c7d33;--matcha-tint:#eaf5e2;
+    --honey:#f6c343;--charcoal:#20252d;--ink-2:#565f6b;--muted:#9aa2ad;
+    --line:#e2e5ea;--surface:#f2f4f6;--porcelain:#fafbfc;
+    font-family:"Figtree",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;} html,body{margin:0;}
+  body{background:var(--porcelain);color:var(--charcoal);-webkit-font-smoothing:antialiased;line-height:1.55;}
+  a{color:var(--matcha-ink);}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 24px 90px;}
+
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:30px;}
+  .top .mk{width:34px;height:34px;background:var(--matcha-tint);border-radius:10px;display:grid;place-items:center;}
+  .top .mk svg{width:22px;height:22px;}
+  .top a{font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--charcoal);}
+  .top a .tea{color:var(--matcha-ink);}
+  .top .back{margin-left:auto;font-size:13px;font-weight:700;color:var(--ink-2);text-decoration:none;}
+
+  .badge{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+    background:var(--honey);color:#3d2f00;padding:4px 10px;border-radius:20px;}
+  h1{font-size:clamp(32px,6vw,50px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin:16px 0 12px;}
+  .lede{font-size:18px;color:var(--ink-2);max-width:640px;}
+
+  .note{margin:26px 0;border:1px dashed var(--matcha);background:var(--matcha-tint);border-radius:14px;
+    padding:16px 18px;font-size:14px;color:var(--matcha-ink);}
+  .note b{color:var(--charcoal);}
+
+  h2{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--matcha-ink);
+    margin:44px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--line);}
+  .slides{display:grid;gap:14px;}
+  .slide{border:1px solid var(--line);border-radius:16px;background:#fff;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;}
+  .slide .no{font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;color:var(--muted);
+    background:var(--surface);border-radius:8px;padding:5px 9px;flex:none;min-width:34px;text-align:center;}
+  .slide .b{flex:1;}
+  .slide h3{font-size:16px;font-weight:800;letter-spacing:-.01em;margin:2px 0 4px;}
+  .slide p{margin:0;font-size:13.5px;color:var(--ink-2);}
+  .slide .ai{margin-top:8px;font-size:12.5px;color:var(--matcha-ink);}
+  .slide .ai b{font-weight:800;}
+  .ph{margin-top:10px;height:8px;border-radius:5px;background:var(--surface);}
+  .ph.s{width:60%;}
+
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+      <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#eaf5e2" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
+      <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#eaf5e2" stroke-width="2.2" stroke-linecap="round"/>
+    </svg></span>
+    <a href="../index.html">Procras<span class="tea">tea</span></a>
+    <a class="back" href="../index.html">← Home</a>
+  </div>
+
+  <span class="badge">Draft · placeholder</span>
+  <h1>Designing Procrastea with an AI collaborator</h1>
+  <p class="lede">A case study on running a full UX process — research to prototype — with Claude as a
+  design partner: what it did well, where a human had to steer, and how the two split the work.</p>
+
+  <div class="note">🚧 <b>This case study hasn't been written yet.</b> The outline below is a placeholder skeleton —
+  each slide will be filled in with narrative, artefacts and before/after screenshots.</div>
+
+  <h2>Proposed slide outline</h2>
+  <div class="slides">
+    <div class="slide"><span class="no">01</span><div class="b"><h3>The brief &amp; the setup</h3>
+      <p>What Procrastea is, why "social proof + habits", and how the human + AI workflow was set up (a repo, a LOOP.md process, Claude Code on the web).</p>
+      <div class="ph"></div><div class="ph s"></div></div></div>
+
+    <div class="slide"><span class="no">02</span><div class="b"><h3>Research &amp; synthesis</h3>
+      <p>Competitor teardown (Setlog, BeReal, Folksable, HabitShare), pain points and personas.</p>
+      <div class="ai"><b>AI did:</b> transcribed the FigJam board, structured the comparison &amp; personas. <b>Human did:</b> the actual research and insight.</div></div></div>
+
+    <div class="slide"><span class="no">03</span><div class="b"><h3>IA &amp; user flow</h3>
+      <p>Turning the flow into Mermaid diagrams and reconciling them with the screens.</p>
+      <div class="ai"><b>AI did:</b> converted diagrams, cross-checked flow ↔ wireframes.</div></div></div>
+
+    <div class="slide"><span class="no">04</span><div class="b"><h3>Wireframes</h3>
+      <p>Splitting a monolith into 19 per-screen files; the photo-first log flow; the setlog-style group grid with proof approval.</p>
+      <div class="ai"><b>AI did:</b> built &amp; iterated screens from sketches. <b>Human did:</b> reviewed and redirected (grid vs feed, approval rules).</div></div></div>
+
+    <div class="slide"><span class="no">05</span><div class="b"><h3>Branding</h3>
+      <p>From a coral placeholder to the matcha palette, the two-leaf logo, Teo the teabag mascot and the "fill your teabag" progress device — including logo exploration.</p>
+      <div class="ai"><b>AI did:</b> generated logo directions &amp; the guide. <b>Human did:</b> picked B, supplied reference art, pushed for the cozy teabag.</div></div></div>
+
+    <div class="slide"><span class="no">06</span><div class="b"><h3>Hi-fi &amp; prototype</h3>
+      <p>Re-skinning the screens in-brand and wiring the clickable prototype.</p>
+      <div class="ai"><b>AI did:</b> built the interactive prototype. </div></div></div>
+
+    <div class="slide"><span class="no">07</span><div class="b"><h3>What worked, what didn't</h3>
+      <p>Honest reflection: speed and breadth from AI, vs. taste, judgement and reference-setting from the human. Where AI got it wrong and how the loop caught it.</p>
+      <div class="ph"></div><div class="ph s"></div></div></div>
+
+    <div class="slide"><span class="no">08</span><div class="b"><h3>Takeaways</h3>
+      <p>A repeatable pattern for AI-assisted design, and when to keep a human firmly in the loop.</p>
+      <div class="ph"></div></div></div>
+  </div>
+
+  <footer>Procrastea · AI-assisted design case study (draft placeholder) —
+  <a href="../index.html">back to home</a> · <a href="../prototype/index.html">view the prototype</a></footer>
+</div>
+</body>
+</html>
