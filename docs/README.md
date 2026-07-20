@@ -14,6 +14,8 @@ Problem statement, User Personas), and the full FigJam board is archived at
 | 4. User personas | [`04-personas.md`](04-personas.md) | `raw files/User Personas.txt` (verbatim) |
 | 5. User flow | [`05-user-flow.md`](05-user-flow.md) | `raw files/User Flow.png` (Mermaid) |
 | 6. Low-fi wireframes | [`../wireframes/`](../wireframes/) | done |
+| 7. Branding guide | [`../branding/`](../branding/) | done (logo direction pending pick) |
+| 8–9. Hi-fi wireframes + prototype | [`../prototype/`](../prototype/) | combined per LOOP.md — all 19 screens, interactive |
 
 Per `raw files/`, the wireframes (step 6) were checked against the real IA and user flow:
 they align (photo-first logging, group feed with approval, the settings tree). Minor
