@@ -129,6 +129,21 @@
   footer .links a.ghost{border:1.5px solid rgba(255,255,255,.3);color:#fff;}
   footer .fine{margin-top:34px;font-size:12.5px;color:rgba(255,255,255,.4);}
   footer .fine a{color:var(--g2);}
+  footer h2{font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.92;
+    font-size:clamp(2.1rem,5.4vw,3.4rem);color:#fff;margin:0 0 1.3rem;}
+  footer .eyebrow .no{color:var(--g2);}
+  footer .eyebrow .lbl{color:rgba(255,255,255,.66);}
+  footer .fnote{font-size:clamp(1.05rem,2vw,1.28rem);color:rgba(255,255,255,.82);max-width:680px;line-height:1.62;}
+  footer .next{margin:30px 0 8px;border-left:3px solid var(--g2);padding:2px 0 2px 18px;max-width:600px;}
+  footer .next .nlabel{display:block;color:var(--g2);font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:12px;margin-bottom:6px;}
+  footer .next p{margin:0;color:rgba(255,255,255,.74);font-size:1.02rem;}
+
+  /* design guide */
+  .brandstrip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:4px 0 2px;}
+  .brandstrip .sw{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink-2);}
+  .brandstrip .sw i{width:22px;height:22px;border-radius:6px;background:var(--c);border:1px solid rgba(20,22,28,.08);}
+  .brandstrip .ty{font-size:15px;font-weight:800;color:var(--ink);padding-left:14px;border-left:1px solid var(--tint-2);}
+  .brandstrip .ty span{color:var(--ink-2);font-weight:600;}
 
   /* reveal */
   .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
@@ -262,16 +277,42 @@
       </figure>
     </div>
   </section>
+
+  <!-- DESIGN GUIDE -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">06</span><span class="lbl">Design guide</span><span class="chip">Manual</span></div>
+      <h2 class="disp">Look &amp; feel</h2>
+      <p class="lead-p">We built a moodboard, then chose the palette and typography for our target audience — <b>working adults</b> — aiming for trust and professionalism, while keeping fun elements so habit tracking stays enjoyable.</p>
+      <div class="brandstrip">
+        <span class="sw" style="--c:#a0d286"><i></i> Matcha</span>
+        <span class="sw" style="--c:#f6c343"><i></i> Honey</span>
+        <span class="sw" style="--c:#2e5b9a"><i></i> Steep</span>
+        <span class="sw" style="--c:#20252d"><i></i> Charcoal</span>
+        <span class="ty">Figtree <span>· type</span></span>
+      </div>
+      <figure class="diagram">
+        <div class="frame"><img src="assets/moodboard.jpg" alt="Design moodboard — habit-app inspiration, palette and tea motifs"></div>
+        <figcaption>Moodboard — references, palette and the tea motif behind Procrastea</figcaption>
+      </figure>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="wrap rv">
-    <p class="note">✍️ <b>More to come.</b> Wireframes, branding and the interactive prototype are next up in this case study.</p>
+    <div class="eyebrow"><span class="no">07</span><span class="lbl">Reflections</span></div>
+    <h2 class="disp">Working with<br>an AI partner</h2>
+    <p class="fnote">It was tempting to leave it to AI on auto-mode — especially as time became a constraint. But creating the first drafts by hand felt vital, to keep design decisions from being dictated by the AI.</p>
+    <div class="next">
+      <span class="nlabel">Next up</span>
+      <p>Run the prototype with our target users, and refine it based on the friction points we discover through testing.</p>
+    </div>
     <div class="links">
       <a class="primary" href="../prototype/index.html">View the prototype →</a>
       <a class="ghost" href="../index.html">Back to home</a>
     </div>
-    <p class="fine">Procrastea · AI-assisted design case study (working draft) · <a href="https://github.com/fcyen/Procratea">github.com/fcyen/Procratea</a></p>
+    <p class="fine">Procrastea · AI-assisted design case study · <a href="https://github.com/fcyen/Procratea">github.com/fcyen/Procratea</a></p>
   </div>
 </footer>
 
