@@ -37,8 +37,8 @@
 
   /* stacking full-bleed slides */
   .deck{display:block;}
-  .slide{position:sticky;top:var(--bar-h);width:100%;aspect-ratio:16/9;container-type:size;overflow:hidden;
-    background:var(--bg);box-shadow:0 -14px 34px -12px rgba(20,22,28,.3);}
+  .slide{position:relative;width:100%;aspect-ratio:16/9;container-type:size;overflow:hidden;
+    background:var(--bg);border-bottom:1px solid #dfe4d6;}
   .num{position:absolute;top:2.2cqh;left:2cqw;font-size:1.4cqw;font-weight:800;color:#fff;background:rgba(30,29,27,.38);
     padding:.5cqh 1.4cqw;border-radius:20px;letter-spacing:.03em;z-index:3;}
 
@@ -64,7 +64,7 @@
   .ag{position:absolute;}
   .ag .r{display:flex;align-items:center;justify-content:space-between;border-top:.18cqw solid var(--line);padding:2cqh .3cqw;}
   .ag .r:last-child{border-bottom:.18cqw solid var(--line);}
-  .ag .r span{font-size:2.5cqw;font-weight:500;}
+  .ag .r span{font-size:2.15cqw;font-weight:500;}
   .ag .r .c{display:inline-flex;align-items:center;justify-content:center;background:var(--g);color:#fff;border-radius:50%;
     width:3.6cqw;height:3.6cqw;font-size:1.6cqw;font-weight:600;}
 
@@ -76,7 +76,7 @@
   .life{position:absolute;width:.5cqw;background:var(--ink);border-radius:3px;}
   .actor{position:absolute;color:var(--g);}
   .msg{position:absolute;}
-  .msg .lbl{font-size:1.9cqw;line-height:1.3;color:var(--ink);}
+  .msg .lbl{font-size:1.55cqw;line-height:1.3;color:var(--ink);}
   .arw{position:relative;height:0;border-top:.36cqw solid var(--ink);margin-top:.7cqw;}
   .arw::after{content:"";position:absolute;top:50%;transform:translateY(-50%);width:0;height:0;
     border-top:.85cqw solid transparent;border-bottom:.85cqw solid transparent;}
@@ -86,17 +86,17 @@
   /* persona cards (slide 4) */
   .pcard{position:absolute;background:var(--white);border:1px solid var(--line);border-radius:1.6cqw;
     padding:1.6cqw 1.6cqw 6cqw;box-shadow:0 1cqw 3cqw -1.5cqw rgba(20,22,28,.25);}
-  .pcard h4{font-size:1.6cqw;margin:0 0 1cqw;font-weight:800;color:var(--ink);}
-  .pcard p{font-size:1.28cqw;line-height:1.38;margin:0 0 1cqw;color:var(--ink-2);}
+  .pcard h4{font-size:1.5cqw;margin:0 0 1cqw;font-weight:800;color:var(--ink);}
+  .pcard p{font-size:1.15cqw;line-height:1.4;margin:0 0 1cqw;color:var(--ink-2);}
   .pcard .who{position:absolute;left:1.4cqw;right:1.4cqw;bottom:1.4cqw;background:var(--g);color:#fff;
-    border-radius:100px;text-align:center;font-weight:700;font-size:1.5cqw;padding:.9cqw;}
+    border-radius:100px;text-align:center;font-weight:700;font-size:1.35cqw;padding:.85cqw;}
 
   /* diagram board (slides 5-6) + bullets */
   .board{position:absolute;background:#fff;border-radius:1.4cqw;box-shadow:0 1.4cqw 4cqw -1.6cqw rgba(20,22,28,.4);
     display:grid;place-items:center;overflow:hidden;padding:1.4cqw;}
   .board img{max-width:100%;max-height:100%;object-fit:contain;}
   .blist{position:absolute;margin:0;padding:0;list-style:none;}
-  .blist li{position:relative;font-size:2.1cqw;line-height:1.36;color:var(--ink);padding-left:3cqw;margin:1.4cqh 0;}
+  .blist li{position:relative;font-size:1.7cqw;line-height:1.36;color:var(--ink);padding-left:3cqw;margin:1.4cqh 0;}
   .blist li::before{content:"";position:absolute;left:0;top:.8cqw;width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--g);}
 
   /* outro */
@@ -179,11 +179,11 @@
     </svg>
     <span class="dot" style="left:26.5%;top:78%;width:1.8cqw;height:1.8cqw;background:var(--g2);"></span>
 
-    <div class="bubble" style="left:37.5%;top:58%;width:25%;padding:2cqw;font-size:1.65cqw;">
+    <div class="bubble" style="left:37.5%;top:58%;width:25%;padding:2cqw;font-size:1.42cqw;">
       <span class="tail" style="left:24%;"></span>
       We started with a <b>freestyle brainstorming session</b> to talk about the apps we are inspired by and what's trending. The scope was kept wide on purpose to <b>make room for creativity</b>.
     </div>
-    <div class="bubble" style="left:63%;top:58%;width:25%;padding:2cqw;font-size:1.65cqw;">
+    <div class="bubble" style="left:63%;top:58%;width:25%;padding:2cqw;font-size:1.42cqw;">
       <span class="tail" style="left:14%;"></span>
       Through this project, we found that working together makes us more effective. We want to bring the same benefits to building good habits — allowing people to motivate each other on their journey.
     </div>
