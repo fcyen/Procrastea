@@ -1,309 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+<script>document.documentElement.classList.remove('no-js');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Procrastea — Design Process (case study)</title>
-<meta name="description" content="Procrastea — the AI-assisted design process, rebuilt as a scrollable, brand-coloured deck.">
+<title>Procrastea — Designing a social habit tracker with AI</title>
+<meta name="description" content="An AI-assisted UX case study: how Procrastea went from a blank FigJam board to a working prototype.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --g:#4c7d33;          /* matcha-ink — filled accents, white text */
-    --g2:#a0d286;         /* matcha — light accents */
-    --g-deep:#3c6528;
-    --ink:#20252d; --ink-2:#565f6b;
-    --bg:#f3f6ee;         /* soft brand-tinted slide surface */
-    --line:#cdd6c1; --white:#fff; --porcelain:#fafbfc; --matcha-tint:#eaf5e2;
-    --bar-h:56px;
+    --ink:#20252d; --ink-2:#535c66; --muted:#8a929c;
+    --paper:#fafbfc; --tint:#eef5e6; --tint-2:#e4efd8;
+    --g:#4c7d33; --g2:#a0d286; --g-deep:#3c6528;
+    --line:#e7eae2; --dark:#20252d; --white:#fff;
+    --wrap:1120px;
     font-family:"Figtree",system-ui,-apple-system,sans-serif;
   }
   *{box-sizing:border-box;} html,body{margin:0;}
-  html{scroll-behavior:smooth;scroll-padding-top:var(--bar-h);}
-  body{background:var(--porcelain);color:var(--ink);-webkit-font-smoothing:antialiased;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+  .disp{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase;line-height:.92;}
+  a{color:var(--g);}
+  img{max-width:100%;display:block;}
 
-  /* brand bar */
-  .bar{position:sticky;top:0;z-index:10;height:var(--bar-h);display:flex;align-items:center;gap:12px;
-    padding:0 20px;background:rgba(250,251,252,.85);backdrop-filter:blur(10px);border-bottom:1px solid #e2e5ea;}
-  .bar .mk{width:26px;height:26px;background:var(--matcha-tint);border-radius:8px;display:grid;place-items:center;flex:none;}
-  .bar .mk svg{width:17px;height:17px;}
-  .bar .brand{font-weight:800;letter-spacing:-.01em;}
-  .bar .brand .tea{color:var(--g);}
-  .bar .sub{font-size:12.5px;color:var(--ink-2);font-weight:600;}
-  .bar .draft{margin-left:auto;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
-    background:var(--g2);color:var(--ink);padding:4px 10px;border-radius:20px;}
-  .bar a.home{font-size:13px;font-weight:700;color:var(--g);text-decoration:none;}
+  /* nav */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s,box-shadow .3s,border-color .3s;
+    border-bottom:1px solid transparent;}
+  .nav .row{display:flex;align-items:center;gap:12px;height:60px;}
+  .nav .mk{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none;}
+  .nav .mk svg{width:18px;height:18px;}
+  .nav .brand{font-weight:800;letter-spacing:-.01em;color:#fff;}
+  .nav .brand .tea{color:var(--g2);}
+  .nav .links{margin-left:auto;display:flex;align-items:center;gap:18px;}
+  .nav .links a{font-size:14px;font-weight:700;text-decoration:none;color:rgba(255,255,255,.82);}
+  .nav .links .btn{background:var(--g2);color:var(--ink);padding:8px 15px;border-radius:100px;}
+  .nav.solid{background:rgba(250,251,252,.86);backdrop-filter:blur(12px);border-color:var(--line);}
+  .nav.solid .mk{background:var(--tint);}
+  .nav.solid .brand{color:var(--ink);}
+  .nav.solid .brand .tea{color:var(--g);}
+  .nav.solid .links a{color:var(--ink-2);}
+  .nav.solid .links .btn{color:var(--ink);}
+  @media(max-width:640px){.nav .links a.hideable{display:none;}}
 
-  /* stacking full-bleed slides */
-  .deck{display:block;}
-  .slide{position:relative;width:100%;aspect-ratio:16/9;container-type:size;overflow:hidden;
-    background:var(--bg);border-bottom:1px solid #dfe4d6;}
-  .num{position:absolute;top:2.2cqh;left:2cqw;font-size:1.4cqw;font-weight:800;color:#fff;background:rgba(30,29,27,.38);
-    padding:.5cqh 1.4cqw;border-radius:20px;letter-spacing:.03em;z-index:3;}
+  /* hero */
+  .hero{background:var(--dark);color:#fff;padding:150px 0 110px;position:relative;overflow:hidden;}
+  .hero .glow{position:absolute;inset:auto -10% -40% auto;width:60vw;height:60vw;border-radius:50%;
+    background:radial-gradient(circle,rgba(160,210,134,.22),transparent 62%);pointer-events:none;}
+  .hero .kick{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g2);}
+  .hero .kick .dot{width:7px;height:7px;border-radius:50%;background:var(--g2);}
+  .hero h1{font-size:clamp(3rem,9vw,7rem);margin:22px 0 0;color:#fff;}
+  .hero h1 .tea{color:var(--g2);}
+  .hero .lead{font-size:clamp(1.1rem,2.4vw,1.5rem);color:rgba(255,255,255,.72);max-width:640px;margin:26px 0 0;line-height:1.55;}
+  .hero .meta{margin-top:34px;display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.5);
+    font-weight:600;letter-spacing:.02em;}
+  .hero .meta b{color:rgba(255,255,255,.85);}
+  .hero .cue{margin-top:56px;display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+  .hero .cue svg{width:16px;height:16px;stroke:var(--g2);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+    animation:bob 1.8s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  @media(prefers-reduced-motion:reduce){.hero .cue svg{animation:none;}}
 
-  /* atoms (sizes in cqw so they scale with the slide) */
-  .disp{position:absolute;font-family:"Anton",sans-serif;font-weight:400;line-height:.85;text-transform:uppercase;
-    letter-spacing:.01em;color:var(--ink);}
-  .pill{position:absolute;display:inline-flex;align-items:center;justify-content:center;background:var(--g);color:#fff;
-    border-radius:100px;font-weight:700;white-space:nowrap;}
-  .abtn{position:absolute;border-radius:50%;background:var(--g);display:grid;place-items:center;}
-  .abtn svg{width:50%;height:50%;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
-  .nm{position:absolute;font-weight:600;color:var(--ink);}
-  .divx{position:absolute;top:0;width:1.5px;background:var(--line);}
-  .leaf{position:absolute;}
-  .dash{position:absolute;overflow:visible;}
-  .dot{position:absolute;border-radius:50%;background:var(--g);}
+  /* sections */
+  section.s{padding:clamp(4.5rem,10vw,8.5rem) 0;border-bottom:1px solid var(--line);}
+  section.s.tint{background:var(--tint);border-color:var(--tint-2);}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+  .eyebrow .no{font-family:"Anton",sans-serif;font-size:15px;color:var(--g);letter-spacing:.04em;}
+  .eyebrow .lbl{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);}
+  .eyebrow .chip{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+    background:var(--g);color:#fff;padding:4px 11px;border-radius:100px;}
+  section.s h2{font-size:clamp(2.1rem,5.4vw,3.6rem);margin:0 0 clamp(1.4rem,3vw,2.4rem);}
+  .lead-p{font-size:clamp(1.05rem,2vw,1.28rem);color:var(--ink);max-width:720px;line-height:1.6;}
+  .body-p{font-size:1.02rem;color:var(--ink-2);max-width:560px;}
 
-  .bubble{position:absolute;background:var(--g);color:#fff;border-radius:1.4cqw;line-height:1.42;font-weight:500;}
-  .bubble b{font-weight:800;}
-  .bubble .tail{position:absolute;top:-2.1cqw;width:0;height:0;border-left:2.3cqw solid transparent;
-    border-right:2.3cqw solid transparent;border-bottom:2.6cqw solid var(--g);}
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.4rem,3vw,2.6rem);}
 
-  /* agenda (slide 1) */
-  .ag{position:absolute;}
-  .ag .r{display:flex;align-items:center;justify-content:space-between;border-top:.18cqw solid var(--line);padding:2cqh .3cqw;}
-  .ag .r:last-child{border-bottom:.18cqw solid var(--line);}
-  .ag .r span{font-size:2.15cqw;font-weight:500;}
-  .ag .r .c{display:inline-flex;align-items:center;justify-content:center;background:var(--g);color:#fff;border-radius:50%;
-    width:3.6cqw;height:3.6cqw;font-size:1.6cqw;font-weight:600;}
+  /* market research flow */
+  .flow{list-style:none;margin:8px 0 0;padding:0;position:relative;max-width:820px;}
+  .flow::before{content:"";position:absolute;left:19px;top:14px;bottom:14px;width:2px;background:var(--tint-2);}
+  section.s.tint .flow::before{background:#d3e3c1;}
+  .flow li{position:relative;padding:0 0 26px 58px;}
+  .flow li:last-child{padding-bottom:0;}
+  .flow .who{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+    background:var(--g);color:#fff;box-shadow:0 0 0 6px var(--tint);}
+  section.s.tint .flow .who{box-shadow:0 0 0 6px var(--tint);}
+  .flow .who svg{width:20px;height:20px;}
+  .flow .who.you{background:var(--ink);}
+  .flow .tag{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g);}
+  .flow .who.you + .tag,.flow li.youstep .tag{color:var(--ink);}
+  .flow p{margin:3px 0 0;font-size:1.05rem;color:var(--ink);max-width:560px;}
 
-  /* illustration card (slide 1) */
-  .scene{position:absolute;border-radius:2.4cqw;overflow:hidden;background:linear-gradient(180deg,#eaf9fe,#bfe4f5);}
-  .scene svg{width:100%;height:100%;display:block}
+  /* personas */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.2rem,2.4vw,1.8rem);}
+  .pcard{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(1.4rem,2.4vw,2rem);
+    display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px -30px rgba(20,22,28,.5);}
+  .pcard .who{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .pcard .name{font-size:1.3rem;font-weight:800;letter-spacing:-.01em;}
+  .pcard .role{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--g);background:var(--tint);padding:4px 9px;border-radius:100px;white-space:nowrap;}
+  .pcard .role.sec{color:var(--ink-2);background:#eef0ec;}
+  .pcard .arch{font-weight:700;color:var(--g);font-size:1.02rem;}
+  .pcard p{margin:0;font-size:.96rem;color:var(--ink-2);line-height:1.55;}
+  .pcard .impl{margin-top:auto;font-size:.9rem;color:var(--ink);background:var(--tint);border-radius:12px;padding:12px 14px;line-height:1.5;}
+  .pcard .impl b{color:var(--g-deep);}
 
-  /* sequence diagram (slide 3) */
-  .life{position:absolute;width:.5cqw;background:var(--ink);border-radius:3px;}
-  .actor{position:absolute;color:var(--g);}
-  .msg{position:absolute;}
-  .msg .lbl{font-size:1.55cqw;line-height:1.3;color:var(--ink);}
-  .arw{position:relative;height:0;border-top:.36cqw solid var(--ink);margin-top:.7cqw;}
-  .arw::after{content:"";position:absolute;top:50%;transform:translateY(-50%);width:0;height:0;
-    border-top:.85cqw solid transparent;border-bottom:.85cqw solid transparent;}
-  .arw.r::after{right:-.1cqw;border-left:1.3cqw solid var(--ink);}
-  .arw.l::after{left:-.1cqw;border-right:1.3cqw solid var(--ink);}
+  /* diagram */
+  .diagram{margin:clamp(2rem,4vw,3rem) 0 0;}
+  .diagram .frame{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(14px,2vw,26px);
+    box-shadow:0 30px 60px -40px rgba(20,22,28,.55);}
+  .diagram img{width:100%;border-radius:8px;}
+  .diagram figcaption{margin-top:14px;font-size:13px;color:var(--muted);text-align:center;font-weight:600;}
+  .points{list-style:none;margin:0 0 4px;padding:0;display:grid;gap:12px;max-width:640px;}
+  .points li{position:relative;padding-left:30px;font-size:1.08rem;color:var(--ink);line-height:1.5;}
+  .points li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:50%;
+    background:var(--g);box-shadow:0 0 0 4px var(--tint);}
 
-  /* persona cards (slide 4) */
-  .pcard{position:absolute;background:var(--white);border:1px solid var(--line);border-radius:1.6cqw;
-    padding:1.6cqw 1.6cqw 6cqw;box-shadow:0 1cqw 3cqw -1.5cqw rgba(20,22,28,.25);}
-  .pcard h4{font-size:1.5cqw;margin:0 0 1cqw;font-weight:800;color:var(--ink);}
-  .pcard p{font-size:1.15cqw;line-height:1.4;margin:0 0 1cqw;color:var(--ink-2);}
-  .pcard .who{position:absolute;left:1.4cqw;right:1.4cqw;bottom:1.4cqw;background:var(--g);color:#fff;
-    border-radius:100px;text-align:center;font-weight:700;font-size:1.35cqw;padding:.85cqw;}
+  /* footer */
+  footer{background:var(--dark);color:#fff;padding:clamp(3.5rem,7vw,6rem) 0;}
+  footer .note{max-width:560px;font-size:1.1rem;color:rgba(255,255,255,.7);line-height:1.6;}
+  footer .note b{color:#fff;}
+  footer .links{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;}
+  footer .links a{font-size:14px;font-weight:800;text-decoration:none;padding:13px 22px;border-radius:100px;}
+  footer .links a.primary{background:var(--g2);color:var(--ink);}
+  footer .links a.ghost{border:1.5px solid rgba(255,255,255,.3);color:#fff;}
+  footer .fine{margin-top:34px;font-size:12.5px;color:rgba(255,255,255,.4);}
+  footer .fine a{color:var(--g2);}
 
-  /* diagram board (slides 5-6) + bullets */
-  .board{position:absolute;background:#fff;border-radius:1.4cqw;box-shadow:0 1.4cqw 4cqw -1.6cqw rgba(20,22,28,.4);
-    display:grid;place-items:center;overflow:hidden;padding:1.4cqw;}
-  .board img{max-width:100%;max-height:100%;object-fit:contain;}
-  .blist{position:absolute;margin:0;padding:0;list-style:none;}
-  .blist li{position:relative;font-size:1.7cqw;line-height:1.36;color:var(--ink);padding-left:3cqw;margin:1.4cqh 0;}
-  .blist li::before{content:"";position:absolute;left:0;top:.8cqw;width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--g);}
-
-  /* outro */
-  .end{padding:70px 20px 90px;display:flex;flex-direction:column;align-items:center;gap:20px;background:var(--porcelain);}
-  .end .card{max-width:640px;border:1.5px dashed var(--g2);background:var(--matcha-tint);border-radius:16px;
-    padding:22px;font-size:14.5px;color:var(--g);text-align:center;line-height:1.55;}
-  .end .card b{color:var(--ink);}
-  .end .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-  .end .links a{font-size:14px;font-weight:800;color:var(--ink);background:var(--g2);text-decoration:none;
-    padding:12px 20px;border-radius:100px;box-shadow:0 8px 18px -8px rgba(160,210,134,.7);}
-  .end .links a.ghost{background:transparent;color:var(--g);border:1.5px solid var(--g2);box-shadow:none;}
+  /* reveal */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .rv.in{opacity:1;transform:none;}
+  .no-js .rv{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs>
-  <g id="leaf">
-    <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
-    <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#eaf5e2" stroke-width="2.6" stroke-linecap="round"/>
+  <g id="leaf"><path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+    <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#20252d" stroke-width="2.6" stroke-linecap="round" opacity=".25"/>
     <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
-    <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#eaf5e2" stroke-width="2.2" stroke-linecap="round"/>
-  </g>
-  <g id="arw-ur"><path d="M7 17L17 7M9 7h8v8"/></g>
-  <g id="arw-dr"><path d="M7 7l10 10M17 9v8h-8"/></g>
+    <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#20252d" stroke-width="2.2" stroke-linecap="round" opacity=".25"/></g>
 </defs></svg>
 
-<div class="bar">
-  <span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#leaf"/></svg></span>
+<nav class="nav" id="nav"><div class="wrap"><div class="row">
+  <span class="mk"><svg viewBox="0 0 64 64"><use href="#leaf"/></svg></span>
   <span class="brand">Procras<span class="tea">tea</span></span>
-  <span class="sub">Design process</span>
-  <span class="draft">Working draft</span>
-  <a class="home" href="../index.html" style="margin-left:14px;">← Home</a>
-</div>
+  <span class="links">
+    <a class="hideable" href="../prototype/index.html">Prototype</a>
+    <a class="btn" href="../index.html">Home</a>
+  </span>
+</div></div></nav>
 
-<div class="deck">
-
-  <!-- ===== SLIDE 1 · COVER ===== -->
-  <section class="slide"><span class="num">01</span>
-    <span class="nm" style="left:5.5%;top:10%;font-size:2.5cqw;">Procrastea</span>
-    <svg class="leaf" viewBox="0 0 64 64" style="left:47%;top:5%;width:5.5cqw;height:auto"><use href="#leaf"/></svg>
-    <span class="nm" style="right:5.5%;top:10%;font-size:2.5cqw;font-weight:500;">Social Habit Tracking App</span>
-
-    <div class="scene" style="left:6%;top:47%;width:48%;height:44%;">
-      <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMax slice">
-        <g fill="#fff"><ellipse cx="120" cy="72" rx="34" ry="15"/><ellipse cx="150" cy="64" rx="26" ry="13"/><circle cx="245" cy="62" r="12"/><circle cx="262" cy="64" r="14"/></g>
-        <path d="M0 150 C60 130 90 152 150 148 C210 144 250 132 300 150 V200 H0 Z" fill="#b6d15a"/>
-        <path d="M0 168 C70 152 120 174 190 168 C240 164 270 160 300 170 V200 H0 Z" fill="#88a201"/>
-      </svg>
-    </div>
-    <svg class="dash" viewBox="0 0 120 90" style="left:-1%;top:26%;width:34cqw;height:auto">
-      <path d="M2 6 C 8 40 24 52 40 46 C 56 40 50 8 34 22" fill="none" stroke="#a0d286" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round"/>
-    </svg>
-
-    <div class="pill" style="left:31%;top:27%;font-size:3cqw;padding:1.7cqw 4cqw;">DESIGN</div>
-    <div class="abtn" style="left:49.5%;top:26.4%;width:5.4cqw;height:5.4cqw;"><svg viewBox="0 0 24 24"><use href="#arw-ur"/></svg></div>
-    <div class="disp" style="left:5%;top:34%;font-size:12.5cqw;">Process</div>
-    <span class="dot" style="left:26.5%;top:44%;width:1.8cqw;height:1.8cqw;"></span>
-
-    <div class="ag" style="right:5%;top:42%;width:34%;">
-      <div class="r"><span>About Me</span><span class="c">03</span></div>
-      <div class="r"><span>Portfolio</span><span class="c">04</span></div>
-      <div class="r"><span>Skills &amp; Expertise</span><span class="c">05</span></div>
-      <div class="r"><span>Testimonials</span><span class="c">06</span></div>
-      <div class="r"><span>Process</span><span class="c">07</span></div>
-    </div>
-  </section>
-
-  <!-- ===== SLIDE 2 · IDEATION ===== -->
-  <section class="slide"><span class="num">02</span>
-    <span class="nm" style="left:5.5%;top:13%;font-size:2.5cqw;">Procrastea</span>
-    <span class="divx" style="right:16%;height:23%;"></span>
-    <svg class="leaf" viewBox="0 0 64 64" style="right:6%;top:9%;width:5cqw;height:auto"><use href="#leaf"/></svg>
-    <span style="position:absolute;left:0;right:0;top:23%;border-top:1.5px solid var(--line);"></span>
-
-    <div class="disp" style="left:30%;top:42%;font-size:11cqw;">Ideation</div>
-    <div class="abtn" style="left:56%;top:33%;width:5.2cqw;height:5.2cqw;"><svg viewBox="0 0 24 24"><use href="#arw-ur"/></svg></div>
-    <div class="pill" style="left:62%;top:33.5%;font-size:2.9cqw;padding:1.6cqw 3.6cqw;">with FigJam</div>
-
-    <svg class="dash" viewBox="0 0 120 60" style="left:-1%;top:52%;width:44cqw;height:auto">
-      <path d="M2 8 C 30 2 26 44 54 40" fill="none" stroke="#a0d286" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round"/>
-    </svg>
-    <span class="dot" style="left:26.5%;top:78%;width:1.8cqw;height:1.8cqw;background:var(--g2);"></span>
-
-    <div class="bubble" style="left:37.5%;top:58%;width:25%;padding:2cqw;font-size:1.42cqw;">
-      <span class="tail" style="left:24%;"></span>
-      We started with a <b>freestyle brainstorming session</b> to talk about the apps we are inspired by and what's trending. The scope was kept wide on purpose to <b>make room for creativity</b>.
-    </div>
-    <div class="bubble" style="left:63%;top:58%;width:25%;padding:2cqw;font-size:1.42cqw;">
-      <span class="tail" style="left:14%;"></span>
-      Through this project, we found that working together makes us more effective. We want to bring the same benefits to building good habits — allowing people to motivate each other on their journey.
-    </div>
-  </section>
-
-  <!-- ===== SLIDE 3 · MARKET RESEARCH ===== -->
-  <section class="slide"><span class="num">03</span>
-    <span class="nm" style="left:5.5%;top:11%;font-size:2.5cqw;">Procrastea</span>
-    <span class="divx" style="left:30%;height:23%;"></span>
-    <svg class="leaf" viewBox="0 0 64 64" style="left:47.5%;top:7%;width:5cqw;height:auto"><use href="#leaf"/></svg>
-    <span class="divx" style="left:70%;height:23%;"></span>
-    <span style="position:absolute;left:0;right:0;top:23%;border-top:1.5px solid var(--line);"></span>
-
-    <div class="disp" style="left:5%;top:37%;font-size:8cqw;">Market<br>Research</div>
-    <div class="pill" style="left:5%;top:64%;font-size:2.9cqw;padding:2cqw 4cqw;">WITH AI ASSIST</div>
-    <div class="abtn" style="left:5%;top:78%;width:6cqw;height:6cqw;"><svg viewBox="0 0 24 24"><use href="#arw-ur"/></svg></div>
-
-    <!-- sequence diagram -->
-    <div style="position:absolute;left:42%;top:30%;right:5%;bottom:8%;">
-      <div class="life" style="left:2%;top:12%;bottom:0;"></div>
-      <div class="life" style="right:2%;top:12%;bottom:0;"></div>
-      <svg class="actor" viewBox="0 0 24 24" style="left:-1%;top:0;width:8cqw;height:8cqw;"><path d="M12 1 L14 9 L22 12 L14 15 L12 23 L10 15 L2 12 L10 9 Z" fill="#4c7d33"/></svg>
-      <svg class="actor" viewBox="0 0 24 24" style="right:-1.6%;top:0;width:8cqw;height:8cqw;"><circle cx="12" cy="7" r="4.2" fill="#4c7d33"/><path d="M4 21c0-5 4-7.5 8-7.5s8 2.5 8 7.5z" fill="#4c7d33"/></svg>
-
-      <div class="msg" style="left:3%;right:3%;top:14%;">
-        <div class="lbl">list of similar apps based on our broad direction</div>
-        <div class="arw r"></div>
-      </div>
-      <div class="msg" style="left:3%;right:3%;top:34%;text-align:right;">
-        <div class="lbl">review and narrow to 4 competitors:<br>direct, or adjacent with proven success<br>(&gt;100k downloads)</div>
-        <div class="arw l"></div>
-      </div>
-      <div class="msg" style="left:3%;right:3%;top:62%;">
-        <div class="lbl">in-depth competitor research on<br>strengths, gaps, est DAU, time in market</div>
-        <div class="arw r"></div>
-      </div>
-      <div class="msg" style="left:3%;right:3%;top:82%;text-align:right;">
-        <div class="lbl">incorporate notes from personal<br>testing of the apps</div>
-        <div class="arw l"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SLIDE 4 · USER PERSONAS ===== -->
-  <section class="slide"><span class="num">04</span>
-    <svg class="leaf" viewBox="0 0 64 64" style="right:5%;top:8%;width:5cqw;height:auto"><use href="#leaf"/></svg>
-    <div class="disp" style="left:5%;top:17%;font-size:5.4cqw;">User Personas</div>
-    <div class="pill" style="left:37%;top:17.5%;font-size:2.6cqw;padding:1.5cqw 3.4cqw;">AI-generated</div>
-    <div class="abtn" style="left:58%;top:17%;width:5cqw;height:5cqw;"><svg viewBox="0 0 24 24"><use href="#arw-dr"/></svg></div>
-
-    <div class="pcard" style="left:6%;top:33%;width:26%;">
-      <h4>"The Resolution Repeater" <span style="color:var(--g);">(primary)</span></h4>
-      <p>Junior marketing associate. She's downloaded four habit trackers, and each died within three weeks — she'd skip a day, feel guilty, then avoid the app entirely. Her goal is the gym 4×/week and reading before bed; her frustration is that "nobody knows when I quit, so quitting is free."</p>
-      <p><b>Design implication:</b> make skipping visible to friends without making it humiliating.</p>
-      <div class="who">Maya, 29</div>
-    </div>
-    <div class="pcard" style="left:37%;top:33%;width:26%;">
-      <h4>"The Accountability Buddies" <span style="color:var(--g);">(primary)</span></h4>
-      <p>They already text each other "did you run today?" They want a private two-person pact with proof, because they both know a text saying "yep, ran" is easy to fake.</p>
-      <p><b>Design implication:</b> the app must work brilliantly at group size 2, not just 12 — most real accountability happens in pairs.</p>
-      <div class="who">Dan &amp; Chris, long-distance friends</div>
-    </div>
-    <div class="pcard" style="left:68%;top:33%;width:26%;">
-      <h4>"The Group Challenge Organizer" <span style="color:var(--g);">(secondary)</span></h4>
-      <p>Runs a "75 Hard"-style challenge with seven coworkers every January, currently managed through a group chat full of unverifiable claims. She's the monetization target: she'll pay for a group plan, custom rules, and challenge templates.</p>
-      <p><b>Design implication:</b> group creation and invite flow must be frictionless.</p>
-      <div class="who">Joanne, 32</div>
-    </div>
-  </section>
-
-  <!-- ===== SLIDE 5 · INFORMATION ARCHITECTURE ===== -->
-  <section class="slide"><span class="num">05</span>
-    <span class="nm" style="left:5.5%;top:11%;font-size:2.5cqw;">Procrastea</span>
-    <span class="divx" style="left:30%;height:23%;"></span>
-    <svg class="leaf" viewBox="0 0 64 64" style="left:47.5%;top:7%;width:5cqw;height:auto"><use href="#leaf"/></svg>
-    <span class="divx" style="left:70%;height:23%;"></span>
-    <span style="position:absolute;left:0;right:0;top:23%;border-top:1.5px solid var(--line);"></span>
-
-    <div class="disp" style="left:5%;top:33%;font-size:6.3cqw;">Information<br>Architecture</div>
-    <div class="pill" style="left:5%;top:64%;font-size:2.9cqw;padding:2cqw 4cqw;">Manual · FigJam</div>
-    <div class="abtn" style="left:40%;top:63.5%;width:5.6cqw;height:5.6cqw;"><svg viewBox="0 0 24 24"><use href="#arw-ur"/></svg></div>
-    <ul class="blist" style="left:5%;top:74%;width:42%;">
-      <li>Based on the reviewed personas</li>
-      <li>Manual on purpose so that we are intentional about how information is structured</li>
-    </ul>
-
-    <div class="board" style="left:52%;top:26%;width:43%;height:68%;">
-      <img src="assets/ia-diagram.png" alt="Information architecture flowchart">
-    </div>
-  </section>
-
-  <!-- ===== SLIDE 6 · USER JOURNEY ===== -->
-  <section class="slide"><span class="num">06</span>
-    <span class="nm" style="left:5.5%;top:11%;font-size:2.5cqw;">Procrastea</span>
-    <span class="divx" style="left:30%;height:23%;"></span>
-    <svg class="leaf" viewBox="0 0 64 64" style="left:47.5%;top:7%;width:5cqw;height:auto"><use href="#leaf"/></svg>
-    <span class="divx" style="left:70%;height:23%;"></span>
-    <span style="position:absolute;left:0;right:0;top:23%;border-top:1.5px solid var(--line);"></span>
-
-    <div class="disp" style="left:5%;top:35%;font-size:6.6cqw;">User Journey</div>
-    <div class="pill" style="left:5%;top:50%;font-size:2.9cqw;padding:2cqw 4cqw;">Manual · FigJam</div>
-    <div class="abtn" style="left:40%;top:49.5%;width:5.6cqw;height:5.6cqw;"><svg viewBox="0 0 24 24"><use href="#arw-ur"/></svg></div>
-    <ul class="blist" style="left:5%;top:61%;width:42%;">
-      <li>Similarly, the user journey is plotted by hand to force us to think through the whole flow.</li>
-      <li>This led to significant adjustments to the IA — designing a proper experience and closing gaps we saw in existing habit trackers.</li>
-    </ul>
-
-    <div class="board" style="left:52%;top:26%;width:43%;height:68%;">
-      <img src="assets/journey-diagram.png" alt="User journey flowchart">
-    </div>
-  </section>
-
-</div>
-
-<div class="end">
-  <div class="card">✍️ <b>More slides on the way.</b> Wireframes, branding and the prototype are still being added.</div>
-  <div class="links">
-    <a href="../prototype/index.html">View the prototype →</a>
-    <a class="ghost" href="../index.html">Back to home</a>
+<!-- HERO -->
+<header class="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="kick"><span class="dot"></span> AI-assisted UX case study</span>
+    <h1 class="disp">Designing<br>Procras<span class="tea">tea</span></h1>
+    <p class="lead">A social habit tracker built on photo-proof and friends — taken from a blank FigJam board to a working prototype, with AI as a design partner.</p>
+    <div class="meta"><span><b>Role</b> · Product &amp; UX design</span><span><b>Type</b> · Social habit tracker</span><span><b>Tools</b> · FigJam, AI, HTML</span></div>
+    <span class="cue"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg> Scroll to explore</span>
   </div>
-</div>
+</header>
+
+<main>
+  <!-- IDEATION -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">01</span><span class="lbl">Ideation</span><span class="chip">FigJam</span></div>
+      <h2 class="disp">It started as a<br>brainstorm</h2>
+      <div class="two">
+        <p class="lead-p">We started with a <b>freestyle brainstorming session</b> to talk about the apps we're inspired by and what's trending. The scope was kept wide on purpose, to make room for creativity.</p>
+        <p class="lead-p">Through the project we found that working together makes us more effective — so we set out to bring that same benefit to building good habits, letting people motivate each other on the journey.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET RESEARCH -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">02</span><span class="lbl">Market research</span><span class="chip">With AI assist</span></div>
+      <h2 class="disp">A back-and-forth<br>with the AI</h2>
+      <p class="lead-p" style="margin-bottom:2.4rem;">Once we had a broad direction, research became a loop between the AI's breadth and our own judgement.</p>
+      <ol class="flow">
+        <li><span class="who"><svg viewBox="0 0 24 24"><path d="M12 2 L14 9 L21 12 L14 15 L12 22 L10 15 L3 12 L10 9 Z" fill="#fff"/></svg></span>
+          <span class="tag">AI · surfaced</span>
+          <p>A list of similar apps based on our broad direction.</p></li>
+        <li class="youstep"><span class="who you"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="#fff"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" fill="#fff"/></svg></span>
+          <span class="tag">We · narrowed</span>
+          <p>Down to <b>four competitors</b> — direct, or adjacent with proven success (&gt;100k downloads).</p></li>
+        <li><span class="who"><svg viewBox="0 0 24 24"><path d="M12 2 L14 9 L21 12 L14 15 L12 22 L10 15 L3 12 L10 9 Z" fill="#fff"/></svg></span>
+          <span class="tag">AI · researched</span>
+          <p>In-depth: strengths, gaps, estimated DAU and time in market.</p></li>
+        <li class="youstep"><span class="who you"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="#fff"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" fill="#fff"/></svg></span>
+          <span class="tag">We · added</span>
+          <p>Notes from personally downloading and testing each app, folded into the final analysis.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">03</span><span class="lbl">User personas</span><span class="chip">AI-generated</span></div>
+      <h2 class="disp">Who we're<br>building for</h2>
+      <p class="lead-p" style="margin-bottom:2.6rem;">Three personas, drafted by AI from the research and framing, then reviewed and sharpened.</p>
+      <div class="cards">
+        <div class="pcard">
+          <div class="who"><span class="name">Maya, 29</span><span class="role">Primary</span></div>
+          <span class="arch">The Resolution Repeater</span>
+          <p>A junior marketing associate who's downloaded four habit trackers — each died within three weeks. She'd skip a day, feel guilty, then avoid the app. Her frustration: "nobody knows when I quit, so quitting is free."</p>
+          <div class="impl"><b>Design implication:</b> make skipping visible to friends without making it humiliating.</div>
+        </div>
+        <div class="pcard">
+          <div class="who"><span class="name">Dan &amp; Chris</span><span class="role">Primary</span></div>
+          <span class="arch">The Accountability Buddies</span>
+          <p>Long-distance friends who already text "did you run today?" They want a private two-person pact with proof, because a text saying "yep, ran" is easy to fake.</p>
+          <div class="impl"><b>Design implication:</b> work brilliantly at group size 2, not just 12 — most real accountability happens in pairs.</div>
+        </div>
+        <div class="pcard">
+          <div class="who"><span class="name">Joanne, 32</span><span class="role sec">Secondary</span></div>
+          <span class="arch">The Group Challenge Organizer</span>
+          <p>Runs a "75 Hard"-style challenge with seven coworkers every January, managed through a group chat full of unverifiable claims. She'll pay for a group plan, custom rules and templates.</p>
+          <div class="impl"><b>Design implication:</b> group creation and invites must be frictionless.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMATION ARCHITECTURE -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">04</span><span class="lbl">Information architecture</span><span class="chip">Manual · FigJam</span></div>
+      <h2 class="disp">Structuring<br>the app</h2>
+      <ul class="points">
+        <li>Built by hand from the reviewed personas.</li>
+        <li>Kept manual on purpose — so we were intentional about how information is structured.</li>
+      </ul>
+      <figure class="diagram">
+        <div class="frame"><img src="assets/ia-diagram.png" alt="Information architecture flowchart"></div>
+        <figcaption>Information architecture — mapped by hand in FigJam</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- USER JOURNEY -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">05</span><span class="lbl">User journey</span><span class="chip">Manual · FigJam</span></div>
+      <h2 class="disp">Walking the<br>whole flow</h2>
+      <ul class="points">
+        <li>Plotted by hand to force us to think through the entire flow.</li>
+        <li>It led to significant changes to the IA — designing a proper experience and closing the gaps we saw in existing habit trackers.</li>
+      </ul>
+      <figure class="diagram">
+        <div class="frame"><img src="assets/journey-diagram.png" alt="User journey flowchart"></div>
+        <figcaption>User journey — plotted by hand, and the reason the IA changed</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap rv">
+    <p class="note">✍️ <b>More to come.</b> Wireframes, branding and the interactive prototype are next up in this case study.</p>
+    <div class="links">
+      <a class="primary" href="../prototype/index.html">View the prototype →</a>
+      <a class="ghost" href="../index.html">Back to home</a>
+    </div>
+    <p class="fine">Procrastea · AI-assisted design case study (working draft) · <a href="https://github.com/fcyen/Procratea">github.com/fcyen/Procratea</a></p>
+  </div>
+</footer>
+
+<script>
+  // nav solid on scroll
+  var nav=document.getElementById('nav');
+  var onScroll=function(){ nav.classList.toggle('solid', window.scrollY>window.innerHeight*0.72); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+</script>
 </body>
 </html>
