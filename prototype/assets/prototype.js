@@ -71,6 +71,23 @@ var TEMPLATES = [
   { name: "Sleep early", emoji: "😴", grad: "g-sleep" }
 ];
 
+/* Real cover photos per habit (keyed by gradient), so templates, habit cards and
+   proofs all resolve automatically. Emoji stays behind as a fallback if a photo fails. */
+var PX = "?auto=compress&cs=tinysrgb&fit=crop&w=800&h=800";
+var HABIT_IMG = {
+  "g-run":      "https://images.pexels.com/photos/38120096/pexels-photo-38120096.jpeg" + PX,
+  "g-read":     "https://images.pexels.com/photos/1098656/pexels-photo-1098656.jpeg" + PX,
+  "g-water":    "https://images.pexels.com/photos/9004767/pexels-photo-9004767.jpeg" + PX,
+  "g-meditate": "https://images.pexels.com/photos/3059892/pexels-photo-3059892.jpeg" + PX,
+  "g-journal":  "https://images.pexels.com/photos/6806704/pexels-photo-6806704.jpeg" + PX,
+  "g-meal":     "https://images.pexels.com/photos/1105166/pexels-photo-1105166.jpeg" + PX
+};
+function tphoto(o) {
+  var em = '<span class="em">' + ((o && o.emoji) || "") + "</span>";
+  var src = o && HABIT_IMG[o.grad];
+  return src ? em + '<img class="himg" loading="lazy" alt="" src="' + src + '" onerror="this.remove()">' : em;
+}
+
 var state;
 function freshState() {
   return {
@@ -226,7 +243,7 @@ $$("[data-tabbar]").forEach(function (ph) {
 /* ---------- S02 · templates ---------- */
 function renderTemplates() {
   var html = TEMPLATES.map(function (t, i) {
-    return '<div class="tmpl" data-tmpl="' + i + '"><div class="thumb ph ' + t.grad + '"><span class="em">' + t.emoji + '</span></div><div class="name">' + t.name + "</div></div>";
+    return '<div class="tmpl" data-tmpl="' + i + '"><div class="thumb ph ' + t.grad + '">' + tphoto(t) + '</div><div class="name">' + t.name + "</div></div>";
   }).join("");
   html += '<div class="tmpl new" data-tmpl="custom"><div class="thumb"><svg viewBox="0 0 24 24"><use href="#i-plus"/></svg></div><div class="name">Custom habit</div></div>';
   $("#tmpl-grid").innerHTML = html;
@@ -246,13 +263,13 @@ function renderHome() {
   $("#home-strip").innerHTML = state.habits.map(function (h) {
     if (h.done) {
       return '<div class="habit-card done" data-go="s-stats">' +
-        '<div class="thumb ph ' + h.grad + '" style="--em:36px;"><span class="em">' + h.emoji + '</span>' +
+        '<div class="thumb ph ' + h.grad + '" style="--em:36px;">' + tphoto(h) + '' +
         (h.approvals ? '<span class="okbadge"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>' + h.approvals + "</span>" : '<span class="okbadge">✓</span>') +
         '</div><div class="name">' + esc(h.name) + '</div>' +
         '<div class="meta">' + (h.approvals ? h.approvals + " approvals" : "awaiting approval") + "</div></div>";
     }
     return '<div class="habit-card" data-track="' + h.id + '">' +
-      '<div class="thumb ph ' + h.grad + '" style="--em:36px;"><span class="em">' + h.emoji + '</span>' +
+      '<div class="thumb ph ' + h.grad + '" style="--em:36px;">' + tphoto(h) + '' +
       '<div class="todo"><span>Track now!</span></div></div>' +
       '<div class="name">' + esc(h.name) + '</div><div class="meta">🔥 ' + h.streak + " streak</div></div>";
   }).join("");
@@ -361,7 +378,7 @@ function renderFeed() {
     if (p.status === "pending") badge = '<span class="bd wait"><svg viewBox="0 0 24 24"><use href="#i-bell"/></svg> Approve</span>';
     if (p.status === "rejected") badge = '<span class="bd no"><svg viewBox="0 0 24 24"><use href="#i-x"/></svg> Rejected</span>';
     return '<div class="feedcell' + (p.status === "pending" ? " pending" : "") + '" data-proof="' + p.id + '">' +
-      '<div class="ph ' + p.grad + '" style="position:absolute;inset:0;border-radius:0;--em:42px;"><span class="em">' + p.emoji + '</span></div>' +
+      '<div class="ph ' + p.grad + '" style="position:absolute;inset:0;border-radius:0;--em:42px;">' + tphoto(p) + '</div>' +
       stack3(p.approved, STACK_POOL.filter(function (w) { return w !== p.person; }).slice(0, Math.min(3, p.approved))) +
       badge + '<span class="nm">' + PEOPLE[p.person].name + " · " + esc(p.habit) + "</span></div>";
   }).join("");
@@ -412,7 +429,7 @@ function renderProof() {
     '<div style="display:flex;gap:10px;align-items:center;">' + avatar(p.person) +
     '<div class="grow"><div class="h" style="margin:0;">' + who.name + " · " + esc(p.habit) + '</div>' +
     '<span class="sub">' + p.time + " · " + esc(g.name) + "</span></div></div>" +
-    '<div class="ph ' + p.grad + '" style="width:100%;height:216px;--em:64px;"><span class="em">' + p.emoji + '</span></div>' +
+    '<div class="ph ' + p.grad + '" style="width:100%;height:216px;--em:64px;">' + tphoto(p) + '</div>' +
     statusCard +
     '<div class="card" style="display:flex;flex-direction:column;gap:10px;">' +
     '<span class="flabel">React</span><div class="rx">' + rx + "</div></div>" +
@@ -695,7 +712,7 @@ document.addEventListener("click", function (e) {
   if ((el = e.target.closest("#cz-cover"))) {
     var d = state.draft || { grad: "g-meal", emoji: "🌱" };
     el.classList.add("has");
-    el.innerHTML = '<div class="cover ph ' + d.grad + '" style="border:none;border-radius:0;width:100%;"><span class="em" style="font-size:30px;">' + d.emoji + "</span></div>";
+    el.innerHTML = '<div class="cover ph ' + d.grad + '" style="border:none;border-radius:0;width:100%;">' + tphoto(d) + "</div>";
     return toast("Cover photo added — your end goal 🎯");
   }
   if ((el = e.target.closest("#cz-group"))) {
