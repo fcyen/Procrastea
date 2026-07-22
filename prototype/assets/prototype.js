@@ -80,7 +80,8 @@ var HABIT_IMG = {
   "g-water":    "https://images.pexels.com/photos/9004767/pexels-photo-9004767.jpeg" + PX,
   "g-meditate": "https://images.pexels.com/photos/3059892/pexels-photo-3059892.jpeg" + PX,
   "g-journal":  "https://images.pexels.com/photos/6806704/pexels-photo-6806704.jpeg" + PX,
-  "g-meal":     "https://images.pexels.com/photos/1105166/pexels-photo-1105166.jpeg" + PX
+  "g-meal":     "https://images.pexels.com/photos/1105166/pexels-photo-1105166.jpeg" + PX,
+  "g-sleep":    "https://images.pexels.com/photos/9615244/pexels-photo-9615244.jpeg" + PX
 };
 function tphoto(o) {
   var em = '<span class="em">' + ((o && o.emoji) || "") + "</span>";
