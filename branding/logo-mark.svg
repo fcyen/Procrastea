@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Procrastea mark">
+  <!-- big leaf (upper-right) -->
+  <path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+  <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#fafbfc" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- small leaf (lower-left) — deeper green for depth -->
+  <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
+  <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#fafbfc" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

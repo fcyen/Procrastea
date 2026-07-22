@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<script>document.documentElement.classList.remove('no-js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procrastea — Designing a social habit tracker with AI</title>
+<meta name="description" content="An AI-assisted UX case study: how Procrastea went from a blank FigJam board to a working prototype.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20252d; --ink-2:#535c66; --muted:#8a929c;
+    --paper:#fafbfc; --tint:#eef5e6; --tint-2:#e4efd8;
+    --g:#4c7d33; --g2:#a0d286; --g-deep:#3c6528;
+    --line:#e7eae2; --dark:#20252d; --white:#fff;
+    --wrap:1120px;
+    font-family:"Figtree",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;} html,body{margin:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+  .disp{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase;line-height:.92;}
+  a{color:var(--g);}
+  img{max-width:100%;display:block;}
+
+  /* nav */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s,box-shadow .3s,border-color .3s;
+    border-bottom:1px solid transparent;}
+  .nav .row{display:flex;align-items:center;gap:12px;height:60px;}
+  .nav .mk{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none;}
+  .nav .mk svg{width:18px;height:18px;}
+  .nav .brand{font-weight:800;letter-spacing:-.01em;color:#fff;}
+  .nav .brand .tea{color:var(--g2);}
+  .nav .links{margin-left:auto;display:flex;align-items:center;gap:18px;}
+  .nav .links a{font-size:14px;font-weight:700;text-decoration:none;color:rgba(255,255,255,.82);}
+  .nav .links .btn{background:var(--g2);color:var(--ink);padding:8px 15px;border-radius:100px;}
+  .nav.solid{background:rgba(250,251,252,.86);backdrop-filter:blur(12px);border-color:var(--line);}
+  .nav.solid .mk{background:var(--tint);}
+  .nav.solid .brand{color:var(--ink);}
+  .nav.solid .brand .tea{color:var(--g);}
+  .nav.solid .links a{color:var(--ink-2);}
+  .nav.solid .links .btn{color:var(--ink);}
+  @media(max-width:640px){.nav .links a.hideable{display:none;}}
+
+  /* hero */
+  .hero{background:var(--dark);color:#fff;padding:150px 0 110px;position:relative;overflow:hidden;}
+  .hero .glow{position:absolute;inset:auto -10% -40% auto;width:60vw;height:60vw;border-radius:50%;
+    background:radial-gradient(circle,rgba(160,210,134,.22),transparent 62%);pointer-events:none;}
+  .hero .kick{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g2);}
+  .hero .kick .dot{width:7px;height:7px;border-radius:50%;background:var(--g2);}
+  .hero h1{font-size:clamp(3rem,9vw,7rem);margin:22px 0 0;color:#fff;}
+  .hero h1 .tea{color:var(--g2);}
+  .hero .lead{font-size:clamp(1.1rem,2.4vw,1.5rem);color:rgba(255,255,255,.72);max-width:640px;margin:26px 0 0;line-height:1.2;}
+  .hero .meta{margin-top:34px;display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.5);
+    font-weight:600;letter-spacing:.02em;}
+  .hero .meta b{color:rgba(255,255,255,.85);}
+  .hero .cue{margin-top:56px;display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+  .hero .cue svg{width:16px;height:16px;stroke:var(--g2);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+    animation:bob 1.8s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  @media(prefers-reduced-motion:reduce){.hero .cue svg{animation:none;}}
+
+  /* sections */
+  section.s{padding:clamp(4.5rem,10vw,8.5rem) 0;border-bottom:1px solid var(--line);}
+  section.s.tint{background:var(--tint);border-color:var(--tint-2);}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+  .eyebrow .no{font-family:"Anton",sans-serif;font-size:15px;color:var(--g);letter-spacing:.04em;}
+  .eyebrow .lbl{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);}
+  .eyebrow .chip{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+    background:var(--g);color:#fff;padding:4px 11px;border-radius:100px;}
+  section.s h2{font-size:clamp(2.1rem,5.4vw,3.6rem);margin:0 0 clamp(1.4rem,3vw,2.4rem);}
+  .lead-p{font-size:clamp(1.05rem,2vw,1.28rem);color:var(--ink);max-width:720px;line-height:1.6;}
+  .body-p{font-size:1.02rem;color:var(--ink-2);max-width:560px;}
+
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.4rem,3vw,2.6rem);}
+
+  /* market research flow */
+  .flow{list-style:none;margin:8px 0 0;padding:0;position:relative;max-width:820px;}
+  .flow::before{content:"";position:absolute;left:19px;top:14px;bottom:14px;width:2px;background:var(--tint-2);}
+  section.s.tint .flow::before{background:#d3e3c1;}
+  .flow li{position:relative;padding:0 0 26px 58px;}
+  .flow li:last-child{padding-bottom:0;}
+  .flow .who{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+    background:var(--g);color:#fff;box-shadow:0 0 0 6px var(--tint);}
+  section.s.tint .flow .who{box-shadow:0 0 0 6px var(--tint);}
+  .flow .who svg{width:20px;height:20px;}
+  .flow .who.you{background:var(--ink);}
+  .flow .tag{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g);}
+  .flow .who.you + .tag,.flow li.youstep .tag{color:var(--ink);}
+  .flow p{margin:3px 0 0;font-size:1.05rem;color:var(--ink);max-width:560px;}
+
+  /* personas */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.2rem,2.4vw,1.8rem);}
+  .pcard{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(1.4rem,2.4vw,2rem);
+    display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px -30px rgba(20,22,28,.5);}
+  .pcard .who{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .pcard .name{font-size:1.3rem;font-weight:800;letter-spacing:-.01em;}
+  .pcard .role{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--g);background:var(--tint);padding:4px 9px;border-radius:100px;white-space:nowrap;}
+  .pcard .role.sec{color:var(--ink-2);background:#eef0ec;}
+  .pcard .arch{font-weight:700;color:var(--g);font-size:1.02rem;}
+  .pcard p{margin:0;font-size:.96rem;color:var(--ink-2);line-height:1.55;}
+  .pcard .impl{margin-top:auto;font-size:.9rem;color:var(--ink);background:var(--tint);border-radius:12px;padding:12px 14px;line-height:1.5;}
+  .pcard .impl b{color:var(--g-deep);}
+
+  /* diagram */
+  .diagram{margin:clamp(2rem,4vw,3rem) 0 0;}
+  .diagram .frame{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(14px,2vw,26px);
+    box-shadow:0 30px 60px -40px rgba(20,22,28,.55);}
+  .diagram img{width:100%;border-radius:8px;}
+  .points{list-style:none;margin:0 0 4px;padding:0;display:grid;gap:12px;max-width:640px;}
+  .points li{position:relative;padding-left:30px;font-size:1.08rem;color:var(--ink);line-height:1.5;}
+  .points li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:50%;
+    background:var(--g);box-shadow:0 0 0 4px var(--tint);}
+
+  /* footer */
+  footer{background:var(--dark);color:#fff;padding:clamp(3.5rem,7vw,6rem) 0;}
+  footer .note{max-width:560px;font-size:1.1rem;color:rgba(255,255,255,.7);line-height:1.6;}
+  footer .note b{color:#fff;}
+  footer .links{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;}
+  footer .links a{font-size:14px;font-weight:800;text-decoration:none;padding:13px 22px;border-radius:100px;}
+  footer .links a.primary{background:var(--g2);color:var(--ink);}
+  footer .links a.ghost{border:1.5px solid rgba(255,255,255,.3);color:#fff;}
+  footer .fine{margin-top:34px;font-size:12.5px;color:rgba(255,255,255,.4);}
+  footer .fine a{color:var(--g2);}
+  footer h2{font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.92;
+    font-size:clamp(2.1rem,5.4vw,3.4rem);color:#fff;margin:0 0 1.3rem;}
+  footer .eyebrow .no{color:var(--g2);}
+  footer .eyebrow .lbl{color:rgba(255,255,255,.66);}
+  footer .fnote{font-size:clamp(1.05rem,2vw,1.28rem);color:rgba(255,255,255,.82);max-width:680px;line-height:1.62;}
+  footer .next{margin:30px 0 8px;border-left:3px solid var(--g2);padding:2px 0 2px 18px;max-width:600px;}
+  footer .next .nlabel{display:block;color:var(--g2);font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:12px;margin-bottom:6px;}
+  footer .next p{margin:0;color:rgba(255,255,255,.74);font-size:1.02rem;}
+
+  /* design guide */
+  .brandstrip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:4px 0 2px;}
+  .brandstrip .sw{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink-2);}
+  .brandstrip .sw i{width:22px;height:22px;border-radius:6px;background:var(--c);border:1px solid rgba(20,22,28,.08);}
+  .brandstrip .ty{font-size:15px;font-weight:800;color:var(--ink);padding-left:14px;border-left:1px solid var(--tint-2);}
+  .brandstrip .ty span{color:var(--ink-2);font-weight:600;}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .rv.in{opacity:1;transform:none;}
+  .no-js .rv{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <g id="leaf"><path d="M33 54 C26 41 29 20 46 8 C50 26 46 44 35.5 53 Z" fill="#a0d286"/>
+    <path d="M35.6 51 C33.5 39 36 24 44.5 12.5" fill="none" stroke="#20252d" stroke-width="2.6" stroke-linecap="round" opacity=".25"/>
+    <path d="M32 52 C23 48 14.5 44 11 32.5 C23 32 30.5 39 34 50 Z" fill="#84bd67"/>
+    <path d="M31 49 C24.5 45 19 42 13.5 36" fill="none" stroke="#20252d" stroke-width="2.2" stroke-linecap="round" opacity=".25"/></g>
+</defs></svg>
+
+<nav class="nav" id="nav"><div class="wrap"><div class="row">
+  <span class="mk"><svg viewBox="0 0 64 64"><use href="#leaf"/></svg></span>
+  <span class="brand">Procras<span class="tea">tea</span></span>
+  <span class="links">
+    <a class="hideable" href="../prototype/index.html">Prototype</a>
+    <a class="btn" href="../index.html">Home</a>
+  </span>
+</div></div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="kick"><span class="dot"></span> AI-assisted UX case study</span>
+    <h1 class="disp">Designing<br>Procras<span class="tea">tea</span></h1>
+    <p class="lead">A social habit tracker built on photo-proof momentum</p>
+    <p class="lead">Here's how we took this from a blank FigJam board to a working prototype, with AI as a design partner.</p>
+  </div>
+</header>
+
+<main>
+  <!-- IDEATION -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">01</span><span class="lbl">Ideation</span><span class="chip">FigJam</span></div>
+      <h2 class="disp">brainstorming</h2>
+      <div class="two">
+        <p class="lead-p">We started with a <b>freestyle brainstorming session</b> to talk about the apps we're inspired by and what's trending. We kept the scope wide on purpose to make room for creativity.</p>
+        <p class="lead-p">Through the project we found that working together makes us more effective, so we set out to bring that same benefit to habits tracking, building a mechanism that bakes peer encouragements into the journey.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET RESEARCH -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">02</span><span class="lbl">A back-and-forth with AI</span><span class="chip">With AI assist</span></div>
+      <h2 class="disp">Market Research</h2>
+      <p class="lead-p" style="margin-bottom:2.4rem;">Once we had a broad direction, research became a loop between the AI's breadth and our own judgement.</p>
+      <ol class="flow">
+        <li><span class="who"><svg viewBox="0 0 24 24"><path d="M12 2 L14 9 L21 12 L14 15 L12 22 L10 15 L3 12 L10 9 Z" fill="#fff"/></svg></span>
+          <span class="tag">AI · surfaced</span>
+          <p>A list of similar apps based on our broad direction.</p></li>
+        <li class="youstep"><span class="who you"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="#fff"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" fill="#fff"/></svg></span>
+          <span class="tag">We · narrowed</span>
+          <p>Down to <b>four competitors</b> — direct, or adjacent with proven success (&gt;100k downloads).</p></li>
+        <li><span class="who"><svg viewBox="0 0 24 24"><path d="M12 2 L14 9 L21 12 L14 15 L12 22 L10 15 L3 12 L10 9 Z" fill="#fff"/></svg></span>
+          <span class="tag">AI · researched</span>
+          <p>In-depth: strengths, gaps, estimated DAU and time in market.</p></li>
+        <li class="youstep"><span class="who you"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="#fff"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" fill="#fff"/></svg></span>
+          <span class="tag">We · added</span>
+          <p>Notes from personally downloading and testing each app, folded into the final analysis.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">03</span><span class="chip">AI-generated</span></div>
+      <h2 class="disp">User Personas</h2>
+      <p class="lead-p" style="margin-bottom:2.6rem;">AI drafted the three personas from the research and framing, we then reviewed and sharpened them.</p>
+      <div class="cards">
+        <div class="pcard">
+          <div class="who"><span class="name">Maya, 29</span><span class="role">Primary</span></div>
+          <span class="arch">The Resolution Repeater</span>
+          <p>A junior marketing associate who's downloaded four habit trackers — each died within three weeks. She'd skip a day, feel guilty, then avoid the app. Her frustration: "nobody knows when I quit, so quitting is free."</p>
+          <div class="impl"><b>Design implication:</b> make skipping visible to friends without making it humiliating.</div>
+        </div>
+        <div class="pcard">
+          <div class="who"><span class="name">Dan &amp; Chris</span><span class="role">Primary</span></div>
+          <span class="arch">The Accountability Buddies</span>
+          <p>Long-distance friends who already text "did you run today?" They want a private two-person pact with proof, because a text saying "yep, ran" is easy to fake.</p>
+          <div class="impl"><b>Design implication:</b> work brilliantly at group size 2, not just 12 — most real accountability happens in pairs.</div>
+        </div>
+        <div class="pcard">
+          <div class="who"><span class="name">Joanne, 32</span><span class="role sec">Secondary</span></div>
+          <span class="arch">The Group Challenge Organizer</span>
+          <p>Runs a "75 Hard"-style challenge with seven coworkers every January, managed through a group chat full of unverifiable claims. She'll pay for a group plan, custom rules and templates.</p>
+          <div class="impl"><b>Design implication:</b> group creation and invites must be frictionless.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMATION ARCHITECTURE -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">04</span><span class="chip">Handcrafted on FigJam</span></div>
+      <h2 class="disp">Information Architecture</h2>
+      <ul class="points">
+        <p class="lead-p" >This stages is built by hand from the reviewed personas. We kept it handcrafted so we were intentional about how information is structured.</li>
+      </ul>
+      <figure class="diagram">
+        <div class="frame"><img src="assets/ia-diagram.png" alt="Information architecture flowchart"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- USER JOURNEY -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">05</span><span class="lbl">Walking the flow</span><span class="chip">Handcrafted · FigJam</span></div>
+      <h2 class="disp">User journey</h2>
+      <ul class="points">
+        <p class="lead-p">Again, we plotted the user journey by hand. This forced us to think through the entire flow, uncovering gaps along the way.</p>
+        <p>For example, user should take a photo first, then select the habit, instead of the other way round to reduce the friction of tracking.</p>
+      </ul>
+      <figure class="diagram">
+        <div class="frame"><img src="assets/journey-diagram.png" alt="User journey flowchart"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- DESIGN GUIDE -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">06</span><span class="chip">Handcrafted</span></div>
+      <h2 class="disp">Design guide</h2>
+      <p class="lead-p">We built a moodboard, then chose the palette and typography for our target audience: <b>working adults</b>. We aimed for trust and professionalism, while keeping fun elements so habit tracking stays enjoyable.</p>
+      <div class="brandstrip">
+        <span class="sw" style="--c:#a0d286"><i></i> Matcha</span>
+        <span class="sw" style="--c:#f6c343"><i></i> Honey</span>
+        <span class="sw" style="--c:#2e5b9a"><i></i> Steep</span>
+        <span class="sw" style="--c:#20252d"><i></i> Charcoal</span>
+        <span class="ty">Figtree <span>· type</span></span>
+      </div>
+      <figure class="diagram">
+        <div class="frame"><img src="assets/moodboard.jpg" alt="Design moodboard — habit-app inspiration, palette and tea motifs"></div>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap rv">
+    <div class="eyebrow"><span class="no">07</span><span class="lbl">Reflections</span></div>
+    <h2 class="disp">Working with<br>an AI partner</h2>
+    <p class="fnote">It was tempting to leave it to AI on auto-mode, especially as time became a constraint. But creating the first drafts by hand is an unskippable step to keep design decisions consciously selected.</p>
+    <div class="next">
+      <span class="nlabel">Next up</span>
+      <p>Run the prototype with our target users, and refine it based on the friction points we discover through testing.</p>
+    </div>
+    <div class="links">
+      <a class="primary" href="../prototype/index.html">View the prototype →</a>
+      <a class="ghost" href="../index.html">Back to home</a>
+    </div>
+    <p class="fine">Procrastea · AI-assisted design case study · <a href="https://github.com/fcyen/Procratea">github.com/fcyen/Procratea</a></p>
+  </div>
+</footer>
+
+<script>
+  // nav solid on scroll
+  var nav=document.getElementById('nav');
+  var onScroll=function(){ nav.classList.toggle('solid', window.scrollY>window.innerHeight*0.72); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>

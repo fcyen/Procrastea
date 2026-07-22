@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procrastea — Interactive Prototype</title>
+<link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+
+<div class="stage">
+  <div class="chrome">
+    <span class="lockup">
+      <svg viewBox="0 0 64 64"><use href="#m-mark"/></svg>
+      <span class="wordmark">Procras<span class="tea">tea</span></span>
+    </span>
+    <span class="hint">Interactive prototype (steps 8–9) — click through, starting at Intro</span>
+    <select id="jump" title="Jump to screen"></select>
+    <button class="restart" id="restart">↺ Restart</button>
+  </div>
+
+  <div class="phone"><div class="host" id="host">
+
+    <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+
+    <!-- ══ S01 · Intro ══ -->
+    <section class="scr" id="s-intro">
+      <div class="introwrap">
+        <div class="hero">
+          <svg class="mark" viewBox="0 0 64 64"><use href="#m-mark"/></svg>
+          <div>
+            <div class="wordmark">Procras<span class="tea">tea</span></div>
+            <div class="tagline" style="margin-top:8px;">Good habits are built together. Snap the proof, fill your teabag.</div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn primary block" data-go="s-new-habit">Get started</button>
+          <button class="btn ghost block" data-act="login">I already have an account</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ S02 · New habit — pick a template ══ -->
+    <section class="scr" id="s-new-habit">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-x"/></svg></button><div class="title">New habit</div></div>
+      <div class="body">
+        <input class="input" placeholder="Search habits" aria-label="Search habits">
+        <div class="sub d" style="margin:-2px 0 0;">Start from a template, or build your own</div>
+        <div class="hgrid" id="tmpl-grid"></div>
+      </div>
+    </section>
+
+    <!-- ══ S03 · Customize habit ══ -->
+    <section class="scr" id="s-customize">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">New habit</div></div>
+      <div class="body">
+        <div class="field"><span class="flabel">Habit name</span><input class="input" id="cz-name" value=""></div>
+        <div class="field">
+          <span class="flabel">Cover photo</span>
+          <span class="sub" style="margin-top:-3px;">Pick a photo that visualizes your end goal</span>
+          <button class="upload" id="cz-cover"><svg><use href="#i-img"/></svg> Upload file</button>
+        </div>
+        <div class="field"><span class="flabel">Repeat</span>
+          <div class="days" id="cz-days">
+            <span class="day on">M</span><span class="day on">T</span><span class="day on">W</span><span class="day on">T</span><span class="day on">F</span><span class="day">S</span><span class="day">S</span>
+          </div>
+        </div>
+        <div class="field"><span class="flabel">Share to group</span>
+          <div class="input faux filled tap" id="cz-group" title="Tap to switch group">Early Risers <span class="grow-sp"></span><svg><use href="#i-fwd"/></svg></div>
+        </div>
+        <div class="grow-sp"></div>
+        <button class="btn primary block" data-act="add-habit">Add habit</button>
+      </div>
+    </section>
+
+    <!-- ══ S04 · Home ══ -->
+    <section class="scr" id="s-home">
+      <div class="appbar plain">
+        <div class="brand">Procras<span class="tea">tea</span></div>
+        <div class="grow-sp"></div>
+        <button class="ibtn f" data-act="bell" id="bell"><svg><use href="#i-bell"/></svg></button>
+      </div>
+      <div class="body">
+        <div class="stats" id="home-stats"></div>
+        <div class="h">Today's habits</div>
+        <div class="hstrip" id="home-strip"></div>
+        <div class="h" style="margin-top:2px;">Friends' recent activity</div>
+        <div id="home-activity"></div>
+      </div>
+      <div data-tabbar="home"></div>
+    </section>
+
+    <!-- ══ S05 · Camera (tracking, step 1) ══ -->
+    <section class="scr" id="s-camera">
+      <div class="cam">
+        <div class="vf"><div class="scene ph g-photo"><span class="em">🌅</span></div></div>
+        <div class="top">
+          <button class="cbtn" data-act="back"><svg><use href="#i-x"/></svg></button>
+          <div class="badge"><svg><use href="#i-cup"/></svg> Snap your proof</div>
+          <button class="cbtn" data-act="flash"><svg><use href="#i-bolt"/></svg></button>
+        </div>
+        <div class="grow-sp"></div>
+        <div class="hintline">Take the photo first — pick the habit next</div>
+        <div class="ctrl">
+          <div class="roll"><div class="thumb ph g-run"><span class="em">🏃</span></div><span>Today only</span></div>
+          <button class="shutter" data-act="shutter" aria-label="Take photo"></button>
+          <button class="flip" data-act="flip"><svg><use href="#i-flip"/></svg></button>
+        </div>
+        <div class="flashfx" id="flashfx"></div>
+      </div>
+    </section>
+
+    <!-- ══ S06 · Which habit are you tracking? ══ -->
+    <section class="scr" id="s-select">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Which habit are you tracking?</div></div>
+      <div class="body">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+          <div class="ph g-photo" style="width:138px;height:166px;--em:44px;"><span class="em">🌅</span></div>
+          <button class="btn sm ghost ic" data-go="s-camera"><svg><use href="#i-retake"/></svg> Retake</button>
+        </div>
+        <input class="input" placeholder="Search by habit name…" aria-label="Search habits">
+        <div id="select-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div class="grow-sp"></div>
+        <div style="display:flex;gap:9px;">
+          <button class="btn ghost block ic" data-go="s-new-habit"><svg><use href="#i-plus"/></svg> Add habit</button>
+          <button class="btn primary block" data-act="track-it">Track it</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ S07 · Logged & share ══ -->
+    <section class="scr" id="s-logged">
+      <div class="appbar"><button class="ibtn" data-act="logged-done"><svg><use href="#i-x"/></svg></button><div class="title">Nice work!</div></div>
+      <div class="body">
+        <div class="card tint celebrate" style="display:flex;flex-direction:column;gap:11px;align-items:center;text-align:center;padding:20px;">
+          <svg viewBox="0 0 64 64" style="width:64px;height:64px;"><use href="#m-mark"/></svg>
+          <div class="h big">Teabag filled +1 🍵</div>
+          <span class="sub d" id="logged-sub" style="font-size:13px;"></span>
+          <div class="ph g-photo" style="width:100%;height:126px;--em:40px;margin-top:2px;"><span class="em">🌅</span></div>
+          <span class="pill h static" id="logged-note">⏳ sent to Early Risers for approval</span>
+        </div>
+        <div class="h">Share your streak?</div>
+        <div style="display:flex;gap:10px;">
+          <button class="rowc tap" data-act="share-group" style="flex:1;flex-direction:column;text-align:center;gap:7px;"><div class="av"><svg><use href="#i-users"/></svg></div><span class="sub d" style="font-weight:700;">Group</span></button>
+          <button class="rowc tap" data-share="Instagram" style="flex:1;flex-direction:column;text-align:center;gap:7px;"><div class="av" style="background:linear-gradient(140deg,#fdd77a,#f2668b,#8a4fd3);color:#fff;"><svg><use href="#i-cam"/></svg></div><span class="sub d" style="font-weight:700;">Instagram</span></button>
+          <button class="rowc tap" data-act="share-more" style="flex:1;flex-direction:column;text-align:center;gap:7px;"><div class="av"><svg><use href="#i-share"/></svg></div><span class="sub d" style="font-weight:700;">More</span></button>
+        </div>
+        <div class="grow-sp"></div>
+        <button class="btn primary block" data-act="logged-done">Done</button>
+      </div>
+    </section>
+
+    <!-- ══ S08 · Group feed ══ -->
+    <section class="scr" id="s-feed">
+      <div class="appbar">
+        <button class="ibtn" data-go="s-groups"><svg><use href="#i-users"/></svg></button>
+        <div class="title" id="feed-title">Early Risers</div>
+        <button class="ibtn f" data-go="s-create-group"><svg><use href="#i-plus"/></svg></button>
+      </div>
+      <div class="body np" style="gap:0;">
+        <div style="padding:12px 16px 10px;flex:none;"><div class="chips" id="feed-chips"></div></div>
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px 16px;">
+          <div class="feedgrid" id="feed-grid"></div>
+        </div>
+      </div>
+      <div data-tabbar="feed"></div>
+    </section>
+
+    <!-- ══ S09 · Proof detail (approve · react · comment) ══ -->
+    <section class="scr" id="s-proof">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title" id="proof-title">Proof</div></div>
+      <div class="body" id="proof-body"></div>
+    </section>
+
+    <!-- ══ S10 · Friends ══ -->
+    <section class="scr" id="s-friends">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Friends</div><button class="ibtn f" data-go="s-add-friend"><svg><use href="#i-plus"/></svg></button></div>
+      <div class="body">
+        <input class="input" id="friend-search" placeholder="Search friends" aria-label="Search friends">
+        <div style="display:flex;gap:9px;">
+          <button class="btn sm ghost block ic" data-go="s-add-friend"><svg><use href="#i-plus"/></svg> Add friend</button>
+          <button class="btn sm ghost block ic" data-go="s-create-group"><svg><use href="#i-users"/></svg> Create group</button>
+        </div>
+        <div class="h" id="friend-count">All friends · 8</div>
+        <div id="friend-list" style="display:flex;flex-direction:column;"></div>
+      </div>
+    </section>
+
+    <!-- ══ S11 · Add friend ══ -->
+    <section class="scr" id="s-add-friend">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Add friend</div></div>
+      <div class="body">
+        <input class="input" placeholder="Search by username" aria-label="Search by username">
+        <div class="row" style="padding:8px 2px;">
+          <div class="av sm" style="background:#ffd166;">T</div>
+          <div class="grow"><div class="h" style="margin:0;">Tea Habit</div><span class="sub">@teahabit</span></div>
+          <button class="pill" id="add-friend-pill" data-act="add-friend">Add</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px;margin:2px 0;"><div class="divide" style="flex:1"></div><span class="sub">or</span><div class="divide" style="flex:1"></div></div>
+        <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:9px;align-items:center;">
+          <span class="flabel">Your QR code</span>
+          <div class="qr"><svg><use href="#i-qr"/></svg></div>
+          <span class="sub">Friends scan this to add you instantly</span>
+        </div>
+        <div class="grow-sp"></div>
+        <button class="btn ghost block ic" data-act="scan-qr"><svg><use href="#i-qr"/></svg> Scan a QR code</button>
+      </div>
+    </section>
+
+    <!-- ══ S12 · Groups ══ -->
+    <section class="scr" id="s-groups">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Groups</div><button class="ibtn f" data-go="s-create-group"><svg><use href="#i-plus"/></svg></button></div>
+      <div class="body">
+        <div id="group-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div class="grow-sp"></div>
+        <button class="btn primary block ic" data-go="s-create-group"><svg><use href="#i-plus"/></svg> Create group</button>
+      </div>
+    </section>
+
+    <!-- ══ S13 · Create group ══ -->
+    <section class="scr" id="s-create-group">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-x"/></svg></button><div class="title">New group</div></div>
+      <div class="body">
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div class="ph g-run tap" style="width:58px;height:58px;border-radius:16px;--em:24px;flex:none;" title="Group photo"><span class="em">🌄</span></div>
+          <div class="field" style="flex:1;"><span class="flabel">Group name</span><input class="input" id="cg-name" value="6am Club"></div>
+        </div>
+        <div class="rowc"><div class="grow"><span class="flabel">Friends approve proof</span><span class="sub">A completion counts once approved</span></div><button class="toggle on" aria-label="Friends approve proof"></button></div>
+        <div class="field"><span class="flabel">Privacy</span>
+          <div class="chips" data-single><span class="chip on">Private</span><span class="chip">Invite link</span><span class="chip">Public</span></div>
+        </div>
+        <div class="field"><span class="flabel">Add members</span>
+          <input class="input" placeholder="Search friends" aria-label="Search friends">
+        </div>
+        <div id="cg-members" style="display:flex;flex-direction:column;gap:9px;"></div>
+        <div class="grow-sp"></div>
+        <button class="btn primary block" data-act="create-group">Create group</button>
+      </div>
+    </section>
+
+    <!-- ══ S14 · Settings ══ -->
+    <section class="scr" id="s-settings">
+      <div class="appbar plain"><div class="title" style="font-size:22px;">Settings</div></div>
+      <div class="body">
+        <div class="rowc tap" data-go="s-profile">
+          <div class="av" style="width:50px;height:50px;background:#bde0a4;font-size:19px;">A</div>
+          <div class="grow"><div class="h">Alex Rivera</div><span class="sub">@alexr · 8 friends</span></div>
+          <svg class="fwd"><use href="#i-fwd"/></svg>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <div class="row tap" data-go="s-profile"><div class="av sm" style="border-radius:9px;background:var(--matcha-tint);color:var(--matcha-ink);"><svg><use href="#i-user"/></svg></div><div class="grow"><div class="h" style="margin:0;">Profile</div><span class="sub">Name, photo, bio &amp; interests</span></div><svg class="fwd"><use href="#i-fwd"/></svg></div>
+          <div class="divide"></div>
+          <div class="row tap" data-go="s-privacy"><div class="av sm" style="border-radius:9px;background:var(--steep-tint);color:var(--steep);"><svg><use href="#i-lock"/></svg></div><div class="grow"><div class="h" style="margin:0;">Privacy</div><span class="sub">Visibility &amp; contact sync</span></div><svg class="fwd"><use href="#i-fwd"/></svg></div>
+          <div class="divide"></div>
+          <div class="row tap" data-go="s-notifs"><div class="av sm" style="border-radius:9px;background:var(--honey-tint);color:var(--honey-ink);"><svg><use href="#i-bell"/></svg></div><div class="grow"><div class="h" style="margin:0;">Notifications</div><span class="sub">Channels &amp; reminders</span></div><svg class="fwd"><use href="#i-fwd"/></svg></div>
+          <div class="divide"></div>
+          <div class="row tap" data-go="s-account"><div class="av sm" style="border-radius:9px;background:var(--surface-2);color:var(--ink-2);"><svg><use href="#i-mail"/></svg></div><div class="grow"><div class="h" style="margin:0;">Account</div><span class="sub">Email &amp; password</span></div><svg class="fwd"><use href="#i-fwd"/></svg></div>
+          <div class="divide"></div>
+          <div class="row tap" data-go="s-groups"><div class="av sm" style="border-radius:9px;background:var(--bad-tint);color:var(--bad);"><svg><use href="#i-users"/></svg></div><div class="grow"><div class="h" style="margin:0;">Groups &amp; friends</div><span class="sub">Manage who keeps you honest</span></div><svg class="fwd"><use href="#i-fwd"/></svg></div>
+        </div>
+        <div class="grow-sp"></div>
+        <button class="btn ghost block" style="color:var(--bad);" data-act="logout">Log out</button>
+      </div>
+      <div data-tabbar="settings"></div>
+    </section>
+
+    <!-- ══ S15 · Edit profile ══ -->
+    <section class="scr" id="s-profile">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Edit profile</div><button class="pill" data-act="save-profile">Save</button></div>
+      <div class="body">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:9px;margin:4px 0;">
+          <div class="av lg" style="background:#bde0a4;">A</div>
+          <button class="pill n" data-act="stub" data-msg="Photo picker — out of prototype scope 📷">Change photo</button>
+        </div>
+        <div class="field"><span class="flabel">Display name</span><input class="input" value="Alex Rivera"></div>
+        <div class="field"><span class="flabel">Username</span><input class="input" value="@alexr"></div>
+        <div class="field"><span class="flabel">Bio</span><textarea class="input area">Trying to run more and read more 🍵</textarea></div>
+        <div class="field"><span class="flabel">Interests</span>
+          <div class="chips"><span class="chip on">Running</span><span class="chip on">Reading</span><span class="chip on">Meditation</span><span class="chip" data-act="stub" data-msg="Interest picker — out of prototype scope">＋ Add</span></div>
+        </div>
+        <div class="divide"></div>
+        <div class="row tap" data-go="s-groups"><div class="grow"><div class="h" style="margin:0;">Manage groups</div><span class="sub">Groups you belong to</span></div><svg class="fwd"><use href="#i-fwd"/></svg></div>
+        <div class="row tap" data-go="s-friends" style="padding-top:0;"><div class="grow"><div class="h" style="margin:0;">Manage friends</div><span class="sub">8 friends</span></div><svg class="fwd"><use href="#i-fwd"/></svg></div>
+      </div>
+    </section>
+
+    <!-- ══ S16 · Privacy ══ -->
+    <section class="scr" id="s-privacy">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Privacy</div></div>
+      <div class="body">
+        <div class="h">Profile visibility</div>
+        <div data-radiogroup style="display:flex;flex-direction:column;gap:10px;">
+          <div class="rowc sel"><div class="grow"><div class="h" style="margin:0;">Everyone</div><span class="sub">Anyone can find your profile</span></div><span class="radio"></span></div>
+          <div class="rowc sel on"><div class="grow"><div class="h" style="margin:0;">Friends only</div><span class="sub">Only friends see your activity</span></div><span class="radio on"></span></div>
+          <div class="rowc sel"><div class="grow"><div class="h" style="margin:0;">Private</div><span class="sub">Nobody but you</span></div><span class="radio"></span></div>
+        </div>
+        <div class="divide" style="margin:4px 0;"></div>
+        <div class="rowc"><div class="grow"><div class="h" style="margin:0;">Sync with contacts</div><span class="sub">Find friends from your phone</span></div><button class="toggle on" aria-label="Sync with contacts"></button></div>
+        <div class="rowc"><div class="grow"><div class="h" style="margin:0;">Allow friend requests</div><span class="sub">From people you may know</span></div><button class="toggle on" aria-label="Allow friend requests"></button></div>
+        <div class="rowc"><div class="grow"><div class="h" style="margin:0;">Show streak on shared cards</div></div><button class="toggle" aria-label="Show streak on shared cards"></button></div>
+      </div>
+    </section>
+
+    <!-- ══ S17 · Notifications ══ -->
+    <section class="scr" id="s-notifs">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Notifications</div></div>
+      <div class="body">
+        <div class="rowc"><div class="grow"><div class="h" style="margin:0;">Enable notifications</div><span class="sub">Master switch</span></div><button class="toggle on" id="notif-master" aria-label="Enable notifications"></button></div>
+        <div id="notif-rest" style="display:flex;flex-direction:column;gap:13px;transition:opacity .2s;">
+          <div class="h">Channels</div>
+          <div class="rowc"><div class="av sm" style="border-radius:9px;"><svg><use href="#i-mail"/></svg></div><div class="grow"><div class="h" style="margin:0;">Email</div></div><button class="toggle" aria-label="Email"></button></div>
+          <div class="rowc"><div class="av sm" style="border-radius:9px;"><svg><use href="#i-bell"/></svg></div><div class="grow"><div class="h" style="margin:0;">Push notification</div></div><button class="toggle on" aria-label="Push notification"></button></div>
+          <div class="h">Notify me about</div>
+          <div class="rowc"><div class="grow"><div class="h" style="margin:0;">Friend activity &amp; reactions</div></div><button class="toggle on" aria-label="Friend activity"></button></div>
+          <div class="rowc"><div class="grow"><div class="h" style="margin:0;">Habit reminders</div></div><button class="toggle on" aria-label="Habit reminders"></button></div>
+          <div class="rowc"><div class="grow"><div class="h" style="margin:0;">Proof approvals</div></div><button class="toggle on" aria-label="Proof approvals"></button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ S18 · Account ══ -->
+    <section class="scr" id="s-account">
+      <div class="appbar"><button class="ibtn" data-act="back"><svg><use href="#i-back"/></svg></button><div class="title">Account</div></div>
+      <div class="body">
+        <div class="h">Email</div>
+        <div class="field"><input class="input" value="alex@email.com"></div>
+        <button class="btn ghost block" data-act="stub" data-msg="Verification email sent ✉️">Update email</button>
+        <div class="divide" style="margin:4px 0;"></div>
+        <div class="h">Password</div>
+        <div class="field"><span class="flabel">Current password</span><input class="input" type="password" value="password"></div>
+        <div class="field"><span class="flabel">New password</span><input class="input" type="password" placeholder="At least 8 characters"></div>
+        <button class="btn primary block" data-act="stub" data-msg="Password updated 🔒">Update password</button>
+        <div class="grow-sp"></div>
+        <button class="row tap" data-act="stub" data-msg="Account deletion is disabled in the prototype" style="justify-content:center;color:var(--bad);gap:8px;background:none;border:none;font-family:inherit;cursor:pointer;"><svg style="width:16px;height:16px;"><use href="#i-trash"/></svg><span style="font-size:13px;font-weight:800;">Delete account</span></button>
+      </div>
+    </section>
+
+    <!-- ══ S19 · Statistics ══ -->
+    <section class="scr" id="s-stats">
+      <div class="appbar plain"><div class="title" style="font-size:22px;">Your progress</div><button class="ibtn f" data-act="share-sheet"><svg><use href="#i-share"/></svg></button></div>
+      <div class="body">
+        <div class="seg" id="stats-seg"><div data-period="month">Month</div><div class="on" data-period="3mo">3 months</div><div data-period="year">Year</div></div>
+        <div id="stats-cards" style="display:flex;flex-direction:column;gap:13px;"></div>
+      </div>
+      <div data-tabbar="stats"></div>
+    </section>
+
+    <!-- shared overlays -->
+    <div class="scrim" id="scrim"></div>
+    <div class="sheet" id="share-sheet">
+      <div class="grab"></div>
+      <div class="h big" style="text-align:center;">Share your activity</div>
+      <div class="sharecard">
+        <svg viewBox="0 0 64 64" style="width:46px;height:46px;flex:none;"><use href="#m-mark"/></svg>
+        <div><div class="n" id="share-streak">🔥 19-day streak</div><div class="sub">Run daily · verified by Early Risers</div></div>
+      </div>
+      <div class="sharegrid">
+        <button class="opt" data-share="Instagram"><span class="ico" style="background:linear-gradient(140deg,#fdd77a,#f2668b,#8a4fd3);">📸</span><span>Instagram</span></button>
+        <button class="opt" data-share="X"><span class="ico" style="background:#20252d;color:#fff;font-weight:900;font-size:19px;">𝕏</span><span>X</span></button>
+        <button class="opt" data-share="WhatsApp"><span class="ico" style="background:#d9f4d0;">💬</span><span>WhatsApp</span></button>
+        <button class="opt" data-share="link"><span class="ico">🔗</span><span>Copy link</span></button>
+      </div>
+      <button class="btn ghost block" data-act="close-sheet">Not now</button>
+    </div>
+    <div class="toast" id="toast"></div>
+
+  </div></div>
+</div>
+
+<script src="assets/prototype.js"></script>
+</body>
+</html>

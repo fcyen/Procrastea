@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procrastea — Statistics</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body class="solo">
+<figure class="device">
+  <div class="cap"><b>Statistics</b><span class="tag">per-habit heatmaps</span><span class="num">S19</span></div>
+  <div class="phone"><div class="screen">
+    <div class="sb"><span>9:41</span><span class="r"><svg viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="3" width="15" height="6" rx="1"/><rect x="21" y="4" width="2" height="4" rx="1"/></svg></span></div>
+    <div class="appbar plain"><div class="title">Your progress</div><div class="ibtn f"><svg><use href="#i-share"/></svg></div></div>
+    <div class="body fade-b" style="gap:11px;">
+      <div class="seg"><div>Month</div><div class="on">3 months</div><div>Year</div></div>
+
+      <div class="statcard">
+        <div class="top"><div class="name">🏃 Run daily</div>
+          <svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-chart"/></svg>
+          <svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-trash"/></svg>
+        </div>
+        <div class="heat" data-p="34343443443434 43434344344340 34434343434344 43434434434343 04343443434344"></div>
+        <div class="foot"><span><b>19</b> 🔥 streak</span><span><b>90%</b> completion</span><span><b>82</b> logs</span></div>
+      </div>
+
+      <div class="statcard">
+        <div class="top"><div class="name">📚 Read</div>
+          <svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-chart"/></svg>
+          <svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-trash"/></svg>
+        </div>
+        <div class="heat" data-p="20232023032002 30230230230230 02302032023023 20230230203202 32023002302300"></div>
+        <div class="foot"><span><b>4</b> 🔥 streak</span><span><b>61%</b> completion</span><span><b>44</b> logs</span></div>
+      </div>
+
+      <div class="statcard">
+        <div class="top"><div class="name">💧 Drink water</div>
+          <svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-chart"/></svg>
+          <svg style="width:16px;height:16px;color:var(--muted)"><use href="#i-trash"/></svg>
+        </div>
+        <div class="heat" data-p="44444344443444 43444434444344 44434444344444 34444443444434 44444344444344"></div>
+        <div class="foot"><span><b>27</b> 🔥 streak</span><span><b>96%</b> completion</span><span><b>96</b> logs</span></div>
+      </div>
+    </div>
+
+    <div class="tabbar">
+      <div class="tab"><svg><use href="#i-cup"/></svg><span>Home</span></div>
+      <div class="tab"><svg><use href="#i-users"/></svg><span>Group</span></div>
+      <div class="tab"><div class="fab"><svg><use href="#i-cam"/></svg></div></div>
+      <div class="tab on"><svg><use href="#i-chart"/></svg><span>Stats</span></div>
+      <div class="tab"><svg><use href="#i-gear"/></svg><span>Settings</span></div>
+    </div>
+  </div></div>
+</figure>
+<script src="../assets/sprite.js"></script>
+<script>
+  // fill contribution heatmaps from a compact intensity pattern (0-4)
+  document.querySelectorAll('.heat').forEach(function (el) {
+    var p = (el.dataset.p || '').replace(/\s+/g, '');
+    var html = '';
+    for (var i = 0; i < p.length; i++) {
+      var n = p[i];
+      html += '<i' + (n > 0 ? ' class="l' + n + '"' : '') + '></i>';
+    }
+    el.innerHTML = html;
+  });
+</script>
+</body>
+</html>
