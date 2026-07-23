@@ -123,6 +123,11 @@
   .triptych figcaption{margin-top:10px;text-align:center;font-size:.82rem;color:var(--g2);letter-spacing:.02em;}
   .triptych .step{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g3,#9aa3af);margin-bottom:2px;}
   @media (max-width:720px){ .triptych{grid-template-columns:1fr;max-width:360px;} }
+  .s .links{margin-top:clamp(1.4rem,3vw,2rem);display:flex;gap:14px;flex-wrap:wrap;}
+  .s .links a.primary{display:inline-block;font-size:15px;font-weight:800;text-decoration:none;
+    padding:14px 24px;border-radius:100px;background:var(--g);color:#fff;
+    box-shadow:0 18px 30px -18px rgba(76,125,51,.7);transition:transform .15s ease,box-shadow .15s ease;}
+  .s .links a.primary:hover{transform:translateY(-1px);box-shadow:0 22px 34px -18px rgba(76,125,51,.8);}
   .points{list-style:none;margin:0 0 4px;padding:0;display:grid;gap:12px;max-width:640px;}
   .points li{position:relative;padding-left:30px;font-size:1.08rem;color:var(--ink);line-height:1.5;}
   .points li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:50%;
@@ -332,11 +337,23 @@
       </figure>
     </div>
   </section>
+
+  <!-- PROTOTYPE -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">08</span><span class="chip">AI-generated</span></div>
+      <h2 class="disp">Prototype</h2>
+      <p class="lead-p">With the most basic set of design guide, AI generated the full prototype.</p>
+      <div class="links">
+        <a class="primary" href="../prototype/index.html">View the prototype →</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="wrap rv">
-    <div class="eyebrow"><span class="no">08</span><span class="lbl">Reflections</span></div>
+    <div class="eyebrow"><span class="no">09</span><span class="lbl">Reflections</span></div>
     <h2 class="disp">Working with<br>an AI partner</h2>
     <p class="fnote">It was tempting to leave it to AI on auto-mode, especially as time became a constraint. But creating the first drafts by hand is an unskippable step to keep design decisions consciously selected.</p>
     <div class="next">
