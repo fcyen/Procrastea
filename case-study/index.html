@@ -113,6 +113,21 @@
   .diagram .frame{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(14px,2vw,26px);
     box-shadow:0 30px 60px -40px rgba(20,22,28,.55);}
   .diagram img{width:100%;border-radius:8px;}
+  .diagram figcaption{margin-top:12px;text-align:center;font-size:.85rem;color:var(--g2);letter-spacing:.02em;}
+  .triptych{margin:clamp(2rem,4vw,3rem) 0 0;display:grid;gap:clamp(14px,2.4vw,26px);
+    grid-template-columns:repeat(3,1fr);align-items:start;}
+  .triptych figure{margin:0;}
+  .triptych .frame{background:var(--white);border:1px solid var(--line);border-radius:20px;
+    padding:clamp(10px,1.4vw,18px);box-shadow:0 30px 60px -40px rgba(20,22,28,.55);}
+  .triptych img{width:100%;border-radius:8px;display:block;}
+  .triptych figcaption{margin-top:10px;text-align:center;font-size:.82rem;color:var(--g2);letter-spacing:.02em;}
+  .triptych .step{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g3,#9aa3af);margin-bottom:2px;}
+  @media (max-width:720px){ .triptych{grid-template-columns:1fr;max-width:360px;} }
+  .s .links{margin-top:clamp(1.4rem,3vw,2rem);display:flex;gap:14px;flex-wrap:wrap;}
+  .s .links a.primary{display:inline-block;font-size:15px;font-weight:800;text-decoration:none;
+    padding:14px 24px;border-radius:100px;background:var(--g);color:#fff;
+    box-shadow:0 18px 30px -18px rgba(76,125,51,.7);transition:transform .15s ease,box-shadow .15s ease;}
+  .s .links a.primary:hover{transform:translateY(-1px);box-shadow:0 22px 34px -18px rgba(76,125,51,.8);}
   .points{list-style:none;margin:0 0 4px;padding:0;display:grid;gap:12px;max-width:640px;}
   .points li{position:relative;padding-left:30px;font-size:1.08rem;color:var(--ink);line-height:1.5;}
   .points li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:50%;
@@ -143,6 +158,25 @@
   .brandstrip .sw i{width:22px;height:22px;border-radius:6px;background:var(--c);border:1px solid rgba(20,22,28,.08);}
   .brandstrip .ty{font-size:15px;font-weight:800;color:var(--ink);padding-left:14px;border-left:1px solid var(--tint-2);}
   .brandstrip .ty span{color:var(--ink-2);font-weight:600;}
+  .brandcard{display:flex;flex-direction:column;gap:clamp(28px,4vw,48px);}
+  .brandcard .bc-row{display:grid;grid-template-columns:minmax(120px,0.9fr) 2.6fr;gap:clamp(20px,4vw,56px);align-items:center;}
+  .brandcard .bc-label{font-size:clamp(1.4rem,3vw,2rem);line-height:1.1;color:var(--ink);letter-spacing:-.01em;}
+  .brandcard .bc-swatches{display:grid;grid-template-columns:2fr 1.1fr 0.85fr 0.85fr;grid-template-rows:1.55fr 1fr;gap:10px;min-height:clamp(200px,26vw,280px);}
+  .brandcard .sw-cell{position:relative;border-radius:16px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+  .brandcard .sw-green{grid-column:1;grid-row:1/3;}
+  .brandcard .sw-blue{grid-column:2;grid-row:1;}
+  .brandcard .sw-yellow{grid-column:2;grid-row:2;}
+  .brandcard .sw-light{grid-column:3;grid-row:1/3;border:1px solid var(--line);}
+  .brandcard .sw-dark{grid-column:4;grid-row:1/3;}
+  .brandcard .sw-cell .k{font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;opacity:.85;margin-bottom:2px;}
+  .brandcard .sw-cell .v{font-size:clamp(.9rem,1.6vw,1.15rem);font-weight:700;letter-spacing:.01em;}
+  .brandcard .on-light{color:var(--ink);}
+  .brandcard .on-dark{color:#fff;}
+  .brandcard .bc-type{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+  @media (max-width:640px){
+    .brandcard .bc-row{grid-template-columns:1fr;gap:12px;align-items:start;}
+    .brandcard .bc-swatches{min-height:clamp(240px,60vw,300px);}
+  }
 
   /* reveal */
   .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
@@ -261,7 +295,7 @@
   <!-- USER JOURNEY -->
   <section class="s">
     <div class="wrap rv">
-      <div class="eyebrow"><span class="no">05</span><span class="lbl">Walking the flow</span><span class="chip">Handcrafted · FigJam</span></div>
+      <div class="eyebrow"><span class="no">05</span><span class="lbl">Walking the flow</span><span class="chip">Handcrafted on FigJam</span></div>
       <h2 class="disp">User journey</h2>
       <ul class="points">
         <p class="lead-p">Again, we plotted the user journey by hand. This forced us to think through the entire flow, uncovering gaps along the way.</p>
@@ -273,34 +307,86 @@
     </div>
   </section>
 
-  <!-- DESIGN GUIDE -->
+  <!-- WIREFRAME -->
   <section class="s tint">
     <div class="wrap rv">
-      <div class="eyebrow"><span class="no">06</span><span class="chip">Handcrafted</span></div>
+      <div class="eyebrow"><span class="no">06</span><span class="lbl">From flow to screens</span><span class="chip">AI-generated, human-corrected</span></div>
+      <h2 class="disp">Wireframe</h2>
+      <ul class="points">
+        <p class="lead-p">With the user flow, AI generated the wireframe in 19 screens. We were impressed by how polished it looked — it gave us a concrete medium to review the user flow.</p>
+        <p>Some screens had a layout that deviated from what we had in mind. I sketched out those screens by hand and asked AI to redo them based on the sketches. For example, the home screen:</p>
+      </ul>
+      <div class="triptych">
+        <figure>
+          <div class="frame"><img src="assets/wireframe-home-original.png" alt="Original AI-generated home screen wireframe"></div>
+          <figcaption><span class="step">01</span>AI-generated</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/wireframe-home-sketch.png" alt="Hand-drawn sketch of the home screen"></div>
+          <figcaption><span class="step">02</span>My sketch</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/wireframe-home-corrected.png" alt="Corrected home screen wireframe redone from the sketch"></div>
+          <figcaption><span class="step">03</span>Corrected</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN GUIDE -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">07</span><span class="chip">Handcrafted</span></div>
       <h2 class="disp">Design guide</h2>
       <p class="lead-p">We built a moodboard, then chose the palette and typography for our target audience: <b>working adults</b>. We aimed for trust and professionalism, while keeping fun elements so habit tracking stays enjoyable.</p>
-      <div class="brandstrip">
-        <span class="sw" style="--c:#a0d286"><i></i> Matcha</span>
-        <span class="sw" style="--c:#f6c343"><i></i> Honey</span>
-        <span class="sw" style="--c:#2e5b9a"><i></i> Steep</span>
-        <span class="sw" style="--c:#20252d"><i></i> Charcoal</span>
-        <span class="ty">Figtree <span>· type</span></span>
-      </div>
       <figure class="diagram">
         <div class="frame"><img src="assets/moodboard.jpg" alt="Design moodboard — habit-app inspiration, palette and tea motifs"></div>
+        <figcaption>Moodboard</figcaption>
       </figure>
+      <figure class="diagram">
+        <div class="frame brandcard">
+          <div class="bc-row">
+            <div class="bc-label">Colour<br>Palette</div>
+            <div class="bc-swatches">
+              <div class="sw-cell sw-green" style="background:#A0D286"><span class="k on-dark">Hex code</span><span class="v on-dark">A0D286</span></div>
+              <div class="sw-cell sw-blue" style="background:#2E5B9A"><span class="k on-dark">Hex code</span><span class="v on-dark">2E5B9A</span></div>
+              <div class="sw-cell sw-yellow" style="background:#F6C343"><span class="v on-light">F6C343</span></div>
+              <div class="sw-cell sw-light" style="background:#FAFBFC"><span class="v on-light">FAFBFC</span></div>
+              <div class="sw-cell sw-dark" style="background:#20252D"><span class="v on-dark">20252D</span></div>
+            </div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">Typeface</div>
+            <div class="bc-type">Figtree</div>
+          </div>
+        </div>
+        <figcaption>Design guide</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PROTOTYPE -->
+  <section class="s tint">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">08</span><span class="chip">AI-generated</span></div>
+      <h2 class="disp">Prototype</h2>
+      <p class="lead-p">Working from only the essentials of the design guide, AI generated the full prototype.</p>
+      <div class="links">
+        <a class="primary" href="../prototype/index.html">View the prototype →</a>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap rv">
-    <div class="eyebrow"><span class="no">07</span><span class="lbl">Reflections</span></div>
+    <div class="eyebrow"><span class="no">09</span><span class="lbl">Reflections</span></div>
     <h2 class="disp">Working with<br>an AI partner</h2>
     <p class="fnote">It was tempting to leave it to AI on auto-mode, especially as time became a constraint. But creating the first drafts by hand is an unskippable step to keep design decisions consciously selected.</p>
     <div class="next">
       <span class="nlabel">Next up</span>
       <p>Run the prototype with our target users, and refine it based on the friction points we discover through testing.</p>
+      <p>Expand the design guide, adding iconography and illustration, as well as building reusable components.</p>
     </div>
     <div class="links">
       <a class="primary" href="../prototype/index.html">View the prototype →</a>
