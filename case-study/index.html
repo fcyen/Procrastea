@@ -114,6 +114,15 @@
     box-shadow:0 30px 60px -40px rgba(20,22,28,.55);}
   .diagram img{width:100%;border-radius:8px;}
   .diagram figcaption{margin-top:12px;text-align:center;font-size:.85rem;color:var(--g2);letter-spacing:.02em;}
+  .triptych{margin:clamp(2rem,4vw,3rem) 0 0;display:grid;gap:clamp(14px,2.4vw,26px);
+    grid-template-columns:repeat(3,1fr);align-items:start;}
+  .triptych figure{margin:0;}
+  .triptych .frame{background:var(--white);border:1px solid var(--line);border-radius:20px;
+    padding:clamp(10px,1.4vw,18px);box-shadow:0 30px 60px -40px rgba(20,22,28,.55);}
+  .triptych img{width:100%;border-radius:8px;display:block;}
+  .triptych figcaption{margin-top:10px;text-align:center;font-size:.82rem;color:var(--g2);letter-spacing:.02em;}
+  .triptych .step{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g3,#9aa3af);margin-bottom:2px;}
+  @media (max-width:720px){ .triptych{grid-template-columns:1fr;max-width:360px;} }
   .points{list-style:none;margin:0 0 4px;padding:0;display:grid;gap:12px;max-width:640px;}
   .points li{position:relative;padding-left:30px;font-size:1.08rem;color:var(--ink);line-height:1.5;}
   .points li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:50%;
@@ -274,10 +283,36 @@
     </div>
   </section>
 
-  <!-- DESIGN GUIDE -->
+  <!-- WIREFRAME -->
   <section class="s tint">
     <div class="wrap rv">
-      <div class="eyebrow"><span class="no">06</span><span class="chip">Handcrafted</span></div>
+      <div class="eyebrow"><span class="no">06</span><span class="lbl">From flow to screens</span><span class="chip">AI-generated, human-corrected</span></div>
+      <h2 class="disp">Wireframe</h2>
+      <ul class="points">
+        <p class="lead-p">With the user flow, AI generated the wireframe in 19 screens. We were impressed by how polished it looked — it gave us a concrete medium to review the user flow.</p>
+        <p>Some screens had a layout that deviated from what we had in mind. I sketched out those screens by hand and asked AI to redo them based on the sketches. For example, the home screen:</p>
+      </ul>
+      <div class="triptych">
+        <figure>
+          <div class="frame"><img src="assets/wireframe-home-original.png" alt="Original AI-generated home screen wireframe"></div>
+          <figcaption><span class="step">01</span>AI-generated</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/wireframe-home-sketch.png" alt="Hand-drawn sketch of the home screen"></div>
+          <figcaption><span class="step">02</span>My sketch</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/wireframe-home-corrected.png" alt="Corrected home screen wireframe redone from the sketch"></div>
+          <figcaption><span class="step">03</span>Corrected</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN GUIDE -->
+  <section class="s">
+    <div class="wrap rv">
+      <div class="eyebrow"><span class="no">07</span><span class="chip">Handcrafted</span></div>
       <h2 class="disp">Design guide</h2>
       <p class="lead-p">We built a moodboard, then chose the palette and typography for our target audience: <b>working adults</b>. We aimed for trust and professionalism, while keeping fun elements so habit tracking stays enjoyable.</p>
       <div class="brandstrip">
@@ -301,7 +336,7 @@
 
 <footer>
   <div class="wrap rv">
-    <div class="eyebrow"><span class="no">07</span><span class="lbl">Reflections</span></div>
+    <div class="eyebrow"><span class="no">08</span><span class="lbl">Reflections</span></div>
     <h2 class="disp">Working with<br>an AI partner</h2>
     <p class="fnote">It was tempting to leave it to AI on auto-mode, especially as time became a constraint. But creating the first drafts by hand is an unskippable step to keep design decisions consciously selected.</p>
     <div class="next">
